@@ -1,0 +1,233 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 16 - 3 </title>
+<script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+</script>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 16-3 -
+Polymorphism</font></font></b>
+<br><a href="act2.html"><img SRC="lfarrow.jpg" BORDER=0 height=35 width=36></a><a href="post_lab.html"><img SRC="rtarrow.jpg" BORDER=0 height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br><b>Polymorphism </b>refers to the ability to associate multiple meanings
+to one function name.&nbsp; In order to give multiple meanings to a function
+name we use a special mechanism known as <i>late binding</i>.&nbsp; Polymorphism
+is one of the key components of <i>object oriented programming (OOP).</i>
+<p><b><font color="#000099"><font size=+1>Late Binding</font></font></b>
+<br>A virtual function is one that, in some sense, may be used before it
+is defined.&nbsp; For example, you may remember that when we talked about
+function overloading we designed a function called a<i>rea</i> which was
+used to compute the area of different shapes.&nbsp; In that lab, we separated
+the function for each shape using overloading which based its distinction
+on the type and number of arguments in the overloaded function.&nbsp; We
+could use a similar approach with classes. In the case that we would use
+a class, each class needs a different function for computing the area of
+different shapes.&nbsp; All these functions can be called <i>area </i>and
+we would create different objects for different shapes to make the separation.
+For example, we could have used object <i>r </i>for rectangle, <i>c </i>for
+a circle, and so forth.&nbsp; Then each one of the functions could be executed,
+i.e., <i>r.area( ) </i>or <i>c.area( )</i>.&nbsp; This is not something
+new, but now we wish to discuss this from a new viewpoint, <i>virtual functions,
+</i>defined
+in the parent of class <i>area</i>.
+<p>When we use a <b>virtual function</b> we tell the compiler that "we
+don't know how the function is implemented, wait until it is used in a
+program, and then get the implementation from the object instance."&nbsp;
+The technique of waiting until run-time to determine the implementation
+of a procedure is called <b>late binding</b> or <b>dynamic binding</b>.
+<p><b><font color="#000099"><font size=+1>Virtual Functions in C++</font></font></b>
+<br>Sometimes you are designing a program that needs to be versatile and
+handle various situations.&nbsp; You may not be able to account for all
+possible situations.&nbsp; For example, you have a program that is supposed
+to track sales, but you cannot anticipate all types of sales; regular sales,
+sales with discounts, mail orders, sales with shipping charges, etc. In
+a simple sale the bill is very simple while in more complicated ones, you
+may have several different things appearing on the bill.&nbsp; You may
+also want to do some other things with the sales that were made, such as
+finding the largest or the smallest sale.
+<p>In order to do this, one approach would be to have a parent class <i>Sale</i>
+and make other types of sales derived classes (children) of that class.&nbsp;
+The class <i>Sale </i>itself is a class that handles simple sales, sales
+with no discount and added charges.&nbsp; Here is one way we may define
+class <i>Sale</i> with its implementation.
+<p><i>//This is the HEADER FILE sale.h.</i>
+<br><i>//This is the INTERFACE for the class Sale.</i>
+<br><i>//Sale is a class for simple sales.</i>
+<br><i>#ifndef SALE_H</i>
+<br><i>#define SALE_H</i>
+<p><i>#include &lt;iostream></i>
+<br><i>using namespace std;</i>
+<p><i>namespace savitchsale</i>
+<br><i>{</i>
+<p><i>&nbsp;&nbsp;&nbsp; class Sale</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp; public:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sale();</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sale(double the_price);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">virtual</font>
+double bill() const;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double savings(const
+Sale&amp; other) const;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Returns the savings
+if you buy other instead of the calling object.</i>
+<br><i>&nbsp;&nbsp;&nbsp; protected:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double price;</i>
+<br><i>&nbsp;&nbsp;&nbsp; };</i>
+<p><i>&nbsp;&nbsp;&nbsp; bool operator &lt; (const Sale&amp; first, const
+Sale&amp; second);</i>
+<br><i>&nbsp;&nbsp;&nbsp; //Compares two sales to see which is larger.</i>
+<p><i>}//savitchsale</i>
+<p><i>#endif // SALE_H</i>
+<br>// ****************************************************
+<p>The implementation looks like this:
+<br><i>//This is the IMPLEMENTATION FILE: sale.cpp</i>
+<br><i>//This is the IMPLEMENTATION for the class Sale.</i>
+<br><i>//The interface for the class Sale is in</i>
+<br><i>//the header file sale.h.</i>
+<br><i>#include "sale.h"</i>
+<p><i>namespace savitchsale</i>
+<br><i>{</i>
+<p><i>&nbsp;&nbsp;&nbsp; Sale::Sale() : price(0)</i>
+<br><i>&nbsp;&nbsp;&nbsp; {}</i>
+<p><i>&nbsp;&nbsp;&nbsp; Sale::Sale(double the_price) : price(the_price)</i>
+<br><i>&nbsp;&nbsp;&nbsp; {}</i>
+<p><i><font color="#CC0000">&nbsp;&nbsp;&nbsp; double Sale::bill() const</font></i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp; {</font></i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return price;</font></i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp; }</font></i>
+<p><i>&nbsp;&nbsp;&nbsp; double Sale::savings(const Sale&amp; other) const</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ( <font color="#CC0000">bill()</font>
+- other.bill() );</i>
+<br><i>&nbsp;&nbsp;&nbsp; }</i>
+<p><i>&nbsp;&nbsp;&nbsp; bool operator &lt; (const Sale&amp; first, const
+Sale&amp; second)</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return (first.<font color="#CC0000">bill()
+</font>&lt;
+second.<font color="#CC0000">bill()</font>);</i>
+<br><i>&nbsp;&nbsp;&nbsp; }</i>
+<p><i>}//savitchsal</i>e
+<p>There are a few things that we need to discuss in this program.&nbsp;
+Notice the reserved word <i><font color="#CC0000">virtual </font></i><font color="#000000">used
+with function </font><font color="#CC0000"><i>bill</i> </font><font color="#000000">in
+the class definition.&nbsp; As you look carefully, you will find that function
+</font><i><font color="#CC0000">bill
+</font></i><font color="#000000">is used by function <i>saving </i>and
+<i>operator &lt;</i>.&nbsp; Since <i>bill
+</i>is declared as a virtual
+function, we later define derived classes of the class <i>Sale</i> and
+define their versions of the function <i>bill</i>,
+<i>saving, </i>and the
+overloaded operator &lt;, to correspond to the objects of the derived classes.&nbsp;
+Following is an example in which the derived class <i>DiscountSale </i>requires
+a different definition for its version of the function<i> bill</i>.</font>
+<p><i><font color="#006600">//This is the INTERFACE for the class DiscountSale.</font></i>
+<br><i><font color="#006600">#ifndef DISCOUNTSALE_H</font></i>
+<br><i><font color="#006600">#define DISCOUNTSALE_H</font></i>
+<br><i><font color="#006600">#include "sale.h"</font></i>
+<p><i><font color="#006600">namespace savitchsale</font></i>
+<br><i><font color="#006600">{</font></i>
+<br><i><font color="#006600">&nbsp;&nbsp;&nbsp; class DiscountSale : public
+Sale</font></i>
+<br><i><font color="#006600">&nbsp;&nbsp;&nbsp; {</font></i>
+<br><i><font color="#006600">&nbsp;&nbsp;&nbsp; public:</font></i>
+<br><i><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+DiscountSale();</font></i>
+<br><i><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+DiscountSale(double the_price, double the_discount);</font></i>
+<br><i><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//Discount is expressed as a percent of the price.</font></i>
+<br><i><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+double bill() const;</font></i>
+<br><i><font color="#006600">&nbsp;&nbsp;&nbsp; protected:</font></i>
+<br><i><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+double discount;</font></i>
+<br><i><font color="#006600">&nbsp;&nbsp;&nbsp; };</font></i>
+<br><i><font color="#006600">}//savitchsale</font></i>
+<br><i><font color="#006600">#endif //DISCOUNTSALE_H</font></i>
+<p><font color="#000000">The implementation for this class is shown below.</font>
+<p><i><font color="#000000">//This is the IMPLEMENTATION for the class
+DiscountSale.</font></i>
+<br><i><font color="#000000">#include "discountsale.h"</font></i>
+<p><i><font color="#000000">namespace savitchsale</font></i>
+<br><i><font color="#000000">{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; DiscountSale::DiscountSale()
+: Sale(), discount(0)</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; {}</font></i>
+<p><i><font color="#000000">&nbsp;&nbsp;&nbsp; DiscountSale::DiscountSale(double
+the_price, double the_discount)</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+: Sale(the_price), discount(the_discount)</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; {}</font></i>
+<p><i><font color="#CC0000">&nbsp;&nbsp;&nbsp; double DiscountSale::bill()
+const</font></i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp; {</font></i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+double fraction = discount/100;</font></i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return (1 - fraction)*price;</font></i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp; }</font></i>
+<br><font color="#000000"><i>}//savitchsal</i>e</font>
+<p><font color="#000000">You may have noticed a new version of the <i>bill
+</i>function
+in the implementation of this derived class.&nbsp; You may also have noticed
+that the member function <i>saving </i>and the overloaded operator <i>&lt;</i>
+used with an object of the class <i>DiscountSale </i>both use the new version
+of <i>bill</i>.</font>
+<p><font color="#000000">The main program is shown below.</font>
+<p><i><font color="#990000">//Demonstrates the performance of the virtual
+function bill.</font></i>
+<br><i><font color="#990000">#include &lt;iostream></font></i>
+<br><i><font color="#990000">#include "sale.h" //Not really needed, but
+safe due to ifndef.</font></i>
+<br><i><font color="#990000">#include "discountsale.h"</font></i>
+<br><i><font color="#990000">using namespace std;</font></i>
+<br><i><font color="#990000">using namespace savitchsale;</font></i>
+<p><i><font color="#990000">int main()</font></i>
+<br><i><font color="#990000">{</font></i>
+<br><i><font color="#990000">&nbsp;&nbsp;&nbsp; Sale simple(10.00);//One
+item at $10.00.</font></i>
+<br><i><font color="#990000">&nbsp;&nbsp;&nbsp; DiscountSale discount(11.00,
+10);//One item at $11.00 with a 10% discount.</font></i>
+<p><i><font color="#990000">&nbsp;&nbsp;&nbsp; cout.setf(ios::fixed);</font></i>
+<br><i><font color="#990000">&nbsp;&nbsp;&nbsp; cout.setf(ios::showpoint);</font></i>
+<br><i><font color="#990000">&nbsp;&nbsp;&nbsp; cout.precision(2);</font></i>
+<p><i><font color="#990000">&nbsp;&nbsp;&nbsp; if (discount &lt; simple)</font></i>
+<br><i><font color="#990000">&nbsp;&nbsp;&nbsp; {</font></i>
+<br><i><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Discounted item is cheaper.\n";</font></i>
+<br><i><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Savings is $" &lt;&lt; simple.savings(discount) &lt;&lt;
+endl;</font></i>
+<br><i><font color="#990000">&nbsp;&nbsp;&nbsp; }</font></i>
+<br><i><font color="#990000">&nbsp;&nbsp;&nbsp; else</font></i>
+<br><i><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Discounted item is not cheaper.\n";</font></i>
+<p><i><font color="#990000">&nbsp;&nbsp;&nbsp; return 0;</font></i>
+<br><i><font color="#990000">}</font></i>
+<p><a NAME="ex16.3"></a><b><font color="#00CC00"><font size=+1>Exercise
+16.3</font></font></b>
+<br><font color="#000000">Modify the the definition of the class <i>Sale</i>
+by deleting the reserved word <i>virtual.&nbsp; </i>Before you run the
+program try to determine the output. Then compile the pieces and run the
+program.&nbsp; Did you have the right answer?</font>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

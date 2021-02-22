@@ -1,0 +1,205 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 1 - 3 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 1-3 - A
+Simple C++ Program</font></font></b>
+<br><a href="act2.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="post_lab.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>A grocery store sells many cases of soft drink everyday.&nbsp; In each
+case, there are 12 bottles and the store profits 20 cents per bottle. We
+want to compute the profit that the store has every day of selling soft
+drink.&nbsp; We also want to know the profit for selling soft drink in
+a year. Assume a year is 365 days.
+<p><b><font color="#009900"><font size=+1>1) Problem Definition:</font></font></b>
+<br>Compute the profit that a store has in one day for selling soft drink?
+<br>Compute the profit that a store has in one year for selling soft drink?
+<p>This program is so computationally extensive, that we want to write
+a C++ program to solve it on a computer!&nbsp; At least we will assume
+it is for now.
+<p><b><font color="#009900"><font size=+1>2) Program Design - Algorithm</font></font></b>
+<br>Before we attempt to write the program, let's develop an algorithm
+for solving the problem.
+<p><a NAME="ex12"></a><b><font color="#00CC00"><font size=+1>Exercise 1.2</font></font></b>
+<br>Design the algorithm for this problem.&nbsp; On a piece of paper draw
+a diagram or write in English the steps.&nbsp; Remember your algorithm
+must be precise.&nbsp; Once you are done with your design, if you wish
+you can compare your design with the one we have given <a href="algo.jpg">here</a>.
+This algorithm must be translated to C++ to obtain the program.
+<p><b><font color="#009900"><font size=+1>2-A) Desktop Testing</font></font></b>
+<br>Now that you have the algorithm, test it to see if it works on paper.
+<p><b><font color="#009900"><font size=+1>3) Implementing the Algorithm
+in C++</font></font></b>
+<br>This is where you will translate the algorithm to C++.&nbsp; Here is
+a program that is designed based on the algorithm that is given in the
+previous part.&nbsp; Check to make sure you find everything is translated
+preciously.
+<p><font color="#CC0000">//</font> <font color="#3333FF">P11.cpp - This
+C++ Program will compute the profit of selling soft drinks</font>
+<p><font color="#3333FF">#include &lt;iostream></font>
+<br><font color="#3333FF">using namespace std;</font>
+<p><font color="#3333FF">int main( )</font>
+<br><font color="#3333FF">{</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp; int cases_per_day, bottles_per_day;</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp; int bottles_per_case
+= 12;</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp; double profit_per_bottle
+= 0.2;&nbsp; // 20 cents per bottle profit</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp; double profit_per_day,
+profit_per_year;</font>
+<p><font color="#3333FF">&nbsp;&nbsp;&nbsp; cout &lt;&lt; “Press enter
+after entering each number \n”;</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp; cout &lt;&lt; “Enter number
+of cases \n”;</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp; cin >> cases_per_day;</font>
+<p><font color="#3333FF">&nbsp;&nbsp;&nbsp; profit_per_day = cases_per_day
+* bottles_per_case * profit_per_bottle;</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp; profit_per_year = 365 * profit_per_day;</font>
+<p><font color="#3333FF">&nbsp;&nbsp;&nbsp; cout &lt;&lt; “The store has
+a made : “;</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp; cout &lt;&lt; profit_per_day;</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp; cout &lt;&lt; “&nbsp; per
+day. \n”;</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp; cout &lt;&lt; “That means
+the profit for one year will be:&nbsp; “;</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp; cout &lt;&lt; profit_per_year
+&lt;&lt; endl;</font>
+<p><font color="#3333FF">&nbsp;&nbsp;&nbsp; cout &lt;&lt; “Good business?!
+\n”;</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp; return 0;</font>
+<br><font color="#3333FF">}</font>
+<p><a NAME="ex13"></a><b><font color="#00CC00"><font size=+1>Exercise 1.3</font></font></b>
+<br>Create the lab1 directory under the directory that you are using for
+this course. Change to that directory.&nbsp; Open a blank file, P11.cpp,
+and either cut and paste or carefully type the above program in that file,
+save the file, and exit.&nbsp; Note that on some machines the C++ compiler
+does not compile files with .cpp extension, so you may need to save the
+file as P11.C.&nbsp; If you save your C++ programs with .C extension, then
+replace .cpp extension with .C in the rest of programs given in all labs.&nbsp;
+For now, we assume that you are saving your files with .cpp extension.
+<p>Compile the program by typing:
+<br>% g++ P11.cpp&nbsp; (or % g++ P11.C if you saved your files with .C
+extension)
+<p>If there is no syntax error in your program, you should get a new file
+called a.out.&nbsp; To run the program type:
+<p>% a.out
+<p><b><font color="#009900"><font size=+1>4) Test the Program</font></font></b>
+<br>The last thing you need to do is to test the program to make sure it
+produces the correct results.
+<p>Assuming the store sells 10 cases per day, what would be the profit
+per day and per year?&nbsp; You can confirm the answer by hand.
+<p><a NAME="ex14"></a><b><font color="#00CC00"><font size=+1>Exercise 1.4</font></font></b>
+<br>Modify program P11.cpp so that it uses 22 Cents profit per bottle in
+the calculations.&nbsp; This time in your output, display both the number
+of bottles sold and the profit for one day, one year, and 10 years.&nbsp;
+Call your new program P12.cpp.
+<p><b><font color="#009900"><font size=+1>What is what in the Simple C++
+Program P11.cpp?</font></font></b>
+<br>On the first line of the program you have:
+<p><font color="#CC0000">// </font><font color="#3366FF">P11.cpp - This
+C++ Program will compute the profit of selling soft drinks</font>
+<p>The <font color="#CC0000">//</font> tells the compiler that the line
+is only a comment and do not participate in the computing.&nbsp; Comments
+are added for readability and/or to describe parts of a program.
+<p>On the next line you have:
+<br><font color="#3366FF">#include &lt;iostream></font>
+<p>This is called an include directive.&nbsp; It tells the compile where
+to find information about some of the items that are used in your program.
+For example: cout, &lt;&lt;, >>, and cin in the above program.&nbsp; There
+are other libraries that you will use to include other items.&nbsp; Note
+that the directive always begin with #.
+<p><font color="#3333FF">using namespace std;</font>
+<p>This line will tell the compiler that the names defined in iostream
+are to be interpreted in and “standard way”.&nbsp; Note that your program
+should work without this, as your default set up is to use a global namespace.&nbsp;
+We will discuss the namespace in more details in Lab 10.
+<p><font color="#3366FF">&nbsp;int main( )</font>
+<br><font color="#3366FF">{</font>
+<p>Let’s just say that this marks the beginning of your main program.&nbsp;
+Actually, int is used for type “integer”, main is a function name and (
+) will mark the boundary of parameters.&nbsp; We promise that you will
+learn about all this very soon.&nbsp; Note that the { marks the beginning
+of the main function and } marks the end of it.&nbsp; In general, remember
+that for every open {, you should have a corresponding }.
+<p>In the next four lines:
+<br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3366FF">int cases_per_day, bottles_per_day;</font>
+<br><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; int bottles_per_case
+= 12,</font>
+<br><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; double profit_per_bottle
+= 0.2;&nbsp; // 20 cents per bottle profit</font>
+<br><font color="#3366FF">&nbsp;&nbsp;&nbsp; double profit_per_day, profit_per_year;</font>
+<p>We will declare the variables that we plan to use and we also define
+their type.&nbsp; We look at different variable types in the future labs.&nbsp;
+In the above four lines int is used to declare variables of type “integer”.&nbsp;
+On the second line we not only define the bottles_per_case as an integer,
+we also initialized that to 12. On the 3rd and 4th lines, we have defined
+variables of type double.&nbsp; Note that each instruction is ended with
+a ;.
+<p>On the following two lines:
+<br><font color="#3366FF">&nbsp;&nbsp;&nbsp; cout &lt;&lt; “Press enter
+after entering each number \n”;</font>
+<br><font color="#3366FF">&nbsp;&nbsp;&nbsp; cout &lt;&lt; “Enter number
+of cases \n”;</font>
+<br>we have used cout to display a message on the screen.&nbsp; The cout
+statement will allow us to direct data from a variable out to the screen.
+<p>On the other hand, in the following line the cin directs data from the
+keyboard into a variable.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3366FF">cin >> cases_per_day;</font>
+<p>It is important but very easy to remember what the direction of &lt;&lt;
+and >> is.&nbsp; Note that when we send data to the screen, we send it
+to cout so the direction must be &lt;&lt;, and when we send data from the
+keyboard to a variable using cin the direction must be toward the variable
+>>.
+<p>In the sample program, we have perform some calculations:
+<br><font color="#3366FF">&nbsp;&nbsp;&nbsp; profit_per_day = cases_per_day
+* bottles_per_case * profit_per_bottle;</font>
+<br><font color="#3366FF">&nbsp;&nbsp;&nbsp; profit_per_year = 365 * profit_per_day;</font>
+<p>In the first line we have multiplied, *, cases_per_day by bottles_per_case
+by profit_per_bottle, and stored the result, =, into profit_per_day.&nbsp;
+We will learn about different arithmetic operators in future labs.&nbsp;
+Explain what you have done in the second line.
+<br>&nbsp;
+<p>Congratulations, in this lab, you learned about some the basic steps
+you need to take to solve a problem using a computer program.&nbsp; Also,
+you learned some of the syntax in C++.&nbsp; In the last part, we briefly
+discuss the type of error you may run into when you write a computer program.
+<p>Kinds of Program Errors
+<br>When you use a program to solve a problem, you may have one of the
+following three errors: 1) Syntax Error, 2) Logic Error, and 3) Run_time
+Error.
+<p><b><font color="#009900"><font size=+1>1) Syntax Error</font></font></b>
+<br>Syntax error will be the result of violation of the syntax (the grammar
+rules) of the programming language that you use.&nbsp; For instance, if
+you forget to put ; at the end of a C++ instruction, your compiler will
+not correctly compile and will display and error on the screen.&nbsp; To
+see the type of error, you can remove one of the ; a try to compile the
+program.&nbsp; Another example of this type of error is if you do not have
+a paired open { and close } set of braces.
+<p><b><font color="#009900"><font size=+1>2) Logic Error</font></font></b>
+<br>The logic error will be the result of incorrect translation of your
+algorithm when you were writing the program.&nbsp; This error will not
+be detected by the computer and the only way to find it is to test the
+program carefully after it is completed.&nbsp; For instance, if in the
+following statement:
+<p><font color="#3366FF">profit_per_day = cases_per_day </font><font color="#CC0000">*</font><font color="#3366FF">
+bottles_per_case * profit_per_bottle; </font><font color="#993366">//correct</font>
+<p>which is the correct statement for computing the profit_per_day, but
+if by mistake, we use + instead of *, then we will have:
+<br><font color="#3366FF">profit_per_day = cases_per_day</font> <font color="#CC0000">+</font><font color="#3366FF">bottles_per_case
+* profit_per_bottle;&nbsp; </font><font color="#993366">//wrong</font>
+<p>We will get an answer, but that answer is not correct.&nbsp; The error
+is the result of the mistake in the translation of our algorithm. Instead
+of * we have used +.
+<p><b><font color="#009900"><font size=+1>3) Run_time Error</font></font></b>
+<br>A run_time error is detected when we run a program.&nbsp; This type
+of error are mostly related to numeric calculations.&nbsp; For example,
+a computer cannot compute the square root of a negative number.
+<br>&nbsp;
+</body>
+</html>

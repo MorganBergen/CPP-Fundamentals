@@ -1,0 +1,450 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 11 - 1 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 11-1 -
+Introduction to Strings</font></font></b>
+<br><b><font color="#000099"><font size=+3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+C-string Functions</font></font></b>
+<br><a href="pre_lab.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act2.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In the previous lab, you learned to create arrays of different sizes
+to handle some numerical calculations.&nbsp; In this lab, you will use
+arrays of characters which will be referred to as <b>strings</b>.&nbsp;
+We can create a string in two different ways, 1) using the C-string style,
+and 2) using the string class.
+<p>To create an array using a C-string, we first need to declare an array
+of characters to store the characters that make the string (word).&nbsp;
+You have to keep in mind that when you use the C-string style to create
+a string, you are required to have an extra space at the end for character
+'\0' which is known as the <b>null character</b>.&nbsp; The null character,
+'\0', marks the end of the string.&nbsp; In general, a string in which
+the null character marks its end is referred to as a <b>C-string</b>.&nbsp;
+The following array is an example of a C-string, which allows us to store
+7 or fewer characters:
+<p><i>char mystring[8];</i>
+<p>Note this array can hold 8 characters, but the last one is kept for
+'\0'.&nbsp; If we initialize this array with "Hello":
+<p><i>char mystring[8] = "Hello";</i>&nbsp;&nbsp;&nbsp;&nbsp; Or by using:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<i>char mystring[] = "Hello";</i>
+<p>Then we will have:
+<br>&nbsp;
+<table BORDER COLS=9 WIDTH="100%" >
+<tr>
+<td>
+<center><b><font color="#CC0000">Imaginary</font></b>
+<br><b><font color="#CC0000">Memory</font></b>
+<br><b><font color="#CC0000">Address</font></b></center>
+</td>
+
+<td>
+<center>1023</center>
+</td>
+
+<td>
+<center>1024</center>
+</td>
+
+<td>
+<center>1025</center>
+</td>
+
+<td>
+<center>1026</center>
+</td>
+
+<td>
+<center>1027</center>
+</td>
+
+<td>
+<center>1028</center>
+</td>
+
+<td>
+<center>1029</center>
+</td>
+
+<td>
+<center>1030</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><b><font color="#CC0000">Array Index</font></b></center>
+</td>
+
+<td>
+<center>0</center>
+</td>
+
+<td>
+<center>1</center>
+</td>
+
+<td>
+<center>2</center>
+</td>
+
+<td>
+<center>3</center>
+</td>
+
+<td>
+<center>4</center>
+</td>
+
+<td>
+<center>5</center>
+</td>
+
+<td>
+<center>6</center>
+</td>
+
+<td>
+<center>7</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><b><font color="#CC0000">Indexed</font></b>
+<br><b><font color="#CC0000"><i>numlist</i> Variable</font></b></center>
+</td>
+
+<td>
+<center><i>mystring</i>[0]</center>
+</td>
+
+<td>
+<center><i>mystring</i>[1]</center>
+</td>
+
+<td>
+<center><i>mystring</i>[2]</center>
+</td>
+
+<td>
+<center><i>mystring</i>[3]</center>
+</td>
+
+<td>
+<center><i>mystring</i>[4]</center>
+</td>
+
+<td>
+<center><i>mystring</i>[5]</center>
+</td>
+
+<td>
+<center><i>mystring</i>[6]</center>
+</td>
+
+<td>
+<center><i>mystring</i>[7]</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><b><font color="#CC0000">Array</font></b>
+<br><b><font color="#CC0000">Content</font></b></center>
+</td>
+
+<td>
+<center>H</center>
+</td>
+
+<td>
+<center>e</center>
+</td>
+
+<td>
+<center>l</center>
+</td>
+
+<td>
+<center>l</center>
+</td>
+
+<td>
+<center>o</center>
+</td>
+
+<td>
+<center>\0</center>
+</td>
+
+<td>
+<center>?</center>
+</td>
+
+<td>
+<center>?</center>
+</td>
+</tr>
+</table>
+
+<p>Note that we haven't used the last two elements and we do not know the
+content of those locations are.
+<p><u>Important Note:</u>
+<br>Please remember that the above two statements used to initialize the
+array are equivalent, but the following IS NOT equivalent to these two:
+<br>&nbsp;<i>char mystring[] = {'H', 'e', 'l', 'l', 'o'};</i>
+<p>The above two initializations put a '\0, after the 'o', but this one
+doesn't put the '\0' at any place in the array.
+<p><b><font color="#000099"><font size=+1>Comparing two strings</font></font></b>
+<br><font color="#000000">When we dealt with numbers, it was easy to compare
+two numbers to see whether they are the same using ==.&nbsp; However, when
+we deal with C-strings, we cannot use this method.&nbsp; For example, if
+we want to check whether mystring is the same as yourstring, we cannot
+use the following:</font>
+<p><font color="#000000">char mystring[] = "Hello";</font>
+<br><font color="#000000">char yourstring[] = "hello";</font>
+<p><font color="#000000">if(mystring == yourstring)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</font><font color="#CC0000">WRONG</font>
+<p><font color="#000000">In order to do this, we will use a function <i>strcmp.</i></font>
+<p><font color="#000000">if( strcmp(mystring, yourstring) == 0)</font>
+<p><font color="#000000">The <i>strcmp</i> function will return 0 if the
+strings are the same.&nbsp; The
+<i>strcmp</i> function uses the ordering
+relationship known as <b>lexicographic order
+</b>to determine whether these
+two are the same.</font>
+<p><u>Important Note:</u>
+<br>In order to use the <i>strcmp</i> function, you need to use the <i>#include&lt;cstring></i>
+in your programs.&nbsp; The following table shows a list of some of the
+functions in that header file.
+<br>&nbsp;
+<br>&nbsp;
+<center><table BORDER COLS=3 WIDTH="100%" >
+<tr>
+<td>
+<center><b>Function Name</b></center>
+</td>
+
+<td>
+<center><b>Description</b></center>
+</td>
+
+<td>
+<center><b>Cautions</b></center>
+</td>
+</tr>
+
+<tr>
+<td><i><font color="#CC0000">strcpy</font></i>
+<br><b><font color="#000000">use:</font><font color="#CC0000"> </font></b><i><font color="#CC0000">strcpy(Target_String,
+Source_String)</font></i></td>
+
+<td>Copies the C-string variable <i>Source_String </i>into the C-string
+variable <i>Target_String</i></td>
+
+<td>Does not check to see if the <i>Target_String</i> is large enough to
+hold the <i>Source_String</i></td>
+</tr>
+
+<tr>
+<td><i><font color="#CC0000">strncpy</font></i>
+<br><b><font color="#000000">use:</font><font color="#CC0000"> </font></b><i><font color="#CC0000">strncpy(Target_String,
+Source_String, Limit)</font></i></td>
+
+<td>The same as <i>strcpy</i> except that at most <i>Limit </i>characters
+are copied.</td>
+
+<td>Not implemented in all versions of C++</td>
+</tr>
+
+<tr>
+<td><i><font color="#CC0000">strcat</font></i>
+<br><b><font color="#000000">use:</font><font color="#CC0000"> </font></b><i><font color="#CC0000">strcat(Target_String,
+Source_String)</font></i></td>
+
+<td>Concatenates (put together) the C-string variable <i>Source_String</i>
+onto the end of the C-string variable <i>Target_String</i></td>
+
+<td>Does not check to see if the <i>Target_String</i> is large enough to
+hold both strings together</td>
+</tr>
+
+<tr>
+<td><i><font color="#CC0000">strncat</font></i>
+<br><b><font color="#000000">use:</font><font color="#CC0000"> </font></b><i><font color="#CC0000">strncat(Target_String,
+Source_String, Limit)</font></i></td>
+
+<td>The same as <i>strcat</i> except that at most <i>Limit </i>characters
+are appended</td>
+
+<td>Not implemented in all versions of C++</td>
+</tr>
+
+<tr>
+<td><i><font color="#CC0000">strlen</font></i>
+<br><i><font color="#CC0000">int length;</font></i>
+<br><b><font color="#000000">use:</font><font color="#CC0000"> </font></b><font color="#CC0000"><i>length</i><b>
+= </b><i>strlen(Source_String)</i></font></td>
+
+<td>Returns an integer equal to the length of the <i>Source_String</i>,
+excluding the '\0' character.&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td><i><font color="#CC0000">strcmp</font></i>
+<br><b><font color="#000000">use:</font><font color="#CC0000"> </font></b><i><font color="#CC0000">strcmp(String_1,
+String_2)</font></i></td>
+
+<td>
+<ul>
+<li>
+Returns 0 if <i>String_1 </i>and <i>String_2</i> are the same.&nbsp;</li>
+
+<li>
+Returns a value &lt; 0 if <i>String_1 </i>is less than <i>String_2</i>&nbsp;</li>
+
+<li>
+Returns a value > 0 if <i>String_1 </i>is greater than <i>String_2</i></li>
+</ul>
+Thus, it returns a non-zero value when the two C-strings are not the same.</td>
+
+<td>When the two C-strings are the same it returns 0, which converts to
+false.&nbsp; That may cause confusion as you may expect to get 1 when the
+two C-stringsa are the same.&nbsp;</td>
+</tr>
+
+<tr>
+<td><i><font color="#CC0000">strncmp</font></i>
+<br><b><font color="#000000">use:</font><font color="#CC0000"> </font></b><i><font color="#CC0000">strncmp(String_1,
+String_2, Limit)</font></i></td>
+
+<td>The same as <i>strcmp</i> except that at most <i>Limit </i>characters
+are compared</td>
+
+<td>Not implemented in all versions of C++</td>
+</tr>
+
+<tr>
+<td><i><font color="#CC0000">getline</font></i>
+<br><b><font color="#000000">use:</font></b>
+<br><i><font color="#CC0000">cin.getline(String_variable, Max_characters+1)</font></i>
+<br><i><font color="#000000">or&nbsp;</font></i>
+<br><i><font color="#000000">ifstream&nbsp; s;&nbsp; // an input stream</font></i>
+<br><i><font color="#CC0000">s.getline(String_variable, Max_characters+1)</font></i></td>
+
+<td>Reads a line of input up to <i><font color="#CC0000">Max_characters</font></i>
+length and places the C-string of characters on that line into a C-string
+variable <i><font color="#CC0000">String_variable</font></i></td>
+
+<td>If the line is longer than the maximum length defined, it only copies
+the first Max_characters-1 characters on that line</td>
+</tr>
+</table></center>
+
+<p>Follwing is an example program in which we use some of these functions.
+<p>// P11_1.cpp - This program demonstrates the use of C-string functions
+<p>#include&lt;iostream>
+<br>#include&lt;cstring>
+<br>using namespace std;
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; char s1[8], s2[8];
+<br>&nbsp;&nbsp;&nbsp;&nbsp; int length1, length2;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; int count = 0;
+<p>&nbsp; // Initialize the two strings
+<br>&nbsp;&nbsp;&nbsp;&nbsp; strcpy(s1,"Black");
+<br>&nbsp;&nbsp;&nbsp;&nbsp; strcpy(s2,"Black");
+<p>&nbsp; while(count &lt; 2)
+<br>&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(count > 0)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // After the first time ask the user
+to enter them
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+"Now I let you enter two strings \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+"Enter the first string, then the second \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Another way
+to initialize the two strings
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> s1 >>
+s2;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Find their lengths
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; length1 = strlen(s1);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; length2 = strlen(s2);
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Compare their length
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(length1 == length2)
+<br>&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "The two strings are the same length, are they the same?
+\n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // See if they are the same
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(! strcmp(s1, s2) )
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+"The two strings: ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+s1 &lt;&lt; " and " &lt;&lt; s2 &lt;&lt; " are the same \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+"The two strings: ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+s1 &lt;&lt; " and " &lt;&lt; s2 &lt;&lt; " are NOT the same \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count++;
+<br>&nbsp;&nbsp; }
+<p>&nbsp;&nbsp; return 0;
+<br>}
+<p><b><font color="#000099"><font size=+1>C-String Input and Output</font></font></b>
+<br>Note the way we initialized the strings from the keyboard:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> s1 >>
+s2;
+<br>and we display their values using:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+s1 &lt;&lt; " and " &lt;&lt; s2 &lt;&lt; " are NOT the same \n";
+<p>When we did the reading, a blank space between the two strings that
+we type will tell the compiler which word goes to which string. Thus, if
+we would enter:
+<br>"Black&nbsp; board", s1 would take "Black" and s2 would take "board".&nbsp;
+The same thing would happen if we would have entered these two as:
+<br>Black
+<br>board
+<p><b><font color="#000099"><font size=+1>C-String-to-Number Functions</font></font></b>
+<br>The functions <b>atoi</b>, <b>atol</b>, and <b>atof</b> can be used
+to convert a C-string of digits to the corresponding numeric value.&nbsp;
+The first two functions convert the C-string to integers of type <i>int</i>
+or <i>long,</i> respectively.&nbsp; The last one will convert the C-string
+to <i>double</i>.
+<br>Example:
+<br>int x = atoi("675");
+<p>This sets the value of x to 675.
+<p>In order to use these functions, you need to have <i>#include&lt;cstdlib>
+</i>in
+your program.
+<p><a NAME="ex11.1"></a><b><font color="#00CC00"><font size=+1>Exercise
+11.1</font></font></b>
+<br>Modify the P11_1.cpp program to ask users for two strings then:
+<br>&nbsp;&nbsp;&nbsp; 1) Append the second string to the end of the first
+string and display the resulting string,
+<p>&nbsp;&nbsp;&nbsp; 2) Display a message on whether or not the word is
+a Palindrome.&nbsp; Such strings are the same when you write them backward.
+<br>&nbsp;&nbsp;&nbsp; For example:&nbsp; race + car = racecar&nbsp; ....
+this word written backwards is also racecar, thus, it is a palindrome.
+<p>Call your new program ex11_1.cpp.
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

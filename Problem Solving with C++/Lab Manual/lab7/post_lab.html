@@ -1,0 +1,88 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Post-lab</title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Post-Lab - Lab (7) - A Calendar</font></font></b>
+<br><a href="act4.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="index.html"><img SRC="uparrow.jpg" height=35 width=37></a>
+<br>
+<hr WIDTH="100%">
+<br>Write a C++ program that prints a calendar for a given year.&nbsp;
+You can use the program ex74.cpp as the starting point.&nbsp; The program
+prompts the user for three inputs:
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1) The year for which you are generating
+the calendar.</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2) The day of the week that January
+first is on, you will use the following notation to set the day of the
+week:</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp; Sunday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp; Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp; Tuesday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+3 Wednesday</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp; Thursday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+5&nbsp; Friday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+6&nbsp; Saturday</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3) The output file name.</i>
+<p>Your program should generate a calendar similar to the one shown in
+the example output below.&nbsp; The calendar should be printed into the
+output file.&nbsp; Your program should be able to handle leap years. A
+leap year is a year in which we have 366 days.&nbsp; That extra day comes
+at the end of February. Thus, a leap year has 366 days with 29 days in
+February.&nbsp; A century year is a leap year if it is divisible by 400.&nbsp;
+Other years divisible by 4 but not by 100 are also leap years.
+<p><i>Example: Year 2000 is a leap year because it is divisble by 400.&nbsp;&nbsp;
+Year 2004 is a leap year because it is divisible by 4 but not by 100.</i>
+<p>You can use as many functions as you wish.&nbsp; Your program should
+clearly describe the functionality of each function and should display
+the instructions on how to run the program.
+<p><b>Sample Input:</b>
+<p><i>Enter the name of the output file: cal2004</i>
+<br><i>Enter the year for which you wish to generate the calendar: 2004</i>
+<br><i>Enter the day of the week that January first is on:&nbsp; 4</i>
+<p><b>Sample output:</b>
+<p><i>Calendar for year 2004</i>
+<p><i>January</i>
+<br><i>Sun&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mon&nbsp;&nbsp;&nbsp;&nbsp; Tue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Wed&nbsp;&nbsp;&nbsp;&nbsp; Thu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fri&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Sat</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+3</i>
+<br><i>4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+10</i>
+<br><i>11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+17</i>
+<br><i>18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 21&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+24</i>
+<br><i>25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 26&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 28&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+29&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 30&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+31</i>
+<p><i>February</i>
+<br><i>Sun&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mon&nbsp;&nbsp;&nbsp;&nbsp; Tue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Wed&nbsp;&nbsp;&nbsp;&nbsp; Thu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fri&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Sat</i>
+<br><i>1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+7</i>
+<br><i>…&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+..</i>
+<br><i>..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ..</i>
+<br><i>..</i>
+<br><i>..</i>
+<br>&nbsp;
+</body>
+</html>

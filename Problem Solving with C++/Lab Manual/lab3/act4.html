@@ -1,0 +1,111 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 4 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 3-4 - Function
+Overloading</font></font></b>
+<br><a href="act3.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="post_lab.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<center><i>"function name overloading is possible when you have different
+argument types, different number of arguments, or both"</i></center>
+
+<p>In the program P33_2.cpp, we used two different function names to distinguish
+between the function that computes the cross area and the one that computes
+the side area of a cylinder.&nbsp; Using <b>overloading</b> we can give
+both functions the same name but ask them to do two different things.&nbsp;
+The decision on which function to be chosen is made based on: 1) difference
+in the number of arguments, 2) difference between types of parameters,
+and 3) based on the difference in number and type of parameters (both 1
+and 2).&nbsp; Here is the new version of the same program written using
+overloading.
+<p>// P34_1.cpp This program illustrates the local and global variables
+and call-by-value.
+<br>// This program computes the side area and the cross section area of
+a cylinder
+<br>#include&lt;iostream>
+<br>#include&lt;cmath>
+<br>using namespace std;
+<p>const double PI = 3.14159;&nbsp; // This variable is defined globally,
+known to all functions in this program as PI
+<br>const double conversion = 0.3937; // This is the Cm to inch conversion
+factor
+<p><font color="#990000">double area(double r);&nbsp; // Function declaration
+for function that computes cross section area</font>
+<br><font color="#000099">double area(double r, double h);&nbsp; // Function
+declaration for function that computes side area</font>
+<p>int main(void)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; double h, r;&nbsp; //variables local to the
+main function
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the radius and the
+height of the cylinder in Cm &lt;Enter> ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> r >> h;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Before I do any computation
+or call any function, I want to let you know that \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "you have entered r =
+" &lt;&lt; r &lt;&lt; " and h = " &lt;&lt; h &lt;&lt; "." &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "I am planning to use
+inch, thus in the first function, I will convert r, and " &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "in the second one I will
+convert h \n";
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The cross section area
+of the cylinder is " &lt;&lt; <font color="#990000">area(r)</font> &lt;&lt;
+"&nbsp; inch-sqr endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The side area of the
+cylinder is " &lt;&lt; <font color="#000099">area(r,h)</font> &lt;&lt;
+" inch-sqr \n\n";
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>double <font color="#990000">area(double r)</font>
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; //Cross secion area includes the disks at
+the bottom and the top
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r = r * conversion;&nbsp; // converting
+r to inch
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 2*PI*pow(r,2);
+<br>}
+<p>double a<font color="#000099">rea(double r, double h)</font>
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double area; //variable local to Side_area
+function
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; h = h * conversion;&nbsp; // converting
+h to inch
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r = r * conversion;&nbsp; // converting
+r to inch
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; area = 2*PI*r*h;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return area;
+<br>}
+<p>Note that we were able to use name overloading because of the fact that
+to compute cross section area, we only needed radius, r, as an argument
+and to compute the side area, we needed both the radius and height of the
+cylinder.&nbsp; Thus, here we used the difference between number of parameters
+to implement name overloading.
+<p><a NAME="ex46"></a><b><font color="#009900">Exercise 3.8</font></b>
+<br><font color="#000000">Could we use overloading to compute the surface
+area and volume of a sphere? Explain your answer.&nbsp; The surface area
+of a sphere is S = 4*PI*r<sup>2 </sup>and the volume is V = (4.0/3.0)*PI*r<sup>3</sup>.</font>
+<p><a NAME="ex47"></a><b><font color="#009900">Exercise 3.9</font></b>
+<br><font color="#000000">Modify program P34_1.cpp to compute the side
+area, total area, and volume of a cylinder and the area and volume of a
+sphere, depending on the choice that the user makes.&nbsp; Your program
+should ask users to enter 1 to choose cylinder or 2 for sphere, and display
+an "invalid choice error" for other values.</font>
+<p><font color="#000000">For a cylinder, we want to compute:</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; Side area: (2*PI*r) * h</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; Total Area: 2*(PI*r<sup>2</sup>)
++ Side area</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; Volume: (PI*r<sup>2</sup>)*h</font>
+<p><font color="#000000">For a sphere, we want to compute:</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; Surface area: 4*PI*r<sup>2</sup></font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; Volume:&nbsp; (4.0/3.0)*PI*r<sup>3</sup>.</font>
+<p><font color="#000000">Use overloading whenever possible.</font>
+<p><font color="#000000">Call your new program Ex39.cpp.</font>
+</body>
+</html>

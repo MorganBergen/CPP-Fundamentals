@@ -1,0 +1,214 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 3 </title>
+</head>
+<body bgcolor="#FFFFF0">
+<b><font color="#000099"><font size=+3>Activity 2-3 - Simple
+Flow of Control</font></font></b>
+<br><b><font color="#000099"><font size=+3><i>while ... loop </i>Statement</font></font></b>
+<br><b><font color="#000099"><font size=+3><i>do ... while </i>Statement</font></font></b>
+<br><a href="act2.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act4.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>The following C++ program computes the average of 6 numbers.
+<p>// <font color="#CC0000">P23_1.cpp </font>- Read and compute the average
+for 6 integers, display the result.
+<p>#include &lt;iostream.h>
+<br>using namespace std;
+<p>int main(void)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#000099">int
+x,y,z, p, q, r;&nbsp; // (A)</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double average;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // prompt the user:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter six
+grades separated by spaces, then press &lt;Enter>:" &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // read and store six integers:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#000099">cin
+>> x >> y >> z >> p >> q >> r;&nbsp; // (B)</font>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#000099">average
+= (x + y + z + p + q + r)/6;&nbsp; // (C)</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The average
+is " &lt;&lt; average &lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p><font color="#000000">If we wanted to compute the average of three numbers,
+we could make some changes in this program.&nbsp; The major changes will
+made in the lines that are in blue font, also, marked with (A), (B), and
+(C).&nbsp; Imagine, computing the average of 1000 numbers using the above
+program and method.&nbsp; That would make things more complicated and the
+code more tedious.&nbsp; We can simplify this computation using a <i>loop</i>.&nbsp;
+Following is a new version of the above program written using a <i>while
+loop</i>.</font>
+<p><b><font color="#009900"><font size=+2>An Example for <i>while loop</i></font></font></b>
+<br>// <font color="#CC0000">P23_2.cpp </font>- Read and average 6 integers,
+print the result.
+<p>#include &lt;iostream.h>
+<br>using namespace std;
+<br>int main(void)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#000099">int
+x;</font>
+<br><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#CC0000">
+int count = 0;&nbsp;&nbsp; // (1) initialize a counter to 0 to count number
+of grades</font>
+<br><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double
+sum = 0; // initialize the sum to 0 to make sure the sum at the beginning
+is 0</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double average;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // prompt the user:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter <b><font color="#CC0000">six</font></b>
+grades separated by a single space, then press &lt;Enter>: ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">while(
+count &lt; <b>6</b>) // (2) read six grades and compute their sum, count
+ensures 6 entries</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// read each number and compute the sum:</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cin >> x;</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sum = sum + x;</font>
+<br><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;
+count++;&nbsp; // (3) update the count</font>
+<br><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#000099">average
+= sum/</font><b><font color="#CC0000">6</font></b><font color="#000099">;&nbsp;
+// compute the average, total divided by the number of grades</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The average
+is " &lt;&lt; average &lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p><font color="#006600">What are the differences between this program
+and the one given in P23_1.cpp?</font>
+<br><a NAME="ex231"></a><b><u><font color="#00CC00"><font size=+1>Exercise
+23-1</font></font></u></b>
+<br><font color="#006600">Use a text editor to create a file called <b>ex23_1.cpp</b>.&nbsp;
+Copy and paste or carefully copy P23_2.cpp program in that file, and then
+change the program to compute the average of 100 numbers.</font>
+<p><b><font color="#009900"><font size=+2>Looping with Variable Number
+of Loops</font></font></b>
+<br>There are times that you do not know, up front, how many times a computation
+must be done.&nbsp; For example, you do not know how many numbers are going
+to be entered every time that you run the program.&nbsp; Thus, you want
+to make the loop flexible.&nbsp; Here is another version of the above program
+with variable number of loops.&nbsp; Suppose the user first provides number
+of values for which he/she wants to find the average, then he/she would
+enter those values.
+<p>// <font color="#CC0000">P23_3.cpp </font>- Read and average <b><font color="#CC0000">N</font></b>
+integers, print the result.
+<p>#include &lt;iostream.h>
+<br>using namespace std;
+<br>int main(void)
+<br>{
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+x;</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+count = 0;&nbsp;&nbsp; // (1) initialize a counter to 0 to count number
+of values</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+N; // Number of values for which the average must be computed.</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double
+sum = 0; // initialize the sum to 0 to make sure the sum at the beginning
+is 0</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double average;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // prompt the user:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter number
+of values, <b><font color="#CC0000">N,</font></b> to be read in &lt;Enter>:"
+&lt;&lt; endl;
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin
+>> <b>N</b>;</font>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">while(
+count &lt; <b>N</b>) // (2) read N grades and compute their sum, count
+ensures N entries</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// read each number and compute the sum:</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "\n Enter a grade &lt;Enter>: ";</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cin >> x;</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sum = sum + x;</font>
+<br><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;
+count++;&nbsp; // (3) update the count</font>
+<br><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(<b><font color="#CC0000">N</font></b>
+== 0)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "You haven't enter 0 number, no average will be computed,
+bye \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#000099">average
+= average = sum/</font><b><font color="#CC0000">N</font></b><font color="#000099">;</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "The average of these " &lt;&lt; N &lt;&lt; " grades is "
+&lt;&lt; average &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p><b><font color="#009900"><font size=+2>Remarks</font></font></b>
+<br>There are two types of loops.&nbsp; The first type are controlled by
+a counter and they are referred to as "count-controlled" loops.&nbsp; The
+second type are controlled by a particular event and they are referred
+to as "event-controlled" loops.&nbsp; In this lab, most of the examples
+are for count-controlled loops. In either case, there is always a boolean
+expression that leads the flow of the computation into the body of the
+loop or out of it.&nbsp; To explain the difference between these two types
+of loops, let's look at the following two examples:
+<br>&nbsp;&nbsp;&nbsp; A) Read 10 integers and compute their sum. <font color="#990000">A
+counter must keep the count until 10 numbers are read.</font>
+<br>&nbsp;&nbsp;&nbsp; B) Read integers and compute their sum for as long
+as the user keeps entering an integer value and stops once the user enters
+a letter.&nbsp;&nbsp; <font color="#990000">In this case, the event that
+stops the loop is the occurrence of a letter.</font>
+<p>In either case, if you wish to have a good working loop (any loop),
+there are three things that you have to always remember:
+<br>&nbsp;&nbsp;&nbsp; <font color="#006600">1) initialization</font>,
+whatever controls the loop and is checked by the boolean expression,
+<br>&nbsp;&nbsp;&nbsp; <font color="#006600">2) valid condition</font>,
+the boolean expression must correctly check the controlling variable, and
+<br>&nbsp;&nbsp;&nbsp; <font color="#006600">3) change</font>, the controlling
+variable must be changed so that the boolean expression checks a new condition
+each time.&nbsp; If the condition does not change in the body of the loop,
+then the loop checks the same thing infinite number of times and you will
+have an infinite loop.&nbsp; Your program never stops and you have to terminate
+it using Ctrl-C or by killing the process.&nbsp; I am sure we will run
+into this problem in the lab, so you will learn how.
+<p>These three things are marked with (1), (2) and (3), in the P23_2.cpp
+and P23_3.cpp programs.
+<p>The syntax for a <i>while loop</i> is:
+<p><i>while( Boolean_Expression)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; <font color="#000099">Statement 1;</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp;&nbsp; Statement 2;</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp;&nbsp; ...</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp;&nbsp; Statement Last;</font></i>
+<br><i>}</i>
+<p>The part between { and } is called the body of the loop.&nbsp; In a
+<i>while
+loop</i>, the body of the loop may be executed 0 times.&nbsp; That means,
+if the boolean expression evaluates to false right at the beginning, then
+the body of the loop will not get executed.&nbsp; Sometimes, you may want
+to execute the body of the loop at least once.&nbsp; In such a case you
+have to use a <i>do while loop.</i> The syntax for a <i>do while </i>is:
+<p><i>do</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; <font color="#000099">Statement 1;</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp;&nbsp; Statement 2;</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp;&nbsp; ...</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp;&nbsp; Statement Last;</font></i>
+<br><i>} while( Boolean_Expression);</i>
+<p><a NAME="ex232"></a><b><u><font color="#00CC00"><font size=+1>Exercise
+23-2</font></font></u></b>
+<br><font color="#006600">Change program P23_3.cpp to work with a <i>do
+while loop
+</i>instead of <i>while loop.&nbsp; </i>Call your new program
+ex23_4.cpp, compile and run the program and make sure it produces the correct
+results.</font>
+</body>
+</html>

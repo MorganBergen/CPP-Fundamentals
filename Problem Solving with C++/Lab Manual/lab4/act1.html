@@ -1,0 +1,63 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 1</title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 4-1 - Void Functions</font></font></b>
+<br><a href="pre_lab.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act2.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>So far, we have seen and used functions that return a value. Sometimes,
+it is convenient to create a function that carries out some activities
+but does not return a value to the calling function. Such a function may
+perform some calculations and display the result.&nbsp; A good example
+of such a function is one that displays a set of instructions on the screen
+regarding how a program works.&nbsp; Including the instruction function
+will improve the program.&nbsp; If we put the extra information in the
+main function, we will clutter up the main and make it longer and more
+tedious to read. Instead, we can put the user instructions in a separate
+function named (what else?) "instructions". This function has a name (instructions),
+it does not have any arguments, it is of type void, i.e., it does not return
+any value.
+<p>Here is an example for the instruction function:
+<br>void instructions( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "This program will compute the
+total cost of purchases made by a user \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The program will apply a 5%
+tax to the total cost of items minus any discount. \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The input to this program is
+the cost of each item, quantity, and the discount. \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The output is the grand total
+cost of all items together. \n";
+<br>}
+<p>Note that since the function is of type void, no return statement is
+used.&nbsp; However, a void function may have a return statement, but it
+will return nothing, i.e.,
+<p><font color="#990000">return;</font>
+<p>may be used in a void function as well.&nbsp; The inclusion of <font color="#990000">return;</font>&nbsp;
+in a void function may be inevitable when one wants to exit the function
+upon reaching a specific condition.&nbsp; For example:
+<p>if( cost_per_item &lt;=0)
+<br>&nbsp;&nbsp;&nbsp; <font color="#990000">return;</font>
+<br>else
+<br>&nbsp;&nbsp; do something&nbsp; .....
+<p><a NAME="ex41"></a><b><font color="#00CC00"><font size=+1>Exercise 4.1</font></font></b>
+<br>Another example of a void function is a function that takes a real
+value and displays it with a specific number of decimal points.
+<p>void display_it(double x, int precision)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout.setf(ios::fixed);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout.setf(ios::showpoint);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout.precision(precision);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; x &lt;&lt; endl;
+<br>}
+<p>Use overloading to write a function that displays two real values with
+a specific precision.
+<br>&nbsp;
+</body>
+</html>

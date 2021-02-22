@@ -1,0 +1,169 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 9 - 2 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 9-2 - Namespaces
+and Using Directives</font></font></b>
+<br><a href="act1.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act3.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In some of the programs that we have written so far we have included
+the <i>using namespace std, </i>which means that we will be using all the
+<i>std
+</i>namespace
+in those programs.&nbsp; The <i>std </i>namespace contains all the names
+defined in the standard library files (such as <i>iostream</i>).&nbsp;
+To explain this better let's look at the following example.&nbsp; When
+we include:
+<br>#include&lt;iostream>
+<p>In your program, this statement will place all the name definitions
+(<i>cin</i>, <i>cout</i>, ...) into the <i>std </i>namespace.&nbsp; If
+we don't have the <i>using namespace std</i> in the program, then we can
+define some of the names such as <i>cin </i>or <i>cout</i> to have different
+meaning other than their standard meanings.&nbsp; The standard definition
+of these names are supposed to be in the <i>std </i>namespace, but if we
+don't include that with a <i>using </i>directive, then our program does
+not know about it.
+<p>We can use more than one name space at the same time.&nbsp; We are always
+in a namespace called the <i>global </i>name space and often we use the
+<i>std
+</i>namespace.&nbsp;
+If a name is defined in both name spaces, we will get an error.&nbsp; Thus,
+if a name is defined in two namespaces, we can use the namespaces one at
+a time in the same program at two different places.
+<p>For example, in the following code segment, the function <i>my_function</i>
+is defined in both namespaces name_space1 and name_space2 in two different
+ways.
+<p><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; using namespace name_space1;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; my_function( );</i>
+<br><i>}</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; using namespace name_space2;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; my_function( );</i>
+<br><i>}</i>
+<p>Note that the first namespace and <i>my_function</i> are in one block
+while the second namespace and <i>my_function </i>are in another block.&nbsp;
+Thus, the first namespace is valid in the first block and the second one
+is valid in the second block.&nbsp; The first <i>my_function</i> uses the
+definition given in <i>name_space1</i> and the second one uses the definition
+given in the <i>name_space2</i>.
+<p><b><font color="#000099">Creating a Namespace</font></b>
+<br>To place some program in a namespace, simply include the program in
+the <b>namespace grouping:</b>
+<p><i>namespace Name_Space_Name</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The_Program</i>
+<br><i>}</i>
+<p>To make a program defined in this namespace available to your programs,
+use using directive:
+<p><i>using namespace Name_Space_Name;</i>
+<p>To illustrate this let's look at the following program.
+<p>// P92.cpp - This program illustrates the use of namespaces
+<br>#include&lt;iostream>
+<br>using namespace std;
+<p><font color="#CC0000">namespace cm</font>
+<br><font color="#CC0000">{</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double area(double
+length, double width);</font>
+<br><font color="#CC0000">}</font>
+<p><font color="#009900">namespace meter</font>
+<br><font color="#009900">{</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double area(double
+length, double width);</font>
+<br><font color="#009900">}</font>
+<p><font color="#3333FF">double area_km(double length, double width);</font>
+<p>int main ( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double length, width;&nbsp; // dimension
+of a rectangle
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double A;&nbsp; // area of a rectangle
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the length
+and the width of the rectangle. \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Assuming unit is
+meter \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> length >> width;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#CC0000"> {</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+using namespace cm;</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+A = area(length, width);</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Area is: " &lt;&lt; A &lt;&lt; endl;</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font>
+<p><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+using namespace meter;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+A = area(length, width);</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Area is: " &lt;&lt; A &lt;&lt; endl;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</font>
+<p><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+A = area_km(length, width);</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Area is: " &lt;&lt; A &lt;&lt; endl;</font>
+<p><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return 0;</font>
+<br><font color="#000000">}</font>
+<p><font color="#CC0000">namespace cm</font>
+<br><font color="#CC0000">{</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp; double area(double length,
+double width)</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "From namespace cm, I am sending area in cm^2 back\n";</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return (length*100)*(width*100);</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp; }</font>
+<br><font color="#CC0000">}</font>
+<p><font color="#009900">namespace meter</font>
+<br><font color="#009900">{</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; double area(double length,
+double width)</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "From namespace meter, I am sending area in m^2 back\n";</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return length*width;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp; }</font>
+<br><font color="#009900">}</font>
+<p><font color="#3333FF">double area_km(double length, double width)</font>
+<br><font color="#3333FF">{</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "From std namespace,&nbsp; I am sending area in km^2 back\n";</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return (length/1000)*(width/1000);</font>
+<br><font color="#3333FF">&nbsp;}</font>
+<p>In the above program we have asked the user to input the length and
+width of a rectangle in meters.&nbsp; Then, we have used different name
+spaces to compute the area of THE rectangle using three different units.&nbsp;
+As you have noticed, the program that computes the area in namespace <font color="#CC0000">cm</font>
+and <font color="#009900">meter</font> are both called area, but they perform
+different computations depending on their definitions in their respective
+namespace.
+<p><a NAME="ex92"></a><b><font color="#00CC00"><font size=+1>Exercise 9.2</font></font></b>
+<br>A student has found a summer job in a painting company.&nbsp; He is
+to estimate the amount of paint that the company needs to paint rectangular
+fields of different sizes.&nbsp; On average,
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a)
+0.2 kg (kilogram) of paint is needed to paint a one square meter area (0.2
+kg/m<sup>2</sup>).
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+b) 22 mg (milligram) of paint is needed to paint a one square centimetres
+area (22 mg/cm<sup>2</sup>).
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+c) 19.6 T (Ton) of paint is needed to paint a one square km area (19.6
+T/km<sup>2</sup>).
+<p>Use the above program to estimate the amount of paint required to paint
+a rectangle with the length and width that the user will enter from the
+keyboard.&nbsp; You need to compute the amount of paint in three different
+units (kg, mg, and Ton).
+</body>
+</html>

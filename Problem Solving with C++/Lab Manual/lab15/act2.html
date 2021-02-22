@@ -1,0 +1,149 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 15 - 2 </title>
+<script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+</script>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 15-2 -
+Searching a Linked List</font></font></b>
+<br><a href="act1.html"><img SRC="lfarrow.jpg" BORDER=0 height=35 width=36></a><a href="act3.html"><img SRC="rtarrow.jpg" BORDER=0 height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In the previous Activity, you learned to create linked lists.&nbsp;
+In this activity, you will learn to search a linked list to locate a particular
+node.&nbsp; As it is the case with every search, we should have a clear
+and precise idea of what we are searching for.&nbsp; Because structs are
+the building blocks of a linked list, we should search search for something
+that is defined as a member of the struct.&nbsp;&nbsp; For example, in
+the linked list that we defined in the previous activity, we could search
+for an <i>item</i> or a <i>count</i>.&nbsp; We could search for <i>item</i>
+"Jam" or a <i>count</i> 10.&nbsp; It seems that the first search is more
+common.&nbsp; In any case, a search function that searches the list for
+one of these two, should have two parameters.&nbsp; The first parameter
+is the linked list and the second one is the <i>item</i>.
+<p><i>NodePtr search(NodePtr head, string target_item)</i>
+<p>Note that due the fact that we do not modify the linked list, we don't
+pass the list as call-by-reference.
+<p>The Pseudocode for the <i>search </i>function may look like this:
+<p>Make the pointer variable here point to the head node (that is, the
+first node) of the linked list.
+<p><i>while( here is not pointing to a node containing the target_item
+</i>and
+here is not pointing to the last node)
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; Make here point to the next node in the list.</i>
+<p><i>}</i>
+<br><i>if(the node pointed to by here contains target)</i>
+<br><i>&nbsp;&nbsp;&nbsp; return here;</i>
+<br><i>else</i>
+<br><i>&nbsp;&nbsp;&nbsp; return NULL:</i>
+<p>Now suppose we want to search the linked list that we have created.&nbsp;&nbsp;
+The following program is the modified version of P15_1.cpp that now includes
+the search function.
+<p><i>// P15_2.cpp - Program to demonstrate the function search.</i>
+<br><i>#include &lt;iostream></i>
+<br><i>#include &lt;cstddef></i>
+<br><i>#include &lt;string></i><i></i>
+<p><i>using namespace std;</i><i></i>
+<p><i>struct Node</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; string item;</i>
+<br><i>&nbsp;&nbsp;&nbsp; int count;</i>
+<br><i>&nbsp;&nbsp;&nbsp; Node *link;</i>
+<br><i>};</i><i></i>
+<p><i>typedef Node* NodePtr;</i><i></i>
+<p><i>NodePtr search(NodePtr head, string an_item);</i>
+<br><i>void head_insert(NodePtr&amp; head, string an_item, int a_number);</i>
+<br><i>void show_list(NodePtr&amp; head);</i><i></i>
+<p><i>int main()</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; NodePtr head = NULL;</i>
+<br><i>&nbsp;&nbsp;&nbsp; head_insert(head, "Tea", 2);</i>
+<br><i>&nbsp;&nbsp;&nbsp; head_insert(head, "Jam", 3);</i>
+<br><i>&nbsp;&nbsp;&nbsp; head_insert(head, "Rolls", 10);</i><i></i>
+<p><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "List contains:" &lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp; show_list(head);</i><i></i>
+<p><i>&nbsp;&nbsp;&nbsp; string target;</i>
+<br><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter an item to search for" &lt;&lt;
+endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp; cin >> target;</i>
+<br><i>&nbsp;&nbsp;&nbsp; NodePtr result = search(head, target);</i>
+<br><i>&nbsp;&nbsp;&nbsp; if (result == NULL)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; target &lt;&lt;
+" is not on the list." &lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp; else</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; target &lt;&lt;
+" is on the list." &lt;&lt; endl;</i><i></i>
+<p><i>&nbsp;&nbsp;&nbsp; return 0;</i>
+<br><i>}</i><i></i>
+<p><i>NodePtr search(NodePtr head, string target)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp; // Point to the head node</i>
+<br><i>&nbsp;&nbsp;&nbsp; NodePtr here = head;</i><i></i>
+<p><i>&nbsp;&nbsp;&nbsp; // If the list is empty nothing to search</i>
+<br><i>&nbsp;&nbsp;&nbsp; if (here == NULL)</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return NULL;</i>
+<br><i>&nbsp;&nbsp;&nbsp; }</i>
+<br><i>&nbsp;&nbsp;&nbsp; // Search for the item</i>
+<br><i>&nbsp;&nbsp;&nbsp; else</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // while you have still
+items and you haven't found the target yet</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (here-> item !=
+target &amp;&amp; here->link != NULL)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+here = here->link;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Found the target,
+return the pointer at that location</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (here-> item == target)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return here;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Search unsuccessful,
+return Null</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return NULL;</i>
+<br><i>&nbsp;&nbsp;&nbsp; }</i>
+<br><i>}</i><i></i>
+<p><i>void head_insert(NodePtr&amp; head, string an_item, int a_number)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; NodePtr temp_ptr;</i>
+<br><i>&nbsp;&nbsp;&nbsp; temp_ptr = new Node;</i><i></i>
+<p><i>&nbsp;&nbsp;&nbsp; temp_ptr -> item = an_item;</i>
+<br><i>&nbsp;&nbsp;&nbsp; temp_ptr -> count = a_number;</i><i></i>
+<p><i>&nbsp;&nbsp;&nbsp; temp_ptr->link = head;</i>
+<br><i>&nbsp;&nbsp;&nbsp; head = temp_ptr;</i>
+<br><i>}</i><i></i>
+<p><i>void show_list(NodePtr&amp; head)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; NodePtr here = head;</i><i></i>
+<p><i>&nbsp;&nbsp;&nbsp; while (here != NULL)</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; here ->
+item &lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; here = here ->link;</i>
+<br><i>&nbsp;&nbsp;&nbsp; }</i>
+<br><i>}</i>
+<p><a NAME="ex15.2"></a><b><font color="#00CC00"><font size=+1>Exercise
+15.2</font></font></b>
+<br>Modify the above program to include the expiration date, then give
+the users a search choice.&nbsp; Provide two search options:
+<br>&nbsp;&nbsp;&nbsp; 1) item, the way it is done in the program, and
+<br>&nbsp;&nbsp;&nbsp; 2) expiration date
+<br>&nbsp;
+</body>
+</html>

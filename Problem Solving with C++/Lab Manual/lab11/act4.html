@@ -1,0 +1,162 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 11 - 4 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 11-4 -
+Vectors</font></font></b>
+<br><a href="act3.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="post_lab.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>Vectors can be thought of as arrays that can grow (and shrink) in length
+as needed while your program is running.&nbsp; So far, in C++ programs
+that you have written, the arrays that were created had a fixed length
+and the program could not change the length of the array once it started
+running.&nbsp; Vectors serve the same purpose as arrays, but their length
+can be changed when the program is running.&nbsp; In order to use vectors
+in your C++ programs, you need to include:
+<br><i>#include&lt;vector></i>
+<br><i>using namespace std;.</i>
+<p>Similar to arrays, vectors have a base type and will store a collection
+of values of its base type.&nbsp; We declare a variable, <i>v</i>, for
+a vector with base type <i>int</i> as:
+<p><i>vector&lt;int> v;</i>
+<p>The notation <i>vector&lt;Base_Type> </i>is a <b>template class</b>,
+which means you can substitute any type for the <i>Base_Type.&nbsp; </i>Vector
+elements are indexed starting with 0.&nbsp; The array square brackets,
+[ and ], can be used to read or change these elements.
+<p>Example:
+<br>v[i] = 42;
+<br>cout &lt;&lt; "The<font color="#000000"> i<sup>th</sup></font> element
+is " &lt;&lt; v[i];
+<p><font color="#CC0000">Restrictions: </font><font color="#000000">You
+can use the [ and ] to change the value of the i<sup>th</sup> element,
+but you cannot use this notation to initialize that element.&nbsp; Thus,
+you can only change an element that has already been given a value.</font>
+<p><font color="#000000">To add an element to a vector, you will use the
+<i>push_back
+</i>function.&nbsp;
+You add elements to a vector in order of positions, first at position 0,
+then position 1, then 2, and so forth.&nbsp; The function
+<i>push_back</i>
+will add an element in the next available position.&nbsp; Here is an example:</font>
+<p><i><font color="#000000">vector&lt;double> sample;</font></i>
+<br><i><font color="#000000">sample.push_back(0.0);</font></i>
+<br><i><font color="#000000">sample.push_back(1.1);</font></i>
+<br><i><font color="#000000">sample.push_back(2.2);</font></i>
+<p><font color="#000000">These lines initialize the elements 0, 1, and
+2 of the vector sample to 0.0, 1.1, and 2.2.</font>
+<p><font color="#000000">the number of elements in a vector is called its
+<b>size</b>.&nbsp;
+There is a member function, size( ), that can be used to determine the
+size of a vector.&nbsp; To display the number of elements in vector sample
+(size of the vector) we will use:</font>
+<p><i><font color="#000000">cout &lt;&lt; sample.size( );</font></i>
+<p><font color="#000000">The size function returns an <i>unsigned int,
+</i>because
+the returned value should always be positive.</font>
+<p><font color="#000000">There is a vector constructor which takes one
+integer and will initialize the number of positions given as the argument.&nbsp;
+For example,</font>
+<p><i><font color="#000000">vector&lt;int> v(10);</font></i>
+<p><font color="#000000">initializes the first 10 elements of the vector
+v to 0.&nbsp; Thus, if we put the <i>cout &lt;&lt; sample.size( ); </i>after
+this statement we will get a size of 10.&nbsp; Once this is done, then
+you can use the [ and ] to set other values for those elements.</font>
+<p><i><font color="#000000">for(int i = 0; i &lt; v.size( ); i++)</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; v[i] = 2*i;</font></i>
+<p><font color="#000000"><u>Important note</u>: It is worth noting that
+the number of vector elements for which memory is allocated is called the
+<b>capacity
+</b>of
+that vector. The capacity is not the same thing as the
+<b>size,
+</b>which
+is number of elements with values.&nbsp; To determine the capacity of a
+vector, we use the <i>capacity( )</i> function.</font>
+<p><font color="#000000">cout &lt;&lt; v.capacity( );</font>
+<p><font color="#000000">will display the capacity of vector v.</font>
+<p><font color="#000000">Whenever a vector runs out of capacity and needs
+room for an additional member, the capacity is automatically increased.
+The increase is usually done by doubling the existing capacity, but this
+may not be efficient.&nbsp; There are two other functions that can be used
+to change the capacity of a vector.&nbsp; The first function is called
+<i>reserve(Limit).</i>&nbsp;
+This function will explicitly increase the capacity by <i>Limit</i>.&nbsp;
+For example:</font>
+<p><i><font color="#000000">v.reserve(32);</font></i>
+<p><font color="#000000">will set the capacity to at least 32 elements.&nbsp;
+The following call:</font>
+<br><i><font color="#000000">v.reserve(v.size( ) + 10);</font></i>
+<p><font color="#000000">sets the capacity to at least 10 more than the
+number of elements currently in the vector.&nbsp; Note that the <i>reserve(
+) </i>function can increase the capacity but may not be able to decrease
+the capacity.&nbsp; You can reduce the capacity using the <i>resize</i>
+function:</font>
+<p><i><font color="#000000">v.resize(24);</font></i>
+<p><font color="#000000">This resizes the vector to 24 elements.&nbsp;
+In the case that there are more than 24 elements in the vector, the extra
+elements will be distorted.</font>
+<p><font color="#000000">Following is a program in which we will use a
+vector to read some values and to compute their average.</font>
+<p><font color="#000000">// P11_4.cpp - This program will ask for some
+values and display their average</font>
+<p><font color="#000000">#include&lt;iostream></font>
+<br><font color="#000000">#include&lt;vector></font>
+<br><font color="#000000">using namespace std;</font>
+<p><font color="#000000">int main( )</font>
+<br><font color="#000000">{</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; vector&lt;int> v(4);</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; char ans = 'y';</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; float sum = 0;</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; int count = 0;</font>
+<p><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; while(ans == 'y' || ans
+== 'Y')</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Enter an integer \n";</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cin >> v[count];</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sum += v[count];</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+count++;</font>
+<p><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Do you wish to enter a new number y/n \n";</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cin >> ans;</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font>
+<p><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(count > 0)</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Average of " &lt;&lt; count&nbsp; &lt;&lt; " numbers is
+" &lt;&lt; sum/count &lt;&lt; endl;</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font>
+<p><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; return 0;</font>
+<br><font color="#000000">}</font>
+<p><a NAME="ex11.4"></a><b><font color="#00CC00"><font size=+1>Exercise
+11.4</font></font></b>
+<br><font color="#000000">Copy and paste or carefully type program P11_4.cpp
+and compile it.&nbsp; Run the program for the following cases:</font>
+<p><font color="#000000">1) 4 numbers:&nbsp; 2&nbsp; 2&nbsp; 2&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+the average in this case is 2</font>
+<br><font color="#000000">2) 6 numbers:&nbsp; 2&nbsp; 2&nbsp; 2&nbsp; 2&nbsp;
+2&nbsp; 2&nbsp;&nbsp;&nbsp; the average is 2 again</font>
+<br><font color="#000000">3) 8 numbers:&nbsp; 1&nbsp; 2&nbsp; 3&nbsp; 4&nbsp;
+5&nbsp; 6&nbsp; 7&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the average in
+this case is 4.5</font>
+<p><font color="#000000">Did you get the correct answers?</font>
+<p><font color="#000000">Replace the i in the statement sum/count with
+one of the v.size( ) or v.capacity( ) that you think should produce the
+correct results. Compile and run the program for the above three cases.&nbsp;
+Did you get the correct results in all three cases?&nbsp; Can you explain
+the reason for not getting the correct answer?</font>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

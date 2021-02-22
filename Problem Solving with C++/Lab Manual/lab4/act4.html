@@ -1,0 +1,146 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 4</title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 4-4 - A Program
+with Several Functions</font></font></b>
+<br><b><font color="#000099"><font size=+3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Testing and Debugging Functions - Stubs and Drivers</font></font></b>
+<br><a href="act3.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="post_lab.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In this part, we want to create a program that draws a diamond or a
+triangle with a size that the user selects using a specific character that
+will be entered at the keyboard.&nbsp; Here are two examples:
+<p>A triangle of size 4, using *:
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ***
+<br>&nbsp;&nbsp;&nbsp; *****
+<br>&nbsp; *******
+<p>A diamond of size 4, using *:
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ***
+<br>&nbsp;&nbsp;&nbsp; *****
+<br>&nbsp; *******
+<br>&nbsp;&nbsp;&nbsp; *****
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ***
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *
+<p>What do we need for this program?
+<br><b><font color="#009900"><font size=+1>Problem definition</font></font></b>
+<br>We first need to clearly define the problem, the inputs and the outputs.
+<br><b>Inputs:</b>
+<br>&nbsp;&nbsp;&nbsp; 1) a choice to draw one of the two shapes or to
+quit the program,
+<br>&nbsp;&nbsp;&nbsp; 2) a character choice which will be used for drawing
+the selected shape, and
+<br>&nbsp;&nbsp;&nbsp; 3) the size of the shape
+<p><b>Output:</b>
+<br>One of these will be the output:
+<br>&nbsp;&nbsp; 1) a triangle,
+<br>&nbsp;&nbsp; 2) a diamond,
+<br>&nbsp;&nbsp; 3) quit
+<p><b><font color="#009900"><font size=+1>Analysis of the problem</font></font></b>
+<br>We need to break down the tasks that this program is supposed to complete.
+The main tasks are:
+<br>&nbsp;&nbsp;&nbsp; 1) ask for the input data
+<br>&nbsp;&nbsp;&nbsp; 2) for both triangle and diamond, first display
+a triangle of requested size, and then if the choice is a diamond, add
+the bottom part
+<br>&nbsp;&nbsp;&nbsp; 3) displays the shape
+<p>To write this program, we will assume that we have the following functions:
+<p>&nbsp;&nbsp;&nbsp; 1) <i>void instructions( )</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This function describes
+the program and how it works</i>
+<p><i>&nbsp;&nbsp;&nbsp; </i>2) <i>int menu( )</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This function will
+return a choice to the main ; 1) draw triangle, 2) draw diamond, and 3)
+quit</i>
+<p>&nbsp;&nbsp;&nbsp; 3) <i>draw_shape(int choice)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This function calls
+on appropriate function depending on the choice to draw a shape</i>
+<p>&nbsp;&nbsp;&nbsp; 4) <i>int get_size( )</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This function will
+return the size of the shape, same function for either of the shapes</i>
+<p>&nbsp;&nbsp;&nbsp; 5) <i>char get_char( )</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This function will
+ask users to select a character that will be used to draw the shape</i>
+<p>&nbsp;&nbsp;&nbsp; 6) <i>void draw_triangle(int size, char c)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This function draws
+a&nbsp; triangle of size size using character c</i>
+<p><i>&nbsp;&nbsp;&nbsp; 7</i>) <i>void draw_diamond(int size, char c)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This function first
+calls draw_triangle, then add_bottom to draw the diamond</i>
+<p><i>&nbsp;&nbsp;&nbsp; 8</i>) <i>void draw_bottom(int size, char c)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This function actually
+draws an upside down triangle of size size-1 as the bottom of the diamond</i>
+<p>Now that we have defined the functions, it is time to design the algorithm
+for the program.&nbsp; However, we can write the main part of the program.
+<p><i>int main ( )</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; int choice;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp; instructions( );</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; choice = menu( );</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; if(choice != 1 || choice != 2)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "You requested
+to quit, bye \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; }</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp; draw_shape(choice);</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp; return 0;</i>
+<br><i>}</i>
+<br>&nbsp;
+<p><b><font color="#009900"><font size=+1>Algorithm Design</font></font></b>
+<br>The following diagram (structure chart) summarizes the algorithm design
+for this program.&nbsp; The direction of each arrow is the same as the
+direction in which the data flow.
+<center>
+<p><img SRC="algo1.jpg" height=247 width=657></center>
+
+<p><b><font color="#009900"><font size=+1>Testing and Debugging</font></font></b>
+<br>Each function should be designed, coded, and tested as a separate unit
+from the rest of the program.&nbsp; To test a function, we will use a <b>driver
+program</b>.&nbsp; It is impossible to test a function inside a function
+that has not been written.&nbsp;&nbsp; In order to solve this problem we
+use the simplified version of the function that is not written yet.&nbsp;
+These functions are referred to as <b>stubs</b>.
+<p>Suppose we want to test the draw triangle function.&nbsp; This function
+is called within the draw_shape function.&nbsp; There are two arguments
+to this function, the size and the character c. To test the program we
+can use the driver shown below:
+<p>#include&lt;iostream>
+<br>using namespace std;
+<p>void draw_triangle(int size, char c);
+<br>void draw_shape(int size, char c);
+<p>int main( )
+<br>{
+<br>// Simplified version of main, notice that char and size are fixed
+for now
+<br>&nbsp;&nbsp;&nbsp;&nbsp; char c = '*';
+<br>&nbsp;&nbsp;&nbsp;&nbsp; int size = 4;
+<p>&nbsp;&nbsp;&nbsp;&nbsp; draw_shape(size, c);
+<p>&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>void draw_shape(int size, char c) //A simplified version of draw_shape
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; draw_triangle(size, c);
+<br>}
+<p>void draw_triangle(int size, char c)
+<br>{
+<br>&nbsp;// complete version of draw_triangle function
+<br>&nbsp;....
+<br>....
+<br>}
+<p><a NAME="ex45"></a><b><font color="#00CC00"><font size=+1>Exercise 4.5</font></font></b>
+<br>Complete the function draw_triangle in the above program, then use
+the driver and stubs given above to draw a triangle.&nbsp; Repeat a similar
+thing for the draw_diamond function.
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

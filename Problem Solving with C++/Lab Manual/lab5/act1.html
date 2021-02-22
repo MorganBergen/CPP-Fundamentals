@@ -1,0 +1,294 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 5 - 1 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 5-1 - Reading
+from/Writing to a file</font></font></b>
+<br><b><font color="#000099"><font size=+3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Using Streams for Program I/O</font></font></b>
+<br><a href="pre_lab.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act2.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>So far, you have read the input to your programs from the keyboard
+and have written (displayed) your results on the screen. Input data read
+from the keyboard and output data written to the screen are temporary and
+will be lost when the program ends.&nbsp; In this lab, you will learn to
+read from/write to a file which will remain on the hard disk until you
+manually remove them.&nbsp; The reading from/writing to a file in a program
+is usually referred to as file I/O (<b>I</b>nput/<b>O</b>utput).&nbsp;
+You will use constructs call <i>streams</i> to read/write your data to
+or from a <u>file</u>.&nbsp; Streams are the first examples of <i>objects
+</i>introduced
+in this course.&nbsp; An object is a special kind of variable.&nbsp; C++
+is an Object Oriented Programming (OOP) language, i.e., it has the ability
+to handle objects.
+<p>In order to read from/write to a file, we need to take some precise
+steps.&nbsp; Missing any of these steps, will result in failure to correctly
+read from/write to a file.&nbsp; Following are the steps that you need
+to go through to successfully perform the file I/O.
+<center>
+<p><i>"Remember you cannot use a stream of type input to write to a file
+and vice versa"</i></center>
+
+<p><b><font color="#CC0000">Step (1): Include the required directives</font></b>
+<br><font color="#000000"><i>#include&lt;fstream></i>&nbsp;&nbsp; // This
+enables you to do file I/O</font>
+<br><font color="#000000"><i>#include&lt;iosream>&nbsp;</i> // For <i>cin</i>
+and <i>cout</i></font>
+<br><font color="#000000"><i>#include&lt;cstdlib></i>&nbsp;&nbsp; // To
+use <i>exit(1) </i>that terminates the program</font>
+<br>using namespace std;
+<p><b><font color="#CC0000">Step (2): Create the input/output streams</font></b>
+<table BORDER COLS=2 WIDTH="100%" >
+<tr>
+<td>
+<center><b><font color="#000099">If fixed file name is used</font></b></center>
+</td>
+
+<td>
+<center><b><font color="#3333FF">If file name is an input (file name is
+not fixed)</font></b></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<br>&nbsp;
+<p><font color="#000000">Create (declare) the streams of type input or
+output to use them for reading a file or writing to a file.</font>
+<br><font color="#000000"><i>ifstream inp_stream;&nbsp;&nbsp;&nbsp; </i>//create
+an input stream type</font>
+<br><font color="#000000"><i>ofstream out_stream;&nbsp; </i>// create an
+output stream type</font></td>
+
+<td><b><font color="#CC0000">(A)</font></b>
+<br><i><font color="#000000">char inp_file[15], out_file[15];</font></i>
+<br><b><font color="#CC0000">(B)</font></b>
+<br><font color="#000000">Create (declare) the streams of type input or
+output to use them for reading a file or writing to a file.</font>
+<br><font color="#000000"><i>ifstream inp_stream;&nbsp;&nbsp;&nbsp; </i>//create
+an input stream type</font>
+<br><font color="#000000"><i>ofstream out_stream;&nbsp; </i>// create an
+output stream type</font></td>
+</tr>
+</table>
+
+<p><b><font color="#CC0000">Step (3): Connect the input stream to an input
+file/the output stream to an output file</font></b>
+<br><font color="#000000">At this point you must be most careful. If, by
+mistake, you connect an out_stream to an input file, you can destroy the
+input file.</font>
+<br>&nbsp;
+<table BORDER COLS=2 WIDTH="100%" >
+<tr>
+<td>
+<center><b><font color="#000099">If fixed file name is used</font></b></center>
+</td>
+
+<td>
+<center><b><font color="#3333FF">If file name is an input (file name is
+not fixed)</font></b></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<p><i><font color="#000000">inp_stream.open("input_file");</font></i>
+<br><i><font color="#000000">if(inp_stream.fail( ))</font></i>
+<br><i><font color="#000000">{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Input file
+opening failed. \n";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; exit(1);&nbsp;&nbsp; <b>//</b>exit
+the program</font></i>
+<br><i><font color="#000000">}</font></i>
+<p><font color="#000000">Similarly, for an input file we have:</font>
+<br><i><font color="#000000">out_stream.open("output_file");</font></i>
+<br><i><font color="#000000">if(out_stream.fail( ))</font></i>
+<br><i><font color="#000000">{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Output file
+opening failed. \n";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; exit(1);&nbsp;&nbsp; <b>//
+</b>exit
+the program</font></i>
+<br><i><font color="#000000">}</font></i></td>
+
+<td><b><font color="#CC0000">(A)&nbsp;</font></b>
+<br><i><font color="#000000">cout &lt;&lt; "Input the name of input file
+\n";</font></i>
+<br><i><font color="#000000">cin >> inp_file;</font></i>
+<p><b><font color="#CC0000">(B)</font></b>
+<br><i><font color="#000000">inp_stream.open(inp_file);</font></i>
+<br><i><font color="#000000">if(inp_stream.fail( ))</font></i>
+<br><i><font color="#000000">{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Input file
+opening failed. \n";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; exit(1);&nbsp;&nbsp; <b>//
+</b>exit
+the program</font></i>
+<br><i><font color="#000000">}</font></i>
+<p><font color="#000000">Similarly, for an input file we have:</font>
+<br><i><font color="#000000">out_stream.open(out_file);</font></i>
+<br><i><font color="#000000">if(out_stream.fail( ))</font></i>
+<br><i><font color="#000000">{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Output file
+opening failed. \n";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; exit(1);&nbsp;&nbsp; <b>//
+</b>exit
+the program</font></i>
+<br><i><font color="#000000">}</font></i></td>
+</tr>
+</table>
+
+<p><font color="#009900">If you decide to <b>append </b>to an existing
+file, use:</font>
+<br><i><font color="#009900">outstream.open("output_file", ios::<b>app</b>);</font></i>
+<p><b><font color="#CC0000">Step (4): Use the input stream to read from
+the input file/the output stream to write the output file</font></b>
+<p><i><font color="#000000">To read:</font></i>
+<br><i><font color="#000000">inp_stream >> first_data >> second_data;</font></i>
+<p><i><font color="#000000">To write:</font></i>
+<br><i><font color="#000000">out_stream &lt;&lt; first_data &lt;&lt; second_data;</font></i>
+<p><b><font color="#CC0000">Step (5): Close the input and output files
+by disconnecting the corresponding streams</font></b>
+<br><i><font color="#000000">inp_stream.close( );</font></i>
+<br><i><font color="#000000">out_stream.close( );</font></i>
+<p>Note that we have used two different methods to get a file name into
+the program.&nbsp; In the method on the left hand side of the table in
+Steps (2) and (3), we have fixed input and/or output file names.&nbsp;
+If the file name is different, the file name within " and " must be changed
+and the program must be recompiled for the new changes to become effective.&nbsp;
+In the method on the right hand side of the table in Steps (2) and (3),
+we can ask for the file name when we run the program instead of editing
+and recompiling the program.&nbsp; This method seems to be more convenient.
+<p>The following program reads a file containing some integer values (we
+do not know how many values).&nbsp; It displays the number, the number
+to the power of two, and the sum up to that point. At last it displays
+the average of these numbers.
+<p>// P51.cpp - This program reads some integers from a file and displays:
+<br>// The number, number^2, and the sum of all numbers read up to that
+point
+<br>#include&lt;iostream>
+<br>#include&lt;fstream>&nbsp;<b><font color="#CC0000"> // Step (1)</font></b>
+<br>#include&lt;cstdlib>
+<br>#include&lt;cmath>
+<br>using namespace std;
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp; int x, count = 0;
+<br>&nbsp;&nbsp;&nbsp; float sum = 0, avg;
+<br>&nbsp;&nbsp;&nbsp; char input_file[15]; <b><font color="#CC0000">//
+Step (2)-A</font></b>
+<p>&nbsp;&nbsp;&nbsp; ifstream in_s;&nbsp; <b><font color="#CC0000">//
+Step (2)-B - declaration of the stream of type input</font></b>
+<p>&nbsp;cout &lt;&lt; "Please input the input file name \n"; <b><font color="#CC0000">//
+Step (3)-A Get the file name</font></b>
+<br>&nbsp;cin >> input_file;
+<p>&nbsp;&nbsp;&nbsp; in_s.open(input_file); <b><font color="#CC0000">//
+Step (3)-B - connect to the input file and test</font></b>
+<br>&nbsp;&nbsp;&nbsp; if(in_s.fail( ))
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Input file opening
+failed. \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit(1);&nbsp; // if we couldn't
+open the file to read from we exit
+<br>&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "\t&nbsp; x \t\t x^2 \t\t Current Sum
+\n";
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "\t === \t\t === \t\t ========== \n";
+<p>&nbsp;&nbsp;&nbsp; while( in_s >> x) <b><font color="#CC0000">// Step
+(4)-Read all numbers one-by-one to the end of the file</font></b>
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sum = sum + x;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "\t&nbsp;
+" &lt;&lt; x &lt;&lt;"\t\t&nbsp; " &lt;&lt; pow(x,2) &lt;&lt; "\t\t&nbsp;
+" &lt;&lt; sum &lt;&lt; "\n";
+<br>&nbsp;&nbsp; count++;
+<br>&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;avg = sum/count;
+<br>&nbsp;cout &lt;&lt; "\n \t\t The average of these " &lt;&lt; count
+&lt;&lt; " numbers is: " &lt;&lt; avg &lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp; in_s.close( );&nbsp; <b><font color="#CC0000">//
+Step (5)-Close the connection (close the file)</font></b>
+<p>&nbsp;&nbsp; return 0;
+<br>}
+<p>Every input or output file seems to have two names.&nbsp; The actual
+names, or
+<b>external file</b>, is the name of the file as it appears on
+your computer disk.&nbsp; The name of the stream used to read from/write
+to a file is referred to as <b>internal file </b>name.&nbsp; The internal
+name is actually the name of the stream that you are using to read from/write
+to the input/output file.
+<p><b><font color="#000099"><font size=+1>Introduction to Classes and Objects</font></font></b>
+<br><font color="#000000">In C++ the streams <i>cin</i>, <i>cout, </i>and
+any other streams that you may declare are called <b>objects</b>.&nbsp;
+You use the <b>class </b><i>ifstream</i> to define objects of type <i>ifstream</i>
+and <b>class </b><i>ofstream </i>to declare objects of type <i>ofstream</i>.&nbsp;
+An object is a new type of variable that allows you to include functions,
+as well as data, in it.&nbsp; An object may include several variables and
+functions of various types. In the above program, we have an object called
+<b><i>in_s</i></b>.&nbsp;
+This object has several functions that were used in that program.&nbsp;
+These functions are open(....), close( ), and fail( ).&nbsp; The functions
+are called <b>member functions</b>.&nbsp; Note that you would have similar
+functions for a stream of type output, but they may not have the same functionality
+as they are members of a different object type.&nbsp; As you can see in
+the above program, the member functions are called using the <b>dot operator
+(ex. in_s.close( ) )</b>. The period between the in_s (<b>calling object</b>)
+and the close( ) (<b>member function</b>) is referred to as the <b>dot
+operator</b>.</font>
+<p><a NAME="ex51"></a><b><font color="#00CC00"><font size=+1>Exercise 5.1</font></font></b>
+<br>Carefully copy or cut and paste the program P51.cpp into a file called
+ex51.cpp.&nbsp; Compile and run the program to make sure it compiles without
+any error.&nbsp; Create a file, input.txt, and type the following 8 integers
+in it: 4 4 4 4 4 4 4 4.&nbsp; Save the file and exit.&nbsp; Now, run your
+program and when the program asks for the input file, type input.txt.&nbsp;
+Your program should display an output similar to the one given below:
+<p>Please input the input file name.
+<br>input.txt
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+x^2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Current
+Sum
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ===&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+===&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ==========
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+8
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+12
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+16
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+20
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+24
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+28
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+32
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The average of these 8 numbers is: 4
+<br>This is the correct result.
+<p><a NAME="ex52"></a><b><font color="#00CC00"><font size=+1>Exercise 5.2</font></font></b>
+<br>Modify the above program such that the program writes the output to
+a file called output.txt, instead of displaying it.
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

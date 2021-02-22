@@ -1,0 +1,167 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 8 - 2 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 8-2 - Overloading
+Operators</font></font></b>
+<br><a href="act1.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act3.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In the program P81.cpp and P81a.cpp,&nbsp; you learned to define friend
+functions to access the variable members of a class.&nbsp; In those programs,
+you used a function called <i>add </i>to do the addition of money (dollars
+and cents), and similarly did the subtraction of money using the <i>subtract
+</i>function.&nbsp;&nbsp;
+Since the addition or subtraction of money required two components, it
+was different from an arithmetic add operation.&nbsp; In C++, we can overload
+the add operator, ''+", to do different types of addition, for example:
+an the addition of money in the previous programs (dollars + dollars and
+cents + cents).&nbsp; By using function overloading, we will give the power
+of function <i>add
+</i>to operator "+", which is also defined in the class
+definition.
+<p>Before we give an example of overloading operators, let's look at a
+new version of P81a.cpp in which the <i>add</i> function is defined as
+a friend and has the new type of AltMoney.
+<p>// P82.cpp - This program adds money of two different people
+<br>#include&lt;iostream>
+<br>#include&lt;cstdlib>
+<br>using namespace std;
+<p>class AltMoney
+<br>{
+<br>&nbsp;&nbsp;&nbsp; public:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AltMoney();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AltMoney(int d, int c);
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; friend AltMoney add(AltMoney
+m1, AltMoney m2);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void display_money( );
+<br>&nbsp;&nbsp;&nbsp; private:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int dollars;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int cents;
+<br>};
+<p>void read_money(int&amp; d, int&amp; c);
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; int d, c;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; AltMoney m1, m2, sum;
+<p>&nbsp;&nbsp;&nbsp;&nbsp; sum = AltMoney(0,0);
+<p>&nbsp;&nbsp;&nbsp;&nbsp; read_money(d, c);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; m1 = AltMoney(d,c);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The first money is:";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; m1.display_money();
+<p>&nbsp;&nbsp;&nbsp;&nbsp; read_money(d, c);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; m2 = AltMoney(d,c);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The second money is:";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; m2.display_money();
+<p>&nbsp;&nbsp;&nbsp;&nbsp; sum = add(m1,m2);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The sum is:";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; sum.display_money();
+<p>&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>AltMoney::AltMoney()
+<br>{
+<br>}
+<p>AltMoney::AltMoney(int d, int c)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dollars = d;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cents = c;
+<br>}
+<p>void AltMoney::display_money()
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "$" &lt;&lt; dollars &lt;&lt;
+".";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; if(cents &lt;= 9)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "0";&nbsp;
+//to display a 0 on the left for numbers less than 10
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; cents &lt;&lt; endl;
+<br>}
+<p>AltMoney add(AltMoney m1, AltMoney m2)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; AltMoney temp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; int extra = 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; temp.cents = m1.cents + m2.cents;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; if(temp.cents >=100){
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp.cents = temp.cents
+- 100;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extra = 1;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp.dollars = m1.dollars + m2.dollars
++ extra;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return temp;
+<br>}
+<p>void read_money(int&amp; d, int&amp; c)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter dollar \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cin >> d;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter cents \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cin >> c;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; if( d &lt; 0 || c &lt; 0)
+<br>&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Invalid dollars and cents, negative values\n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+exit(1);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>}
+<p>In this program the <b><font color="#009900">add</font></b> is defined
+as a friend and has the type AltMoney as well.
+<p>Now, let's overload the "+" operator so that is does what the function
+<i>add</i>
+is doing.
+<p>Here are the changes that you need to make: (red font)
+<p>1) In class AltMoney:
+<br>class AltMoney
+<br>{
+<br>&nbsp;&nbsp;&nbsp; public:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AltMoney();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AltMoney(int d, int c);
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">friend
+AltMoney operator +(AltMoney m1, AltMoney m2);</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void display_money( );
+<br>&nbsp;&nbsp;&nbsp; private:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int dollars;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int cents;
+<br>};
+<p>2) In the main:
+<p>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">sum = m1+m2;</font>
+<p>3) In the function definition
+<br><font color="#CC0000">AltMoney operator +(AltMoney m1, AltMoney m2)</font>
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; AltMoney temp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; int extra = 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; temp.cents = m1.cents + m2.cents;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; if(temp.cents >=100){
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp.cents = temp.cents
+- 100;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extra = 1;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp.dollars = m1.dollars + m2.dollars
++ extra;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return temp;
+<br>}
+<p>By making these changes, you can now add two objects of type AltMoney.&nbsp;
+Note that you may overload "+" in another class definition.&nbsp; Depending
+on how you have defined it, "+" operation may have different meanings in
+such cases.
+<p><a NAME="ex82"></a><b><font color="#00CC00"><font size=+1>Exercise 8.2</font></font></b>
+<br>First make the above changes in P82.cpp and call the new program ex82.cpp.&nbsp;
+Compile and run the program and make sure it produces the correct results.&nbsp;
+Here is what you need to do for the exercise:
+<p>&nbsp;&nbsp;&nbsp; Overload the % operator such that every time you
+use it, it takes two objects of type AltMoney as its arguments and returns:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a) 5% of the difference between the income and expenditure, if income is
+larger than the expenditure
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+b) -2% if the the expenditure is larger than the income.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+c) 0 if the expenditure is the same as income
+<br>Note that, by doing this, you are required to overload the greater
+than sign (>), the smaller than sign (&lt;), and the == sign.
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 6 - 1 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 6-1 - Structures
+- A New Type Definition</font></font></b>
+<br><b><font color="#000099"><font size=+3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+A Package of Values of Different Types</font></font></b>
+<br><a href="pre_lab.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act2.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In Lab (5), you learned to use the <i>ifstream </i>and <i>ofstream
+</i>classes
+to create the<i> </i>input and output type objects.&nbsp; We briefly discussed
+the member functions that the new objects had: <i>close( )</i>, <i>open(
+)</i>, <i>fail( )</i>, and others.&nbsp; We will discuss this in more detail,
+in this lab. Actually, in this lab we present two different methods that
+can be used to pack several variables and/or functions in one.&nbsp; There
+are two ways to create these new variable types by using; 1) <i>Structures</i>,
+and 2) <i>Classes</i>.
+<p>In order to explain how a structure works, let's look at an example.&nbsp;
+A loan usually has several components in it.&nbsp; For simplicity, we assume
+for now that no name or personal identification number is involved.&nbsp;
+Instead, we use the loan number to identify a loan.&nbsp; The components
+of a loan in our example are:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a loan ID, assuming an integer between 1111-9999 for now,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+the loan amount, which for now we assume is a float,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+the interest rate, another float, and
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+the term of the loan, which represents the number of months until the loan
+is paid in full.
+<p>One thing I am sure everyone is concerned about in a loan is the monthly
+payment.&nbsp; A program that computes the monthly payment for a loan would
+be very useful.&nbsp; One way to compute the monthly payment is:
+<center>
+<p><img SRC="image7U1.JPG" height=48 width=280></center>
+
+<p>Please note that your bank may use a different formula to compute loan
+payment.&nbsp; As you may have noticed in the description of the loan components,
+it seems that we could have a new variable type, let's say <i>loan</i>,
+that includes all of the 4 components packed in it.&nbsp; Thus, we wish
+to define a new type of variable that can keep 4 variables of various types
+within one.&nbsp; A <b>structure</b> allows us to do this one very easily.&nbsp;
+Here is how we can pack these four variables in the structure <i>loan</i>.
+<p><i>struct Loan&nbsp; // Loan is called <b>structure tag</b></i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ID;&nbsp; // assume an
+unique integer between 1111-9999</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float amount; // $ amount of
+the loan</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float rate; // annual interest rate</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int term;&nbsp; // number of months,
+length of the loan</i>
+<br><i>};</i>
+<p>The variables between { and } are called <b>member names</b>, because
+they are members of the <i>Loan</i> structure.&nbsp; Using the new variable
+type, we can now create many variables of type <i>Loan</i> the same way
+you have done with the simple variable types before.&nbsp; For example:
+<br><i>Loan </i>loan1, loan2;
+<p>will create two variables of type <i>Loan</i>, loan1 and loan2.&nbsp;
+Both loan1 and loan2 have all four variables in them.&nbsp; To access each
+one of these variables, we will use the <b>dot operator.</b>&nbsp; For
+example:
+<p>loan1.ID = 2245;
+<p>will set the ID of laon1 to 2245.
+<p>Let's use the <i>Loan</i> structure in a program.
+<p>// P61.cpp - This program creates uses a structure for loan, initialize
+it from the keyboard, then
+<br>// displays the struct
+<p>#include&lt;iostream>
+<br>#include&lt;cmath>
+<br>using namespace std;
+<p><i>struct Loan&nbsp; // Loan is called <b>structure tag</b></i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ID;&nbsp; // assume an
+unique integer between 1111-9999</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float amount; // $ amount of
+the loan</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float rate; // annual interest rate</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int term;&nbsp; // number of months,
+length of the loan</i>
+<br><i>};</i>
+<p>float payment(float amount, float rate, int term);
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Loan loan1;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float monthly_payment;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Initialize the loan1 structure
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the ID of this
+loan \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> loan1.ID;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the amount of this
+loan \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> loan1.amount;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the annual interest
+rate of this loan (in %) \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> loan1.rate;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the term (number
+of months, length of the loan) \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> loan1.term;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; monthly_payment&nbsp; = payment(loan1.amount,
+loan1.rate, loan1.term);
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The monthly payment for
+loan " &lt;&lt; loan1.ID &lt;&lt; " is: " &lt;&lt; monthly_payment &lt;&lt;
+endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>float payment(float amount, float rate, int term)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rate = rate/1200;&nbsp; // To convert
+% yearly rate to monthly fraction
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return amount*rate*(&nbsp; pow( (rate+1),
+term)/ (pow( (rate+1), term) - 1) );
+<br>}
+<p>A struct can be passed to a function as a parameter.&nbsp; The rule
+for passing a struct as a parameter is the same as that of a simple variable.&nbsp;
+If you are modifying any of the <b>members</b> of the struct, then you
+need to pass the struct as call-by-reference.&nbsp; In the above program,
+we do not modify the members, so we can pass the struct to a function as
+call-by-value.&nbsp; Here is the modified version of the above program
+with a function that has the struct as its parameter.
+<p>// P61a.cpp - This program creates uses a structure for loan, initialize
+it from the keyboard, then
+<br>// displays the struct
+<p>#include&lt;iostream>
+<br>#include&lt;cmath>
+<br>using namespace std;
+<p><i>struct Loan&nbsp; // Loan is called <b>structure tag</b></i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ID;&nbsp; // assume an
+unique integer between 1111-9999</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float amount; // $ amount of
+the loan</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float rate; // annual interest rate</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int term;&nbsp; // number of months,
+length of the loan</i>
+<br><i>};</i>
+<p>float payment(Loan l);
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Loan loan1;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float monthly_payment;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Initialize the loan1 structure
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the ID of this
+loan \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> loan1.ID;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the amount of this
+loan \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> loan1.amount;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the annual interest
+rate of this loan (in %) \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> loan1.rate;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the term (number
+of months, length of the loan) \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> loan1.term;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; monthly_payment&nbsp; = payment(loan1);
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The monthly payment for
+loan " &lt;&lt; loan1.ID &lt;&lt; " is: " &lt;&lt; monthly_payment &lt;&lt;
+endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>float payment(Loan l)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; l.rate = l.rate/1200;&nbsp; // To convert
+% yearly rate to monthly fraction
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return l.amount*l.rate*(&nbsp; pow(
+(l.rate+1), l.term)/ (pow( (l.rate+1), l.term) - 1) );
+<br>}
+<p><a NAME="ex61"></a><b><font color="#00CC00"><font size=+1>Exercise 6.1</font></font></b>
+<br>Modify the P61a.cpp program such that it asks users to enter 2 different
+loans this time and uses a function called <i>initialize_loan</i> to initialize
+each loan struct. The program should also compute and display the payment
+for each individual loan and the total monthly payment.&nbsp;&nbsp; Note
+that you have to use a separate struct for each loan.&nbsp; Call your new
+program ex61.cpp.
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

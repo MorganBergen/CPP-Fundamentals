@@ -1,0 +1,173 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 5 - 4 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 5-4 - Predefined
+Character Functions in <i>cctype (ctype)</i></font></font></b>
+<br><a href="act3.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="post_lab.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In C++, we have several predefined character functions.&nbsp; These
+functions are listed below:
+<br>&nbsp;
+<br>&nbsp;
+<center><table BORDER COLS=3 WIDTH="89%" >
+<tr>
+<td>
+<center><b>Function Name</b></center>
+</td>
+
+<td>
+<center><b>Description</b></center>
+</td>
+
+<td>
+<center><b>Example</b></center>
+</td>
+</tr>
+
+<tr>
+<td><i>toupper(a_character)</i></td>
+
+<td>Returns the uppercase version of the argument character.&nbsp; If the
+character is already an uppercase, it will remain unchanged.</td>
+
+<td>char c, d = 'a';
+<br>c = <i>toupper</i>(d);
+<br>cout &lt;&lt; c;
+<br><b>Output is</b>:&nbsp; A</td>
+</tr>
+
+<tr>
+<td><i>tolower(a_character)</i></td>
+
+<td>Returns the lowercase version of the argument character.&nbsp; If the
+character is already a lowercase, it will remain unchanged.</td>
+
+<td>char c, d = 'A';
+<br>c = <i>tolower</i>(d);
+<br>cout &lt;&lt; c;
+<br><b>Output is</b>:&nbsp; a</td>
+</tr>
+
+<tr>
+<td><i>isupper(a_character)</i></td>
+
+<td>Returns <i>true</i> if the character is an uppercase letter, otherwise
+it returns <i>false</i></td>
+
+<td>char d = 'A';
+<br>cout &lt;&lt; <i>isupper</i>(d);
+<br><b>Output is</b>:&nbsp; 1
+<br>Note: it can be used in an <i>if </i>statement</td>
+</tr>
+
+<tr>
+<td><i>islower(a_character)</i></td>
+
+<td>Returns <i>true</i> if the character is a lowercase letter, otherwise
+it returns <i>false</i></td>
+
+<td>char d = 'A';
+<br>cout &lt;&lt; <i>islower</i>(d);
+<br><b>Output is</b>:&nbsp; 0
+<br>Note: it can be used in an <i>if </i>statement</td>
+</tr>
+
+<tr>
+<td><i>isalpha(a_character)</i></td>
+
+<td>Returns <i>true</i> if the character is one of the letters of the alphabet,
+otherwise it returns <i>false</i></td>
+
+<td>char d = 'A';
+<br>cout &lt;&lt; <i>isalpha</i>(d);
+<br><b>Output is</b>:&nbsp; 1
+<br>Note: it can be used in an <i>if </i>statement</td>
+</tr>
+
+<tr>
+<td><i>isdigit(a_character)</i></td>
+
+<td>Returns <i>true</i> if the character is one of the digits '0' to '9',
+otherwise it returns <i>false</i></td>
+
+<td>char d = 'A';
+<br>cout &lt;&lt; <i>isdigit</i>(d);
+<br><b>Output is</b>:&nbsp; 0
+<br>Note: it can be used in an <i>if </i>statement</td>
+</tr>
+
+<tr>
+<td><i>isspace(a_character)</i></td>
+
+<td>Returns <i>true</i> if the character is a whitespace character, <u>blank
+space, newline, or tab,</u> otherwise it returns <i>false</i></td>
+
+<td>char d = '\n';
+<br>cout &lt;&lt; <i>isspace</i>(d);
+<br><b>Output is</b>:&nbsp; 1
+<br>Note: it can be used in an <i>if </i>statement</td>
+</tr>
+</table></center>
+
+<p><font color="#000000">The following program reads one character from
+the keyboard and will display the character in uppercase if it is lowercase
+and does the opposite when the character is in uppercase.&nbsp; If the
+character is a digit, it displays a message with the digit.</font>
+<p><font color="#000000">// P54.cpp - This program reads one character
+from the keyboard and will</font>
+<br><font color="#000000">// convert it to uppercase, if it is lowercase</font>
+<br><font color="#000000">// convert it to lowercase, if it is uppercase</font>
+<br><font color="#000000">// display a message, if it is a digit</font>
+<p><font color="#000000">#include&lt;iostream></font>
+<br><font color="#000000">#include&lt;ctype></font>
+<br>using namespace std;
+<p><font color="#000000">int main( )</font>
+<br><font color="#000000">{</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; char c;</font>
+<p><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter a character
+\n";</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; cin >> c;</font>
+<p><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; if(isalpha(c))</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; { //check to see if it is
+a letter of alphabet</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(
+isupper(c) ) //check to see if it is uppercase</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+c = tolower(c);</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Your character " &lt;&lt; c &lt;&lt; " is in uppercase.";</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Its lowercase case is " &lt;&lt; c &lt;&lt; endl;</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+c = toupper(c);</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Your character " &lt;&lt; c &lt;&lt; " is in lowercase.";</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Its uppercase is " &lt;&lt; c &lt;&lt; endl;</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; }</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; else</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Your character " &lt;&lt; c &lt;&lt; " is a digit.\n";</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; }</font>
+<p><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; return 0;</font>
+<br><font color="#000000">}</font>
+<p><a NAME="ex58"></a><b><font color="#00CC00"><font size=+1>Exercise 5.8</font></font></b>
+<br><font color="#000000">Modify the above program such that if one of
+the whitespaces is entered, it displays a message and tells what the character
+was.&nbsp; Call your new program ex58.cpp.</font>
+<br>&nbsp;
+</body>
+</html>

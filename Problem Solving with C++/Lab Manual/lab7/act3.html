@@ -1,0 +1,121 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 7 - 3 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 7-3 -&nbsp;<i>
+for </i>Statement (<i>for loop</i>)</font></font></b>
+<br><a href="act2.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act4.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>You may remember when we introduced <i>while loops, </i>we mentioned
+that a good loop must have at least three things to work correctly: 1)
+the controlling variable must be initialized, 2) the Boolean expression
+must be valid and include the controlling variable, and 3) the controlling
+variable must be updated in the body of the loop.&nbsp; A <i>for loop</i>
+has all three of these between ( and ), here is how:
+<p><i>for(initilization_Action; Boolean_Expression; Update_Action)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Statement_1</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Statement_2</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Statement_last</i>
+<br><i>}</i>
+<p>The following program uses <i>for loops </i>to draw a rectangle of desired
+size.
+<p>// P73.cpp - This program draws a rectangle n rows and m columns.
+<br>// The program asks the user to input a character for drawing the rectangle
+<p>#include&lt;iostream>
+<br>using namespace std;
+<p><i>int main( )</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; int rows, columns;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; char draw_char;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter number of rows and
+columns \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; cin >> rows >> columns;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the character to draw
+with \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; cin >> draw_char;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp; for(int i = 0; i &lt; rows; i++)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for(int j = columns; j > 0; j--)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; draw_char;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;</i>
+<br><i>}</i>
+<p>As you can see in the above example, we have used two <i>for loops</i>
+one within the other.&nbsp; Such use of loops is known as <b>nested loops</b>.&nbsp;
+The loop inside is said to be faster because for every row, i, j will change
+<i>columns
+</i>times.
+<p>The following program will display the days for a month of the year.&nbsp;
+The input to the program is the number of days and the day of the week
+on which the first day of the month falls.
+<p>The following program uses <i>for loops </i>to draw a rectangle of desired
+size.
+<p>// P73a.cpp - This program displays the days of a month
+<br>// Day 0 : Sunday, Day 1: Monday, Day 2: Tuesday
+<br>// Day 3: Wednesday, Day 4: Thursday, Day 5: Friday
+<br>// Day 6: Saturday
+<p>#include&lt;iostream>
+<br>#include&lt;cmath>
+<br>using namespace std;
+<p><i>int main( )</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; int n_days, start_day;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the number of days,
+28, 29, 30 or 31 \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; cin >> n_days;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the first day of the
+month \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; cin >> start_day;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Sun\tMon\tTue\tWed\tThr\tFri\tSat\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; for(int i = 0; i &lt; start_day; i++)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; " \t";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; }</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; for(int j = 1; j &lt;= n_days; j++)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(
+j%7 == 0)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; endl;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; j&nbsp; &lt;&lt; "\t";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; }</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; return 0;</i>
+<br><i>}</i>
+<p><a NAME="ex74"></a><b><font color="#00CC00"><font size=+1>Exercise 7.4</font></font></b>
+<br>Modify the above program such that it uses a function called <i>display_month(int
+n_days, int start_day)</i> to display the days of a month.&nbsp; Call your
+new program ex74.cpp.&nbsp; In the new program, replace the following segment:
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp; for(int i = 0; i &lt; start_day; i++)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; " \t";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; }</i>
+<p>with a function, <i>get_tabs(int start_day)</i>, that uses a switch
+statement with <i>start_day </i>as its Controlling_Expression to display
+the correct number of tabs.
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

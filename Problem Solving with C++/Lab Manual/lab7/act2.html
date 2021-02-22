@@ -1,0 +1,204 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 7 - 2 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 7-2 - <i>if
+... else if ... else </i>Statement</font></font></b>
+<br><b><font color="#000099"><font size=+3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<i>switch </i>Statement</font></font></b>
+<br><a href="act1.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act3.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In Lab (2), you learned to change the flow of your program using <i>if
+... else</i> statements.&nbsp; The <i>if ... else</i> statement deals with
+situations where there are two options and you take one or the other depending
+on the outcome of the Boolean expression.&nbsp; However, sometimes you
+may run into a situation where you have more than two choices.&nbsp; Think
+about an elevator.&nbsp; You enter an elevator and, if the building has
+4 floors and a basement, like mine does, you have 5 choices.&nbsp; For
+now we think of a simple elevator, but more sophisticated ones may also
+have a button to close or to open the door.&nbsp; As you can imagine, if
+you enter an elevator and do not press a key, the door will close but you
+will not move anywhere.&nbsp; So the default action is actually the close
+door action.&nbsp; Of course, sometimes you may enter an elevator and do
+not push a button, then someone from another floor may press the button
+outside and lead the elevator to where he/she stands.&nbsp; As you can
+see, the button outside an elevator is up or down and that is a good example
+of <i>if ... else, </i>but inside the elevator, you need a more sophisticated
+statement to control the flow.&nbsp; We will use <i>if ... else if ...
+else </i>statement for inside.&nbsp; Following is a program that simulates
+a simple elevator.
+<p>// P71.cpp - A simple elevator for 4 floors and a basement with a
+<br>// close door button and 5 keys for floors
+<p>#include&lt;iostream>
+<br>#include&lt;cmath>
+<br>using namespace std;
+<p>void close_door();
+<br>int change_floor(int choice, int floor);
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; int key;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; int floor = 0;
+<p>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Press a Key \n";
+<br>&nbsp;&nbsp;&nbsp; cin >> key;
+<p>&nbsp;&nbsp;&nbsp;&nbsp; if(key == 0)
+<br>&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+close_door();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if( floor != 0){ // otherwise nothing happens
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "I am moving to the Basement \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+floor = change_floor(0, floor);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if(key == 1)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+close_door();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if( floor != 1){ // otherwise nothing happens
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "I am moving to the the First Floor \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+floor = change_floor(1, floor);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if(key == 2)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+close_door();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if( floor != 2){ // otherwise nothing happens
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "I am moving to the the Second Floor \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+floor = change_floor(2, floor);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if(key == 3)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+close_door();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if( floor != 3){ // otherwise nothing happens
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "I am moving to the the Third Floor \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+floor = change_floor(3, floor);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if(key == 4)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+close_door();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if( floor != 4){ // otherwise nothing happens
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "I am moving to the the Fourth Floor \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+floor = change_floor(4, floor);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+close_door();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>void close_door()
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "I am closing the door \n";
+<br>}
+<p>int change_floor(int choice, int floor)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int move;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; move = floor - choice;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Note floor = choice is already
+considered in main
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(move &lt; 0)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Move up by " &lt;&lt; abs(move) &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Mode down by " &lt;&lt; abs(move) &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; floor = choice;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "You are at
+floor " &lt;&lt; floor &lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return floor;
+<br>}
+<p><a NAME="ex72"></a><b><font color="#00CC00"><font size=+1>Exercise 7.2</font></font></b>
+<br>Write the above program using <i>if</i> and <i>if ... else</i> statements
+and call your new program ex71.cpp.&nbsp; In other words, replace the <i>if
+... else if ... ... else </i>statements with <i>if or else </i>statements.&nbsp;
+Can you explain the advantage of using <i>if ... else if ... else </i>instead
+of <i>if
+</i>statements?
+<p><b><font color="#000099"><font size=+1><i>switch </i>Statement</font></font></b>
+<br>Switch statements can be used for multiway branches similar to the
+<i>if
+... else if ... else</i> statement used in the previous example.&nbsp;
+The syntax for a <i>switch</i> statement is given below:
+<p><i>switch </i>(<i>controlling_Expression</i>)
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case constant_1:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+statement sequence for case 1</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case constant_2:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+statement sequence for case 2</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+statement sequence for the default case</i>
+<br><i>}</i>
+<p>In program P71.cpp, the controlling_Expression is variable key, because
+its value will control which branch to execute.&nbsp; In that program each
+<i>if
+</i>or
+<i>else
+if</i> statement is a separate case, and the <i>else
+</i>is the default
+case.&nbsp; Note that if you use the <i>switch </i>statement, you need
+to end each case with a <i>break</i> statement.&nbsp; If you leave a <i>break
+</i>out,
+then the next <i>case</i> will also be executed.&nbsp; This is a way to
+write the statements with AND.&nbsp; For example:
+<br>The following segment:
+<p>if( key == 1 &amp;&amp; key == 2)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....
+<br>}
+<p>will be represented as:
+<p>case 1:
+<br>case 2:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .....
+<br>break;
+<p>in a <i>switch</i> statement.
+<p><a NAME="ex73"></a><b><font color="#00CC00"><font size=+1>Exercise 7.3</font></font></b>
+<br>Modify the P71.cpp program and use a <i>switch statement </i>instead
+of the <i>if ... else if ... else</i> statement in the main.&nbsp; Call
+your new program ex73.cpp.
+</body>
+</html>

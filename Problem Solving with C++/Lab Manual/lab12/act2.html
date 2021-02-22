@@ -1,0 +1,298 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 12 - 2 </title>
+<script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+</script>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 12-2 -
+Dynamic Arrays</font></font></b>
+<br><a href="act1.html"><img SRC="lfarrow.jpg" BORDER=0 height=35 width=36></a><a href="act3.html"><img SRC="rtarrow.jpg" BORDER=0 height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<p>There is a close association between pointers and arrays. Recall from
+Lab 10, how array elements were accessed. In C++, an array variable is
+actually a pointer variable that points to the first indexed variable of
+the array. Array elements can be accessed using pointer notation as well
+as array notation. Recall program P10_1.cpp from Lab 10:
+<p>// P10_1.cpp - A program that uses an array of integers
+<br>#include &lt;iostream>
+<br>using namespace std;
+<br>int main( )
+<br>{
+<br>&nbsp;&nbsp; int numlist[8];
+<br>&nbsp;&nbsp; int i;
+<p>&nbsp;&nbsp; // Read 8 integers from the keyboard
+<br>&nbsp;&nbsp; for (i = 0; i&lt;8; i++ )
+<br>&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Enter value #" &lt;&lt; i+1 &lt;&lt; ": ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cin >> numlist[i];
+<br>&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp; // Display the numbers in a reverse order
+<br>&nbsp;&nbsp; for (i = 8; i > 0; i-- )
+<br>&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Value #" &lt;&lt; i &lt;&lt; ": ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; numlist[i-1] &lt;&lt; endl; //Pay attention to i-1!
+<br>&nbsp;&nbsp; }
+<p>&nbsp;&nbsp; return 0;
+<br>}
+<p>Now let's re-write the program and access the array numlist using pointer
+notation.
+<p>// P12_2.cpp - A program that uses an array of integers. Array elements
+accessed using pointer notation
+<br>#include &lt;iostream>
+<br>using namespace std;
+<br>int main(void)
+<br>{
+<br>&nbsp;&nbsp; int numlist[8];
+<p>&nbsp;&nbsp; // Read 8 integers from the keyboard
+<br>&nbsp;&nbsp; for (int i = 0; i&lt;8; i++ )
+<br>&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Enter value #" &lt;&lt; i+1 &lt;&lt; ": ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cin >> numlist[i];
+<br>&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp; // Display the numbers in a reverse order
+<br>&nbsp;&nbsp; for (int i = 8; i > 0; i-- )
+<br>&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Value #" &lt;&lt; i &lt;&lt; ": ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt;<font color="#FF0000">*( numlist + (i-1))</font>&lt;&lt; endl;
+//Pay attention to i-1!
+<br>&nbsp;&nbsp; }
+<p>&nbsp;&nbsp; return 0;
+<br>}
+<p>In the above program, note how the array elements are accessed. The
+variable numlist is used as a pointer that points to the first element
+of the array.
+<br>&nbsp;
+<table BORDER WIDTH="32%" >
+<tr>
+<td><b>Pointer variable</b></td>
+
+<td><b>Memory Address</b></td>
+
+<td><b>Contents of memory (Array elements)</b></td>
+</tr>
+
+<tr>
+<td>
+<center>numlist[0]</center>
+</td>
+
+<td>
+<center>333000</center>
+</td>
+
+<td>
+<center>*numlist[0] = 9</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>numlist[1]</center>
+</td>
+
+<td>
+<center>333002</center>
+</td>
+
+<td>
+<center>*numlist[1] = 7</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>numlist[2]</center>
+</td>
+
+<td>
+<center>333004</center>
+</td>
+
+<td>
+<center>*numlist[2] = 8</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>numlist[3]</center>
+</td>
+
+<td>
+<center>333006</center>
+</td>
+
+<td>
+<center>*numlist[3] = 7</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>numlist[4]</center>
+</td>
+
+<td>
+<center>333008</center>
+</td>
+
+<td>
+<center>*numlist[4] = 7</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>numlist[5]</center>
+</td>
+
+<td>
+<center>333010</center>
+</td>
+
+<td>
+<center>*numlist[5] = 9</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>numlist[6]</center>
+</td>
+
+<td>
+<center>333012</center>
+</td>
+
+<td>
+<center>*numlist[6] = 1</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>numlist[7]</center>
+</td>
+
+<td>
+<center>333014</center>
+</td>
+
+<td>
+<center>*numlist[7] = 6</center>
+</td>
+</tr>
+</table>
+
+<p>One problem with the kinds of arrays we have used until now is that
+we must specify the size of the array when we write the program.&nbsp;&nbsp;
+This may cause two different problems; 1) we may create an array much larger
+than needed, 2) we may create one that is smaller than what is needed.&nbsp;
+In general, this problem is created because we don't know the size of the
+array until the program is run. This is where <i>dynamic arrays</i> are
+used. The <i>new</i> expression can be used to allocate an array on the
+freestore.Since array variables are pointer variables you can use the new
+operator to create dynamic variables that are arrays and treat these dynamic
+array variables as if they were ordinary arrays. Recall program P10_1b.cpp
+from lab 10. It is reproduced here below
+<p>// P10_1b.cpp - A program that uses a flexible size array of integers
+<br>#include &lt;iostream>
+<br>using namespace std;
+<br>const int SIZE = 8; // Set the maximum size for the array
+<p>int main(void)
+<br>{
+<br>&nbsp;&nbsp;&nbsp; int numlist[SIZE];
+<p>&nbsp;&nbsp;&nbsp; // Read SIZE integers from the keyboard
+<br>&nbsp;&nbsp;&nbsp; for (int i = 0; i&lt;SIZE; i++ )
+<br>&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter value #"
+&lt;&lt; i+1 &lt;&lt; ": ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> numlist[i];
+<br>&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp; // Display the numbers in a reverse order
+<br>&nbsp;&nbsp;&nbsp; for (int i = SIZE; i > 0; i-- )
+<br>&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Value #" &lt;&lt;
+i &lt;&lt; ": ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; numlist[i-1] &lt;&lt;
+endl; //Pay attention to i-1!
+<br>&nbsp;&nbsp; }
+<p>&nbsp;&nbsp; return 0;
+<p>}
+<p>Note that SIZE was defined as a const int. Now lets modify this program
+and re-write it creating the array dynamically.
+<p>// P12_2a.cpp. Illustrates dynamic arrays
+<br>#include &lt;iostream>
+<br>using namespace std;
+<p>int main(void)
+<br>{
+<br>&nbsp;&nbsp;<font color="#FF0000"> int SIZE;</font>
+<br><font color="#FF0000">&nbsp;&nbsp; cout&lt;&lt;"Enter the size of the
+array"&lt;&lt;endl;</font>
+<br><font color="#FF0000">&nbsp;&nbsp; cin>>SIZE;</font>
+<p><font color="#FF0000">&nbsp;&nbsp;&nbsp; int *numlist = new int[SIZE];</font>
+<p>&nbsp;&nbsp;&nbsp; // Read SIZE integers from the keyboard
+<br>&nbsp;&nbsp;&nbsp; for (int i = 0; i&lt;SIZE; i++ )
+<br>&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter value #"
+&lt;&lt; i+1 &lt;&lt; ": ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> numlist[i];
+<br>&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp; // Display the numbers in a reverse order
+<br>&nbsp;&nbsp;&nbsp; for (int i = SIZE; i > 0; i-- )
+<br>&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Value #" &lt;&lt;
+i &lt;&lt; ": ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; numlist[i-1] &lt;&lt;
+endl; //Pay attention to i-1!
+<br>&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;<font color="#FF0000"> delete[] numlist;</font>
+<br>&nbsp;&nbsp; return 0;
+<br>}
+<p>Note how the array numlist has been declared dynamically using the <i>new</i>
+operator to meet the required size on the freestore. As <i>new</i> reserves
+memory on the freestore it is not automatically freed once the memory is
+no longer needed. In an efficient program, we may take as much memory as
+we need and free them when once we are done with them.&nbsp; We need to
+use the <i>delete</i> operator to free the memory that is occupied from
+the freestore . Notice the empty square brackets along with the pointer
+variable numlist. This statement deletes the space on the occupied freestore
+by numlist and recycles it.
+<p>Display 12.5 in the textbook lists a program that uses dynamic arrays
+to sort a list of numbers entered at the keyboard.
+<p>A dynamic array can have a base type which is a class. You can use the
+base type class just as you would use a predefined data type integer or
+float.
+<p><a NAME="ex12_3"></a><b><font color="#00CC00"><font size=+1>Exercise
+12.2</font></font></b>
+<br><font color="#000000">Define a class <i>Student </i>that has as its
+members the <i>student_name</i> and a <i>student_ idnumber</i> both of
+type string. Input from the keyboard the number of students in the database,
+then create a dynamic array of type <i>Student</i> and input the information
+for each student. Once you populate the database (stored all information),
+display the entire database. Remember to delete the dynamic array pointer
+before exiting the program.</font>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 13 - 2 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 13-2 -
+Stacks for Recursion</font></font></b>
+<br><a href="act1.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act3.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>How does recursion work?&nbsp; As we mentioned in the P13_1.cpp, coming
+back from the base we didn't display 4 asterisks.&nbsp; Somehow we knew
+that we had to display 3, because the integer division of 7/2 = 3, and
+indeed that was what we displayed.&nbsp; How did we know about 3?
+<p>In order to track recursion, and a number of other things, most computer
+systems use a data structure called a <b>stack</b>.&nbsp; A stack is a
+very specialized memory structure that is analogous to a stack of paper.&nbsp;
+As there is a limited number of papers in hand, there is also a limited
+number of memory structures one can use to do recursion.&nbsp; Thus, a
+recursion process may require more memory than is available on your computer,
+which results in failure.&nbsp; The idea is that every time the computer
+wants to place more information in the stack, it requires a blank memory
+space, just like a blank sheet of paper.&nbsp; To get information out of
+the stack, the top sheet will be read first, once it is no longer needed,
+it will be thrown away, and the next sheet becomes available.&nbsp; The
+top sheet is the last thing you have put on the stack, and it will be the
+first one that gets read.&nbsp; This is called a <b>last-in/first-out</b>
+memory structure.&nbsp; In a computer system instead of sheets of paper,
+we will use memory frames.
+<p>Using a stack, your computer can keep track of recursion processes.&nbsp;
+Every time a function is called, a new frame is taken, the function definition
+is copied to the frame, and the arguments are plugged in for the function
+parameters.&nbsp; Then, the computer starts executing the body of the function
+definition.&nbsp; Once it encounters a recursive call (calling itself),
+it will halt the computation it is doing and will wait for the value to
+get returned from the recursive call.&nbsp; But, before it proceeds with
+the recursive computation, it saves enough information such that when it
+is back from the recursive computation, it can continue the halted computation.
+<p>If we use the <i>pow </i>function to compute the value for 2<sup>4</sup>,
+we would have something that looks like this:
+<p><i>pow(2,4)</i> = 2*<i>pow(2,3)</i> = <font color="#CC0000">2*8 = 16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</font>Forward Step 1/<font color="#CC0000">Backward Step 4</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<i>pow(2,3)</i>= 2*<i>pow(2,2)</i> = <font color="#CC0000">2*4 = 8&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Forward Step 2/<font color="#CC0000">Backward Step 3</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<i>pow(2,2)</i> = 2*<i>pow(2,1)</i> = <font color="#CC0000">2*2 = 4&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Forward Step 3/<font color="#CC0000">Backward Step 2</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<i>pow(2,1)</i> = 2*<i>pow(2,0)</i> = <font color="#CC0000">2*<b>1</b>
+=2</font>&nbsp;&nbsp; Forward Step 4/<font color="#CC0000">Backward Step
+1</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<i>pow(2,0)</i> = <b><font color="#CC0000">1</font></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Base or stopping case (<font color="#CC0000">use it to go up)</font>
+<p>The <i>pow </i>function looks something like the following (please note
+that we have used <i>power</i> for the function name to avoid a conflict
+with the standard <i>pow</i> function in <i>cmath</i>).
+<p><i>int power(int x, int n)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(n &lt; 0)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Illegal argument to power \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+exit(1);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(n > 0) // Recursive
+process</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return( power(x, n-1)*x);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else&nbsp; // Stopping
+case</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return (1);</i>
+<br><i>}</i>
+<p>So, when in the main we call <i>power(2,4),</i> a new frame will be
+picked, the value of <i>x</i> will be set to 2 and value of <i>n</i> will
+be set to 4.&nbsp; The body of the function is copied to the frame.&nbsp;
+We now have remembered the values for <i>x</i> and <i>n </i>and we have
+the body of the function.&nbsp; We execute the function for these two values.&nbsp;
+Since <i>n </i>is not less than 0, we execute the statement after
+<i>if(n
+> 0), </i>i.e., call function <i>power </i>again,<i> return( power(x, n-1)*x);</i>
+thus, we will have a new frame but this time the call will be made as <i>power(2,3)
+</i>and the current computation will be halted.&nbsp; Now at the top of
+the stack we will have the frame that contains the information for <i>power(2,3)</i>.
+The process continues and the top frame in the stack changes until we get
+to <i>power(2,0)</i>.&nbsp; When we execute this one, since <i>n </i>is
+not larger than 0, we will go to the else and the function returns 1.&nbsp;
+That is where we stop going further down the chain and we no longer make
+recursive calls to the function.&nbsp; Now it is time to pick frames from
+the top and replace the function with the returned value.&nbsp; At the
+time you call the function as <i>power(2,0),
+</i>the top frame is <i>power(2,0).
+</i>So you replace that with 1 and then throw away that frame.&nbsp; Then
+you will have the <i>power(2,1) </i>which will be replaced by 2*1 (it was
+<i>2*power(2,0) ).&nbsp; </i>Now we have a value for <i>power(2,1).&nbsp;
+</i>We keep moving up the same way and as we go up we will discard the
+frames until there are no more frames on the stack.&nbsp; By then the last
+frame <i>power(2,4) = 16</i> is reached.
+<p><a NAME="ex13.2"></a><b><font color="#00CC00"><font size=+1>Exercise
+13.2</font></font></b>
+<br>Take a blank sheet of paper and cut it in 8 pieces.&nbsp; Number them
+from top to bottom, 1 through 8.&nbsp; We will pretend that this is the
+stack system.&nbsp; Now try to implement the recursion process for computing
+2<sup>4</sup>.&nbsp; You only need 6 of these pieces but, in reality, your
+stack may have a few extra blank frames any way.
+<p>Note that every time you call a function, you need to get a new page.&nbsp;
+Since it takes time to copy the body of the function on the paper, for
+now just make a note of the statement that you will execute in each case.
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

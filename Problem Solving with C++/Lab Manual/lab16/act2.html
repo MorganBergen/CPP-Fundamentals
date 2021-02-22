@@ -1,0 +1,159 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 16 - 2 </title>
+<script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+</script>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 16-2 -
+Some Details in using Inheritance</font></font></b>
+<br><a href="act1.html"><img SRC="lfarrow.jpg" BORDER=0 height=35 width=36></a><a href="act3.html"><img SRC="rtarrow.jpg" BORDER=0 height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br><b><font color="#000099"><font size=+1>The <i>protected </i>Qualifier</font></font></b>
+<br>You cannot access a private member variable or private member function
+in the definition or implementation of a derived class.&nbsp; You can access
+them by name in a derived class by classifying them using the <i>protected
+</i>qualifier.&nbsp;
+The members cannot be accessed in classes that are not derived class.
+<p><u>Important Note:</u> If you use the <i>protected </i>qualifier before
+a member variable or member function, instead of <i>public </i>or <i>private</i>,
+then they will be the same as private members for all non-derived classes,
+except that they can be accessed by derived classes.
+<p>Now, suppose in class <i>Employee</i> we use <b><i><font color="#3333FF">protected,
+</font></i></b>instead
+of <i>private:</i>
+<p>//This is the HEADER FILE hourlyemployee.h.
+<br>//This is the INTERFACE for the class HourlyEmployee.
+<br>#ifndef HOURLYEMPLOYEE_H
+<br>#define HOURLYEMPLOYEE_H
+<p>#include &lt;string>
+<br>#include "employee.h"
+<p>using namespace std;
+<p>namespace savitchemployees
+<br>{
+<p><b>&nbsp;&nbsp;&nbsp; class HourlyEmployee <font color="#CC0000">:</font>
+public Employee</b>
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp; public:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HourlyEmployee();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HourlyEmployee(string new_name,
+string new_ssn, double new_wage_rate, double new_hours);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void set_rate(double new_wage_rate);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double get_rate();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void set_hours(double hours_worked);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double get_hours();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void give_raise(double amount);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void print_check();
+<br><b><font color="#3333FF">&nbsp;&nbsp;&nbsp; protected:</font></b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double wage_rate;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double hours;
+<br>&nbsp;&nbsp;&nbsp; };
+<p>}//savitchemployees
+<p>#endif //HOURLYMPLOYEE_H
+<p>Then definitions of some of the member functions in the derived class
+can be simplified.&nbsp; Here is a simplified version of the <i>print_check</i>
+function in the derived class <i>HourlyEmployee</i>..
+<p><i>&nbsp;&nbsp;&nbsp; void HourlyEmployee::print_check()</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; net_pay = hours * wage_rate;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "\n________________________________________________\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Pay to
+the order of " &lt;&lt; name &lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The sum
+of&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " &lt;&lt; net_pay &lt;&lt;
+" Dollars\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "________________________________________________\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Check
+Stub: NOT NEGOTIABLE\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Employee
+Number: " &lt;&lt; ssn &lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Hourly
+Employee. \nHours worked: " &lt;&lt; hours</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; " Rate: " &lt;&lt; wage_rate &lt;&lt; " Pay: " &lt;&lt; net_pay
+&lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "_________________________________________________\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; }</i>
+<p>This only works when the member variables of Employee are marked <i>protected</i>
+instead of <i>private</i>.&nbsp; As you have noticed the <i>net_pay </i>and
+<i>ssn
+</i>can be accessed by name because they were marked <i>protected
+</i>in
+the base class <i>Employee</i>.
+<p><b><font color="#000099"><font size=+1>Accessing a Redefined Base Function</font></font></b>
+<br>Suppose you define a function so that it has a different definition
+in the derived class from what it had in the base class.&nbsp; The definition
+that was given in the base class is not completely lost in the derived
+class objects.&nbsp; However, to invoke the version of the function given
+in the base class with an object in the derived class, you should use the
+scope resolution operator with the name of the base class.&nbsp; Here is
+an example.&nbsp; In the previous Activity, you redefined function <i>print_check
+</i>in
+the derived class <i>HourlyEmployee</i>.&nbsp; Now, suppose you have an
+object of each class as in:
+<p><i>Employee jane_e;</i>
+<br><i>HourlyEmployee sally_h;</i>
+<p>Then <i>jane_e.print_check( );&nbsp; </i>uses the definition of <i>print_check</i>
+as it is given in the class <i>Employee, </i>and <i>sally_h.print_check(
+); </i>uses the version of this function as it is given in the class <i>HourlyEmployee</i>.
+<p>Now, <i>How would you invoke the version of print_check as it is given
+in the base class Employee with the derived object sally_h? </i>Here is
+how you would Do this:
+<p><i>sally_h.Employee::print_check( );</i>
+<p><b><font color="#000099"><font size=+1>Some of the Things That Are Not
+Inherited</font></font></b>
+<br>In general, these three types of functions are NOT inherited:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1) constructors (including
+copy constructors)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2) private members (variables
+and functions)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3) destructors
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4) the assignment operator
+=
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6) overloaded assignment
+operators and constructors
+<p><a NAME="ex16.2"></a><b><font color="#00CC00"><font size=+1>Exercise
+16.2</font></font></b>
+<br>Consider the following class and function definitions that are given:
+<p><i>#include &lt;iostream></i>
+<br><i>#include &lt;cstdlib></i>
+<br><i>using namespace std;</i>
+<p><i>class PartFillArray</i>
+<br><i>{</i>
+<br><i>public:</i>
+<br><i>&nbsp;&nbsp;&nbsp; PartFilledArray(int array_size);</i>
+<br><i>&nbsp;&nbsp;&nbsp; PartFilledArray(const PartFilledArray&amp; object);</i>
+<br><i>&nbsp;&nbsp;&nbsp; ~PartFilledArray( );</i>
+<br><i>&nbsp;&nbsp;&nbsp; void operator = (const PartFilledArray&amp; right_side);</i>
+<br><i>&nbsp;&nbsp;&nbsp; void add_value(double new_entry);</i>
+<br><i>&nbsp;&nbsp;&nbsp; // other members functions</i>
+<br><i>&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>}</i>
+<br><i>protected:</i>
+<br><i>&nbsp;&nbsp;&nbsp; double *a;</i>
+<br><i>&nbsp;&nbsp;&nbsp; int max_number;</i>
+<br><i>&nbsp;&nbsp;&nbsp; int number_used;</i>
+<br><i>};</i>
+<p><i>PartFilledArray::PartFilledArray(int array_size) : max_number(array_size),
+number_used(0)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; a = new double[max_number];</i>
+<br><i>}</i>
+<p>Write the definitions for the member function <i>add_value, </i>the
+copy constructor, the overloaded assignment operator, and the destructor
+for this class.
+</body>
+</html>

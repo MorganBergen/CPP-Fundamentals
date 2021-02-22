@@ -1,0 +1,234 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 11 - 3 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 11-3 -
+Converting Between <i>String</i> Objects and <i>C-Strings</i></font></font></b>
+<br><a href="act2.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act4.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In C++, you can automatically convert and store a C-string in a variable
+of type string.&nbsp; Here is an example:
+<p>char a_c_string[] = "This is my C-string.";
+<br>string string_variable;
+<br>string_variable = a_c_string;
+<p>cout &lt;&lt; string_variable &lt;&lt; endl;
+<p>This should display:&nbsp; This is my C-string.
+<p>This will work fine but you can't convert a string variable to a C-string
+by going backward, thus,
+<p>a_c_string = string_variable;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">is
+ILLEGAL.</font>
+<p>Similarly,
+<p>strcpy(a_c_string, string_variable);&nbsp; <font color="#CC0000">is
+also ILLEGAL.</font>
+<p>However, the following:
+<p>strcpy(a_c_string, string_variable.c_str( ) );&nbsp;&nbsp;&nbsp; <font color="#CC0000">is
+LEGAL</font>
+<p>But, then again, the following:
+<p>a_c_string = string_variable.c_str( );&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<font color="#CC0000">is also ILLEGAL</font>
+<p>You may remember that in Lab(5) - Activity 1, we used an array of characters
+for the input and output file names.&nbsp; We can rewrite that lab using
+the string class.
+<center>
+<p><i>"Remember you cannot use a stream of type input to write to a file
+and vice versa"</i></center>
+
+<p><b><font color="#CC0000">Step (1): Include the required directives</font></b>
+<br><font color="#000000"><i>#include&lt;fstream></i>&nbsp;&nbsp; // This
+enables you to do file I/O</font>
+<br><i><font color="#000000">#include&lt;iostream>&nbsp;</font></i><font color="#000000">
+// For <i>cin</i> and <i>cout</i></font>
+<br><font color="#000000"><i>#include&lt;cstdlib></i>&nbsp;&nbsp; // To
+use <i>exit(1) </i>that terminates the program</font>
+<br><font color="#009900"><i>#include&lt;string></i>&nbsp;&nbsp; // To
+use the string class</font>
+<p>using namespace std;
+<br><b><font color="#CC0000">Step (2): Create the input/output streams</font></b>
+<table BORDER COLS=2 WIDTH="100%" >
+<tr>
+<td>
+<center><b><font color="#000099">If fixed file name is used</font></b></center>
+</td>
+
+<td>
+<center><b><font color="#3333FF">If file name is an input (file name is
+not fixed)</font></b></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<br>&nbsp;
+<p><font color="#000000">Create (declare) the streams of type input or
+output to use them for reading a file or writing to a file.</font>
+<br><i><font color="#000000">ifstream inp_stream;&nbsp;&nbsp;&nbsp; </font></i><font color="#000000">//create
+an input stream type</font>
+<br><i><font color="#000000">ofstream out_stream;&nbsp; </font></i><font color="#000000">//
+create an output stream type</font></td>
+
+<td><b><font color="#CC0000">(A)</font></b>
+<br><i><font color="#009900">string inp_file, out_file;</font></i>
+<br><b><font color="#CC0000">(B)</font></b>
+<br><font color="#000000">Create (declare) the streams of type input or
+output to use them for reading a file or writing to a file.</font>
+<br><i><font color="#000000">ifstream inp_stream;&nbsp;&nbsp;&nbsp; </font></i><font color="#000000">//create
+an input stream type</font>
+<br><i><font color="#000000">ofstream out_stream;&nbsp; </font></i><font color="#000000">//
+create an output stream type</font></td>
+</tr>
+</table>
+
+<p><b><font color="#CC0000">Step (3): Connect the input stream to an input
+file/the output stream to an output file</font></b>
+<br><font color="#000000">At this point you must be most careful. If, by
+mistake, you connect an out_stream to an input file, you can destroy the
+input file.</font>
+<br>&nbsp;
+<table BORDER COLS=2 WIDTH="100%" >
+<tr>
+<td>
+<center><b><font color="#000099">If fixed file name is used</font></b></center>
+</td>
+
+<td>
+<center><b><font color="#3333FF">If file name is an input (file name is
+not fixed)</font></b></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<p><i><font color="#000000">inp_stream.open("input_file");</font></i>
+<br><i><font color="#000000">if(inp_stream.fail( ))</font></i>
+<br><i><font color="#000000">{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Input file
+opening failed. \n";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; exit(1);&nbsp;&nbsp; <b>//</b>exit
+the program</font></i>
+<br><i><font color="#000000">}</font></i>
+<p><font color="#000000">Similarly, for an output file we have:</font>
+<br><i><font color="#000000">out_stream.open("output_file");</font></i>
+<br><i><font color="#000000">if(out_stream.fail( ))</font></i>
+<br><i><font color="#000000">{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Output file
+opening failed. \n";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; exit(1);&nbsp;&nbsp; <b>//
+</b>exit
+the program</font></i>
+<br><i><font color="#000000">}</font></i></td>
+
+<td><b><font color="#CC0000">(A)&nbsp;</font></b>
+<br><i><font color="#000000">cout &lt;&lt; "Input the name of input file
+\n";</font></i>
+<br><i><font color="#000000">cin >> inp_file;</font></i>
+<p><b><font color="#CC0000">(B)</font></b>
+<br><i><font color="#000000">inp_stream.open(inp_file</font><font color="#009900">.c_str(
+)</font><font color="#000000">);</font></i>
+<br><i><font color="#000000">if(inp_stream.fail( ))</font></i>
+<br><i><font color="#000000">{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Input file
+opening failed. \n";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; exit(1);&nbsp;&nbsp; <b>//
+</b>exit
+the program</font></i>
+<br><i><font color="#000000">}</font></i>
+<p><font color="#000000">Similarly, for an output file we have:</font>
+<br><i><font color="#000000">out_stream.open(out_file</font><font color="#009900">.c_str(
+)</font><font color="#000000">);</font></i>
+<br><i><font color="#000000">if(out_stream.fail( ))</font></i>
+<br><i><font color="#000000">{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Output file
+opening failed. \n";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; exit(1);&nbsp;&nbsp; <b>//
+</b>exit
+the program</font></i>
+<br><i><font color="#000000">}</font></i></td>
+</tr>
+</table>
+
+<p><font color="#009900">If you decide to <b>append </b>to an existing
+file, use:</font>
+<br><i><font color="#009900">outstream.open("output_file", ios::<b>app</b>);</font></i>
+<p><b><font color="#CC0000">Step (4): Use the input stream to read from
+the input file/the output stream to write to the output file</font></b>
+<p><i><font color="#000000">To read:</font></i>
+<br><i><font color="#000000">inp_stream >> first_data >> second_data;</font></i>
+<p><i><font color="#000000">To write:</font></i>
+<br><i><font color="#000000">out_stream &lt;&lt; first_data &lt;&lt; second_data;</font></i>
+<p><b><font color="#CC0000">Step (5): Close the input and output files
+by disconnecting the corresponding streams</font></b>
+<br><i><font color="#000000">inp_stream.close( );</font></i>
+<br><i><font color="#000000">out_stream.close( );</font></i>
+<p>The following program reads a file containing some integer values (we
+do not know how many values).&nbsp; It displays the number, the number
+to the power of two, and the sum up to that point. At last it displays
+the average of these numbers.
+<p>// P11_3. cpp - This program reads some integers from a file and displays:
+<br>// The number, number^2, and the sum of all numbers read up to that
+point
+<br>#include&lt;iostream>
+<br>#include&lt;fstream>&nbsp;<b><font color="#CC0000"> // Step (1)</font></b>
+<br>#include&lt;cstdlib>
+<br>#include&lt;cmath>
+<br>#include&lt;string>
+<p>using namespace std;
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp; int x, count = 0;
+<br>&nbsp;&nbsp;&nbsp; float sum = 0, avg;
+<br>&nbsp;&nbsp;&nbsp; string input_file; <b><font color="#CC0000">// Step
+(2)-A</font></b>
+<p>&nbsp;&nbsp;&nbsp; ifstream in_s;&nbsp; <b><font color="#CC0000">//
+Step (2)-B - declaration of the stream of type input</font></b>
+<p>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Please input the input file name \n";
+<b><font color="#CC0000">//
+Step (3)-A Get the file name</font></b>
+<br>&nbsp;&nbsp;&nbsp; cin >> input_file;
+<p>&nbsp;&nbsp;&nbsp; in_s.open(input_file.c_str( )); <b><font color="#CC0000">//
+Step (3)-B - connect to the input file and test</font></b>
+<br>&nbsp;&nbsp;&nbsp; if(in_s.fail( ))
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Input file opening
+failed. \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit(1);&nbsp; // if we couldn't
+open the file to read from we exit
+<br>&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "\t&nbsp; x \t\t x^2 \t\t Current Sum
+\n";
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "\t === \t\t === \t\t ========== \n";
+<p>&nbsp;&nbsp;&nbsp; while( in_s >> x) <b><font color="#CC0000">// Step
+(4)-Read all numbers one-by-one to the end of the file</font></b>
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sum = sum + x;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "\t&nbsp;
+" &lt;&lt; x &lt;&lt;"\t\t&nbsp; " &lt;&lt; pow(x,2) &lt;&lt; "\t\t&nbsp;
+" &lt;&lt; sum &lt;&lt; "\n";
+<br>&nbsp;&nbsp; count++;
+<br>&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;avg = sum/count;
+<br>&nbsp;cout &lt;&lt; "\n \t\t The average of these " &lt;&lt; count
+&lt;&lt; " numbers is: " &lt;&lt; avg &lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp; in_s.close( );&nbsp; <b><font color="#CC0000">//
+Step (5)-Close the connection (close the file)</font></b>
+<p>&nbsp;&nbsp; return 0;
+<br>}
+<p><a NAME="ex11.3"></a><b><font color="#00CC00"><font size=+1>Exercise
+11.3</font></font></b>
+<br>Rewrite the program in Exercise 11.2 such that your program reads the
+contents of an input file and writes the corrected version into an output
+file.&nbsp; Use the above method to read from and write to the input/output
+files. Here is a <a href="sample.txt">sample</a> input file you can use
+to test your program.
+<br>&nbsp;
+</body>
+</html>

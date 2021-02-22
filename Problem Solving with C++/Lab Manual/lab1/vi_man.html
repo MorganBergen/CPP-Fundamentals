@@ -1,0 +1,240 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Vi-UNIX editor Short Manual</title>
+</head>
+<body>
+<b><font size=-1>Vi - UNIX editor - Short Manual
+</font></b>(<i><font size=-1>print
+landscape</font></i>) <font color="#000099">"When using <i>vi</i>, if you
+don't know where you are, press <i>Esc</i> key, to go to the command mode"</font>
+<table BORDER CELLPADDING=7 WIDTH="931" >
+<tr>
+<td VALIGN=TOP WIDTH="51%"><font size=-1>This manual is designed to familiarizes
+users with some of the commonly used vi commands. Please follow all the
+instructions. Perhaps the most important thing about this editor is to
+remember that <b>vi</b> has two modes; 1) <b><u>Input mode</u></b> : invoked
+by pressing <b>I</b>, and it is used when you want to type, and 2) <b><u>Command
+mode</u></b> : invoked by pressing <b>Esc</b>, and it is used to do other
+things, except typing, for instance; moving up-down, left-right, deleting
+characters, words, lines, saving, exiting, etc.&nbsp;</font>
+<br><font size=-1><i>Note: In</i> this manual, the words following a <b>%</b>
+symbol and written in boldface, for eg. % <b>vi</b>, are to be typed out
+( without the % symbol)</font>. <font size=-1>The words written in regular
+font following the % symbol and boldfaced commands are to be substituted
+by filename names in your system .</font>
+<br><b><font size=-1><font color="#006600">Step (1) : </font><i><u>Opening
+vi:</u></i></font></b>
+<br><font size=-1>At the prompt type % <b>vi</b></font> <font size=-1>and
+press Enter</font>, <font size=-1>a blank screen will appear. A blank vi
+page will open in the <i>command</i> mode.</font>
+<br><b><font size=-1><font color="#006600">Step (2) :</font> <i><u>Typing
+a text, saving it, and exiting vi</u></i></font></b>
+<br><font size=-1>2-1) Type the following 4 lines of text <b><i><u>exactly</u></i></b>
+the way it is shown below. To start typing press<b> i </b>to enter the
+Input mode, and type the following text.</font>
+<br><font size=-1>"<i>Depends on the size of the machine, a UNIX mashine
+can support</i></font>
+<br><i><font size=-1>from one to handred users. Each user can run different
+set of programs.</font></i>
+<br><i><font size=-1>Since a UNIX machine can support several users at
+the same time,&nbsp;</font></i>
+<br><i><font size=-1>the cost of computer per usr is much les.</font></i><font size=-1>
+"&nbsp;</font>
+<br><font size=-1>2-2) Lets save it in the file <b><i>text1</i></b>;To
+save what you have typed press : <b>Esc</b> to go to command mode, then
+type: <b>:wq <i>text1</i> </b>and press Enter(don't forget the <b>: </b>before
+the <b>w</b>)</font> <font size=-1>you are back at the command prompt again,
+<b>%</b></font>
+<br><font size=-1>2-3) To open file <b><i>text1</i></b> again type : %
+<b>vi
+</b><i>text1</i></font>
+<br><font size=-1>2-4) To leave the file without making any change, press
+<b>Esc</b>,
+then type : <b>:q!</b></font> <font size=-1>(don't forget the
+<b>: </b>and
+the <b>!</b>)</font>
+<br><b><font size=-1><font color="#006600">Step (3) :</font><i> <u>Editing
+a file, save the changes, and exit vi&nbsp;</u></i></font></b>
+<br><font size=-1>3-1) To open the file in vi, at the command prompt type
+:% <b>vi </b>text1</font>
+<br><font size=-1>3-2) To find a word in the text, for instance <i>mashine</i>,
+type : <b>:/mashine</b></font> <font size=-1>(don't forget the <b>: </b>and
+the<b> /</b>)</font>
+<br><font size=-1>3-3) Moving on a letter and replacing it with another
+one : use arrow to move on the letter <b>s</b> in the word <i>ma<b>s</b>hine</i>,
+press <b>r</b> (replace) and press <b>c</b>.</font>
+<br><font size=-1>3-4) To go to a particular line for instance line 2 type
+: <b>:2</b></font> <font size=-1>(don't forget <b>: </b>before 2)</font>
+<br><font size=-1>3-5) Delete a character and type a new one in its place
+: move on the letter <b>a</b> in handred, press <b>x</b> to delete a, press
+<b>I</b>
+to switch to input mode, type <b>u</b>, press <b>Esc</b> to switch to the
+command mode.</font>
+<br><font size=-1>3-6) Move to the end of the file : press <b>Shift</b>
+and <b>G</b></font>
+<br><font size=-1>3-7) Use arrow to move the cursor to the beginning of
+the word usr</font>
+<p><font color="#000099"><font size=-1>Note: in the command mode, letters
+<i>i,
+j, k, and i</i> can be used for navigating <i>up</i>, <i>down</i>,
+<i>left,</i>
+and <i>right</i>.</font></font></td>
+
+<td VALIGN=TOP WIDTH="49%"><font size=-1>3-8) To delete the word usr press
+<b>dw</b>
+(this will delete the word in front of cursor)</font>
+<br><font size=-1>3-9) Press <b>I</b> and type the word <b><i>user</i></b>,
+then press <b>Esc</b> to switch to command mode</font>
+<br><font size=-1>3-10) To append <b>s </b>after the word <b><i>les</i></b>,
+move to<b> s</b> and press <b>a</b> (append), and type the missing <b>s</b>,
+press <b>Esc</b>.</font>
+<br><font size=-1>3-11) save the file and exit : <b>:wq</b></font><b> </b><font size=-1>(remember
+the <b>:</b> before w)</font>
+<br><font size=-1><i>Congratulations</i>. You just finished the basics
+of what you need to know to work with vi editor. The following is a list
+of some more vi commands.</font>
+<table BORDER >
+<tr>
+<td><b><font size=-1>Vi Command</font></b></td>
+
+<td><b><font size=-1>Description</font></b></td>
+</tr>
+
+<tr>
+<td><font size=-1><b>yy</b> followed by <b>p</b> command&nbsp;</font></td>
+
+<td><font size=-1>the yy command copies the current line and p command
+will paste it at as new line after the cursor</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>yyn</font></b></td>
+
+<td><font size=-1>Yank n lines (default is 1) starting from the current</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>p</font></b></td>
+
+<td><font size=-1>Put after the line where the line(s) you yanked right
+cursor is</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>$</font></b></td>
+
+<td><font size=-1>End of line</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>e&nbsp;</font></b></td>
+
+<td><font size=-1>End of the word to the right</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>o</font></b></td>
+
+<td><font size=-1>Open a line below the current line</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>O</font></b></td>
+
+<td><font size=-1>Open a line above the current line</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>x</font></b></td>
+
+<td><font size=-1>Delete the character</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>nx</font></b></td>
+
+<td><font size=-1>Delete the number of characters specified by n, starting
+with the current</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>u</font></b></td>
+
+<td><font size=-1>Undo the change</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>ddn</font></b></td>
+
+<td><font size=-1>Delete the current line</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>)</font></b></td>
+
+<td><font size=-1>End of sentence</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>(</font></b></td>
+
+<td><font size=-1>Beginning of sentence</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>}</font></b></td>
+
+<td><font size=-1>End of paragraph</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>{</font></b></td>
+
+<td><font size=-1>Beginning of paragraph</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>0</font></b></td>
+
+<td><font size=-1>Beginning of line</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>A</font></b></td>
+
+<td><font size=-1>Add text at the end of the line</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>J</font></b></td>
+
+<td><font size=-1>Move down</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>H</font></b></td>
+
+<td><font size=-1>Move Right</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>K</font></b></td>
+
+<td><font size=-1>Move Up</font></td>
+</tr>
+
+<tr>
+<td><b><font size=-1>L</font></b></td>
+
+<td><font size=-1>Move Left</font></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

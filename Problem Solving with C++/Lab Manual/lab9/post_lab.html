@@ -1,0 +1,64 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Post-lab</title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Post-Lab - Lab (9) - The
+Loan ADT</font></font></b>
+<br><a href="act3.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="index.html"><img SRC="uparrow.jpg" height=35 width=37></a>
+<br>
+<hr WIDTH="100%">
+<br>Modify the Loan class definition in the program ex91.cpp to include
+a new class called Bank in its definition as described below.
+<p><i><font color="#000099">// This will go to Loan.h file</font></i>
+<br><i><font color="#000099">class Loan</font></i>
+<br><i><font color="#000099">{</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp; public:</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp; Loan( );</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp; Loan(<b>Bank bank,</b>
+ID id, float amount, float rate, int term);</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp; void set( );</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp; float payment( );</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp; void display( );</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp; private:</font></i>
+<br><b><i><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bank bank;</font></i></b>
+<br><i><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ID id;&nbsp;
+// assume an unique integer in three integer parts</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float amount;
+// $ amount of the loan</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float rate;
+// annual interest rate</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int term;&nbsp;
+// number of months, length of the loan</font></i>
+<br><i><font color="#000099">&nbsp;};</font></i>
+<p><font color="#000000">The Bank class is defined as:</font>
+<p><i><font color="#000000">// This will go to Bank.h file</font></i>
+<p><i><font color="#000000">class Bank&nbsp; // Bank class definition</font></i>
+<br><i><font color="#000000">{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; public:</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Bank( );</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Bank(int bank_ID, CONTACT phone, CONTACT fax);</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; private:</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int bank_ID;&nbsp; // 4 digit integer</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Contact&nbsp; phone;&nbsp; // object three integer pieces,&nbsp; # # #,
+# # #, # # # #</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Contact&nbsp; fax;&nbsp; // object three integer pieces,&nbsp; # # #, #
+# #, # # # #</font></i>
+<br><i><font color="#000000">};</font></i>
+<p><font color="#000000">The class Contact has three integer parts, for
+Example: part1: 828, Part2: 666, Part3: 7777.</font>
+<p><font color="#000000">You will define the Loan ADT class in separate
+files.&nbsp; Note that by adding this class to the ex91.cpp program, you
+will have 4 additional files, Bank.h, Bank.cpp, Contact.cpp, and Contact.h
+files.</font>
+</body>
+</html>

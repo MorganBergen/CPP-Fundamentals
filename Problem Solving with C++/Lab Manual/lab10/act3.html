@@ -1,0 +1,84 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 10 - 3 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 10-3 -
+Arrays as Class Members</font></font></b>
+<br><a href="act2.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act4.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>You can use arrays with classes and structures in almost an identical
+way.&nbsp; Here is an example:
+<p><i>class Data</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp; public:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; void set_distance(int d);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; void set_times(int i, double t);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; void display();</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; void statistics( );</i>
+<br><i>&nbsp;&nbsp; private:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; double time[5];&nbsp; //array of time in
+second</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; int distance; //distance in meter</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; double min, max, average;</i>
+<br><i>};</i>
+<p>The member functions are defined as:
+<p><i>void Data::set_distance(int d)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; distance = d;</i>
+<br><i>}</i>
+<p><i>void Data::set_times(int i, double t)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; time[i] = t;</i>
+<br><i>}</i>
+<p><i>void Data::display()</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp; cout &lt;&lt; "Here is your best 5 times for \n";</i>
+<br><i>&nbsp;&nbsp; cout &lt;&lt; distance &lt;&lt; " meter \n";</i>
+<p><i>&nbsp;&nbsp; for(int i = 0;&nbsp; i &lt; 5; i++)</i>
+<br><i>&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; time[i]
+&lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp; }</i>
+<br><i>}</i>
+<p><b><font color="#00CC00"><font size=+1>Exercise 10.3</font></font></b>
+<br>Write a program that uses class <i>Data.&nbsp; </i>Your program first
+asks a runner for a distance and 5 of his/her best times in that event,
+and it will store the times in the array time.&nbsp; Then it finds the
+best, the worst, and the average time for that runner.&nbsp; Finally, it
+displays all five times, following by the worst, the best, and the average.
+<p>You need to write the function <i>statistics.&nbsp; </i>Please note
+that we assume we are only dealing with 5 times.&nbsp; So the <i>statistics
+function</i> is a simple function.&nbsp; This program finds the fastest
+time as the best time, the slowest time as the worst time, and computes
+the average of 5 times for each event.
+<p><b><font color="#000099"><font size=+1>Array of Objects</font></font></b>
+<br><font color="#000000">It is possible to create an array of objects.&nbsp;
+For example in the program that used the class AltMoney to create the objects
+of type money for two different people, then added two amounts of money,
+we could use an array to define the two objects as:</font>
+<p><font color="#000000">AltMoney m[2];</font>
+<p><font color="#000000">In this case, the first object is m[0] and the
+second object is m[1].&nbsp; Note that previously, we created the two money
+objects using:</font>
+<p><font color="#000000">AltMoney m1, m2;</font>
+<p><font color="#000000">This does not seem to be much different from the
+one we defined using an array.&nbsp; But wait, what if you wanted to create
+100 objects of type AltMoney?&nbsp; Which method is more convenient to
+use, then?</font>
+<p><font color="#000000">Once you used an array to create objects, you
+can perform computation on each one of the objects using the array index.&nbsp;
+So, if you want to use the previously defined add function to add the money
+from the two new objects, you do not need to change the function definition.&nbsp;
+The only change is in the function call:</font>
+<p><font color="#000000">sum.add(m[0], m[1]);</font>
+<p><font color="#000000">Previously, this was written as: sum.add(m1, m2);</font>
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

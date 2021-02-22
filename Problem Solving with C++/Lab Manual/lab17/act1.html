@@ -1,0 +1,205 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 17 - 1 </title>
+<script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+</script>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 17-1 -
+Exception Handling Basics</font></font></b>
+<br><a href="pre_lab.html"><img SRC="lfarrow.jpg" BORDER=0 height=35 width=36></a><a href="act2.html"><img SRC="rtarrow.jpg" BORDER=0 height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>Most programmers assume that nothing unusual or incorrect will happen
+when they start writing their programs.&nbsp; For example, when we work
+with a list or a file, we may assume that it is not empty.&nbsp; Such assumptions
+reduce the amount of coding at the beginning and one can add segments to
+handle things that may go wrong once the core program is finished.&nbsp;&nbsp;
+In C++, we often write our programs as if nothing unusual happens and then
+use <b>exception-handling </b>facilities to add code for those unusual
+cases.&nbsp; Exception handling is commonly used to handle error situations,
+but perhaps it would be better to design it to handle "exceptional situations".
+<p>Dealing with an exceptional situation may mean different things.&nbsp;
+For example, when division by zero might happen in a program, one can simply
+terminate the program but another programmer may decide to do something
+else.&nbsp; In C++, exception handling proceeds as follows:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1) Either some library software,
+or your code, provides a mechanism that signals the unusual situations.&nbsp;
+This is called <b>throwing an exception </b>or
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2) At another place in your
+program you place the code that deals with the exceptional case.&nbsp;
+This is called <b>handling the exception</b>.
+<p>In order to describe this better, let's look at an example.&nbsp; The
+following program computes the Donuts-Per-Glasses of milk (dpg) by assuming
+that we always have some milk, i.e. amount of milk is never 0.
+<p><i>// P17_1.cpp - This program computes donuts per glasses of milk</i>
+<br><i>#include &lt;iostream></i>
+<br><i>using namespace std;</i><i></i>
+<p><i>int main()</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; int donuts, milk;</i>
+<br><i>&nbsp;&nbsp;&nbsp; double dpg;</i>
+<br><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter number of donuts:\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; cin >> donuts;</i>
+<br><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter number of glasses of milk:\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; cin >> milk;</i><i></i>
+<p><i><font color="#CC0000">&nbsp;&nbsp;&nbsp; dpg = donuts/double(milk);</font></i>
+<br><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; donuts &lt;&lt; " donuts.\n"</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;&lt;
+milk &lt;&lt; " glasses of milk.\n"</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;&lt;
+"You have " &lt;&lt; dpg</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;&lt;
+" donuts for each glass of milk.\n";</i><i></i>
+<p><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "End of program.\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; return 0;</i>
+<br><i>}</i>
+<p>As you may notice, in this program at line:
+<p><i><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+dpg = donuts/double(milk);</font></i>
+<p>we may have an exceptional situation where there is no milk left or
+the number of glasses of milk is negative.&nbsp; We know that division-by-zero
+is not defined and that a negative amount of milk is meaningless.&nbsp;
+To handle this exceptional situation we can add something to this program.&nbsp;
+So the new program may look like this:
+<p><i>// P17_1a.cpp - This program computes donuts per glasses of milk</i>
+<br><i>// Handling special case without Exception Handling</i>
+<br><i>#include &lt;iostream></i>
+<br><i>using namespace std;</i><i></i>
+<p><i>int main()</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; int donuts, milk;</i>
+<br><i>&nbsp;&nbsp;&nbsp; double dpg;</i>
+<br><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter number of donuts:\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; cin >> donuts;</i>
+<br><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter number of glasses of milk:\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; cin >> milk;</i><i></i>
+<p><i><font color="#3333FF">&nbsp;&nbsp;&nbsp; if (milk &lt;= 0)</font></i>
+<br><i><font color="#3333FF">&nbsp;&nbsp;&nbsp; {</font></i>
+<br><i><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; donuts &lt;&lt; " donuts, and No Milk!\n"</font></i>
+<br><i><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; "Go buy some milk.\n";</font></i>
+<br><i><font color="#3333FF">&nbsp;&nbsp;&nbsp; }</font></i>
+<br><i><font color="#3333FF">&nbsp;&nbsp;&nbsp; else</font></i>
+<br><i><font color="#3333FF">&nbsp;&nbsp;&nbsp; {</font></i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+dpg = donuts/double(milk);</font></i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; donuts
+&lt;&lt; " donuts.\n"</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; milk &lt;&lt; " glasses of milk.\n"</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; "You have " &lt;&lt; dpg</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; " donuts for each glass of milk.\n";</i>
+<br><i><font color="#3333FF">&nbsp;&nbsp;&nbsp; }</font></i><i></i>
+<p><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "End of program.\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; return 0;</i>
+<br><i>}</i>
+<p>So, in the new program the <font color="#3333FF">if (milk &lt;= 0) </font>statement
+will prevent us from dividing by zero or from having an unreasonable number
+of glasses of milk. Thus, it will handle the exceptional situation for
+us.&nbsp; We could use the C++ standard exception handling procedure to
+handle this situation.&nbsp; Here is the program with exception handling.
+<p><i>// P17_1b.cpp - This program computes donuts per glasses of milk</i>
+<br><i>// This program uses the C++ exception handling</i>
+<br><i>#include &lt;iostream></i>
+<br><i>using namespace std;</i>
+<p><i>int main()</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; int donuts, milk;</i>
+<br><i>&nbsp;&nbsp;&nbsp; double dpg;</i>
+<p><i>&nbsp;&nbsp;&nbsp; <font color="#3333FF">try</font></i>
+<br><i><font color="#3333FF">&nbsp;&nbsp;&nbsp; {</font></i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter
+number of donuts:\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> donuts;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter
+number of glasses of milk:\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> milk;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (milk &lt;= 0)</i>
+<br><i><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throw donuts;</font></i>
+<p><i><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+dpg = donuts/double(milk);</font></i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; donuts
+&lt;&lt; " donuts.\n"</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; milk &lt;&lt; " glasses of milk.\n"</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; "You have " &lt;&lt; dpg</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; " donuts for each glass of milk.\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;<font color="#3333FF"> }</font></i>
+<br><i><font color="#3333FF">&nbsp;&nbsp;&nbsp; catch(int e)</font></i>
+<br><i><font color="#3333FF">&nbsp;&nbsp;&nbsp; {</font></i>
+<br><i><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; e &lt;&lt; " donuts, and No Milk!\n"</font></i>
+<br><i><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; "Go buy some milk.\n";</font></i>
+<br><i><font color="#3333FF">&nbsp;&nbsp;&nbsp; }</font></i>
+<p><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "End of program.\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; return 0;</i>
+<br><i>}</i>
+<p>In this program we have used the basic way of handling exceptions in
+C++ which consists of <i>try-throw-catch</i> threesome.&nbsp; The syntax
+for a basic <i>try-<b>block</b> is:</i>
+<p><font color="#3333FF">try</font>
+<br><font color="#3333FF">{</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp; some_code</font>
+<br><font color="#3333FF">}</font>
+<p><font color="#000000">This block contains the code for the basic algorithm
+that tells the computer what to do when everything goes smoothly.&nbsp;
+Sometimes, inside the try-block we may throw an exception.&nbsp; In that
+case, the syntax will look like this:</font>
+<p><font color="#3333FF">try</font>
+<br><font color="#3333FF">{</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp; Code_To_Try</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp; Possibly_Throw_An_Exeption</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp; More_Code</font>
+<br><font color="#3333FF">}</font>
+<p><font color="#000000">We have an example of this case in the above program,
+</font><i><font color="#3333FF">throw
+donuts</font></i><font color="#000000">.&nbsp; The thrown value, </font><i><font color="#3333FF">donuts</font></i><font color="#000000">,
+is sometimes called an <b>exception</b> and the execution of a thrown-statement
+is called <b>throwing an exception</b>.&nbsp; The thrown value can be of
+any type.&nbsp; Now imagine that when your program executes the statement,
+</font><i><font color="#3333FF">throw
+donuts</font></i><font color="#000000">, it throws a negative or 0 value
+to the catcher and the program halts.&nbsp; The catch-<b>block</b> will
+receive the thrown value as </font><i><font color="#3333FF">e
+</font></i><font color="#000000">in
+the </font><i><font color="#3333FF">catch(int e) </font></i><font color="#000000">statement.&nbsp;
+The catch-block also contains some code and is often referred to as an
+<b>exception
+handler</b>.</font>
+<p><font color="#000000">What is "</font><i><font color="#3333FF">e</font></i><font color="#000000">"
+for? The "</font><i><font color="#3333FF">e</font></i><font color="#000000">"
+in the above statement is called the catch-<b>block parameter</b>.&nbsp;
+Note that the catch-block is not a function.&nbsp; The catch-block parameter
+does two things:</font>
+<p><font color="#000000">&nbsp;&nbsp;&nbsp; 1) it is preceeded by a type
+name that specifies what kind of thrown value the catch-block can catch</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; 2) it gives you a name for
+the thrown value that is caught, so you can write code in the catch-block
+that uses the thrown value that is caught.</font>
+<p><a NAME="ex17.1"></a><b><font color="#00CC00"><font size=+1>Exercise
+17.1</font></font></b>
+<br>Write a program that asks users to enter a number from the keyboard
+and computes its square root.&nbsp; You need to use an exception handler
+to handle the case where the number is negative. Call your program ex17_1.cpp.
+</body>
+</html>

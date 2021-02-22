@@ -1,0 +1,157 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 13 - 1 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 13-1 -
+Introduction to Recursion</font></font></b>
+<br><a href="pre_lab.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act2.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In real life, we sometimes run into cases in which we need to start
+from a known base and repeatedly build onto or take away from that base
+until we reach the desired case.&nbsp; Such a process is said to be recursive.&nbsp;
+The process has two phases.&nbsp; In the first phase, we go down the chain
+until we reach the smallest of all cases (the base) for which we have an
+answer and in the second phase, we take that answer at the bottom and find
+the one above it and we continue going up until we find the answer to our
+case.&nbsp; Here is an example of recursion.
+<p>Let's try to explain this with an example.&nbsp; Computing a number
+to the power of another number can be viewed as a recursive process.&nbsp;
+We will look at the process for computing 2<sup>4</sup>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2<sup>4
+</sup>is the same
+as 2*2<sup>3</sup>, so we need to find the answer to 2<sup>3</sup>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2<sup>3</sup> is the same
+as 2*2<sup>2</sup>, so we need to find the answer to 2<sup>2</sup>,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2<sup>2</sup> is the same
+as 2*2<sup>1</sup>, so we need to find the answer to 2<sup>1</sup>,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2<sup>1</sup> is the same
+as 2*2<sup>0 </sup>and we know the answer to 2<sup>0</sup> which is 1.&nbsp;
+<u>This is our base</u>.
+<p>Let's use the base to go up and find the answer to others above it:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2<sup>1</sup> = 2*2<sup>0</sup>
+= 2*1 = 2, this will help us find:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2<sup>2</sup> = 2*2<sup>1</sup>,&nbsp;
+which now becomes 2.2 = 4, We move up to find:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2<sup>3</sup> = 2*2<sup>2</sup>
+which then becomes 2*4 = 8, and at last, we will compute:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2<sup>4</sup> = 2*2<sup>3</sup>
+= 2*8 = 16.
+<p>This process is shown below. Follow the black fonts until you reach
+the end, then follow the red font to come back up.
+<p>2<sup>4</sup> = 2*2<sup>3</sup> = <font color="#CC0000">2*8 = 16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font>Forward Step 1/<font color="#CC0000">Backward Step 4</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2<sup>3</sup> = 2*2<sup>2</sup> = <font color="#CC0000">2*4 = 8&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Forward Step 2/<font color="#CC0000">Backward Step 3</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2<sup>2</sup> = 2*2<sup>1</sup> = <font color="#CC0000">2*2 = 4&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Forward Step 3/<font color="#CC0000">Backward Step 2</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2<sup>1</sup> = 2*2<sup>0</sup> = <font color="#CC0000">2*1 =2</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Forward Step 4/<font color="#CC0000">Backward Step 1</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2<sup>0</sup> = <b><font color="#CC0000">1</font></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Base (<font color="#CC0000">use it to go up)</font>
+<p>When you write a function to solve a task, you may break the task into
+subtasks.&nbsp; Sometimes, one of the subtasks is a smaller version of
+the same task and can be accomplished by calling itself multiple times.&nbsp;
+In such cases the function is said to be <b>recursive</b>.
+<p>Let's look at an example.&nbsp; Suppose you want to write a C++ program
+that takes an array of characters and displays 1/2 of the array (string)
+on a line until there is only one character left.&nbsp; In order to do
+this, we split the initial stream in half, then the remaining in half,
+and so forth until we get to the point that there is only one character
+left.&nbsp; Once there, we display the single character, then double that,
+... until we reach the top.
+<p>// P13_1.cpp - This program demonstrates the recursive process
+<br>// It takes a string and displays 1/2 of it on a line until there is
+only
+<br>// one character left
+<p>#include&lt;iostream>
+<br>#include&lt;string>
+<br>#include&lt;cstring>
+<p>using namespace std;
+<br>void display_half(string s);
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; string my_string;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter a string \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> my_string;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display_half(my_string);&nbsp; // Call
+to get a task done
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>void display_half(string s)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int length;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; string temp;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; length = strlen(s.c_str( ))/2;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp = s.substr(0, length);
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(length != 1)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+display_half(temp);&nbsp;&nbsp;&nbsp;&nbsp; // call to get a subtask done
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; temp &lt;&lt; endl;
+<br>}
+<p>As you may have noticed the call to terminate the recursion process
+was at:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(length != 1)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+display_half(temp);&nbsp;&nbsp;&nbsp;&nbsp; // call to get a subtask done
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<p>The display_half is called until length is equal to 1.&nbsp; Then from
+that point on, we start displaying the half strings.&nbsp; If you try a
+string with 7 characters, you will notice that a very interesting thing
+will happen. Here is how the output looks like for the given input:
+<p>input: *******
+<p>output:
+<br>*
+<br>***
+<p>As you can see, the first time you displayed one *, then for the second
+time, you displayed ***.&nbsp; You may have expected the second row to
+be **.&nbsp; Why didn't you have **?
+<p>If you pay attention to the recursion process, the first string had
+7 characters (*) in it.&nbsp; That string divided by 2, results in 3 characters
+(*).&nbsp; Then 3 divided by 2 will result in one *.&nbsp; While we go
+through this process a stack will remember what was going on in the previous
+stage. Thus, when we come back from the last call after displaying a single
+*, we execute the one with three characters.&nbsp; So instead of doubling
+the last number, as we go up, we still remember the actual number of asterisks.
+<p>There are two things you need to have in mind for having a successful
+recursive function:
+<br>&nbsp;&nbsp;&nbsp; 1) In completing a task, the function should include
+call(s) to itself to accomplish one or more smaller versions of the task.
+<br>&nbsp;&nbsp;&nbsp; 2) The function should include one or more cases
+without recursive calls, which are known as the <b>base cases </b>or <b>stopping
+cases</b>.
+<p>A recursive function without a base case will end up in an infinite
+recursion.
+<p><a NAME="ex13.1"></a><b><font color="#00CC00"><font size=+1>Exercise
+13.1</font></font></b>
+<br>Factorial of a number is defined as:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+n! = n(n-1)(n-2)(n-3)...(2)(1)
+<p>For example, 4! = 4*3*2*1
+<p>The n! can be written in terms of (n-1)! as:
+<p>n! = n* (n-1)!
+<p>(n-1)! = (n-1)*(n-2)!
+<p>and so forth.
+<p>Thus, in order to compute n!, we need (n-1)!, to have (n-1)!, we need
+(n-2)! and so forth.&nbsp; As you may immediately notice, the base case
+for factorial is 1 because 1! = 1.&nbsp; Write a program that uses a recursive
+function called <i>factorial</i> that takes an integer <i>n </i>as its
+argument and returns <i>n!</i> to the main.
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

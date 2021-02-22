@@ -1,0 +1,106 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset0 Menlo-Bold;}
+{\colortbl;\red255\green255\blue255;\red38\green117\blue7;\red255\green255\blue255;\red0\green0\blue0;
+\red0\green0\blue0;\red46\green111\blue253;}
+{\*\expandedcolortbl;;\csgenericrgb\c14771\c45953\c2591;\csgenericrgb\c100000\c100000\c100000;\csgenericrgb\c0\c0\c0\c85000;
+\cssrgb\c0\c0\c0;\cssrgb\c22750\c53231\c99501;}
+\margl1440\margr1440\vieww14720\viewh15660\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs42 \cf0 \
+Shape 2\
+\
+\pard\tx1087\pardeftab1087\pardirnatural\partightenfactor0
+
+\fs36 \cf2 \cb3 *   #    * [3s][1#][4s][1\\n]\cf4 \
+\cf2 *  # #   * [2s][1#][1s][1#][3s][1\\n]\cf4 \
+\cf2 * #   #  * [1s][1#][3s][1#][2s][1\\n]\cf4 \
+\cf2 *#     # * [1#][5s][1#][1s][1\\n]\cf4 \
+\cf2 * #   #  * [1s][1#][3s][1#][2s][1\\n]\cf4 \
+\cf2 *  # #   * [2s][1#][1s][1#][2s][1\\n]\cf4 \
+\cf2 *   #    * [3s][1#][4s][1\\n]
+\fs42 \cf0 \cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx1087\pardeftab1087\pardirnatural\partightenfactor0
+
+\fs36 \cf2 \cb3 3s 1# 4s 1\\n\
+[2s][1#][1s][1#][3s][1\\n]\
+[1s][1#][3s][1#][2s][1\\n]\
+[1#][5s][1#][1s][1\\n]\
+[1s][1#][3s][1#][2s][1\\n]\
+[2s][1#][1s][1#][2s][1\\n]\
+[3s][1#][4s][1\\n]
+\fs42 \cf0 \cb1 \
+\pard\tx1087\pardeftab1087\pardirnatural\partightenfactor0
+
+\f1\b\fs50 \cf5 \cb3 \
+	\
+	Pseudocode\
+\
+													
+\f0\b0 ?s \uc0\u8594  ?# \u8594  ?s \u8594  ?# \u8594  ?s\
+						\
+
+\f1\b 							\
+
+\f0\b0 	line 1	= -3		\cf6 sss#ssss\cf5 		2 changes	3s \uc0\u8594  1# \u8594  4s \u8594  0# \u8594  0s\
+	line 2	= -2		\cf6 ss#s#sss\cf5 		4 changes	2s \uc0\u8594  1# \u8594  1s \u8594  1# \u8594  3s\
+	line 3	= -1		\cf6 s#sss#ss\cf5 		4 changes	1s \uc0\u8594  1# \u8594  3s \u8594  1# \u8594  2s\
+	line 4	= 0			\cf6 #sssss#s\cf5 		3 changes	0s \uc0\u8594  1# \u8594  5s \u8594  1# \u8594  1s\
+	line 5	= 1			\cf6 s#sss#ss\cf5 		\
+	line 6	= 2			\cf6 ss#s#sss\cf5 		\
+	line 7	= 3			\cf6 sss#ssss\cf5 		\
+\
+\
+	for (int a = -3; a <= 3; ++a)\{\
+\
+	std::cout << \'91\\n\'92;\
+	\}\
+\
+	line 1 = line 7\
+		line 1 = -3\
+		line 7 = 3\
+	line 2 = line 6\
+		line 2 = -2\
+		line 6 = 2\
+	line 3 = line 5\
+		line 3 = -1\
+		line 5 = 1\
+	line 4 = nothing\
+		line 4 = 0\
+\
+\
+3 s loops\
+2 # loops\
+\
+\cf6 sss#ssss \
+ss#s#sss \
+s#sss#ss \
+#sssss#s\
+s#sss#ss\
+ss#s#sss \
+sss#ssss
+\fs42 \cf0 \cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 				\
+\pard\tx1087\pardeftab1087\pardirnatural\partightenfactor0
+
+\fs36 \cf2 \cb3 1st Row 		3' '		1#	0' '	  	0#	3' '\cf4 \
+\cf2 2nd Row 		2' '		2#	1' '		2#	2\'92 '\cf4 \
+\cf2 3rd Row 		1' '		2#	3' '		2#	1\'92 '\cf4 \
+\cf2 4th Row 		0' '		2#	5' '		2#	0\'92 '\cf4 \
+\cf2 5th Row 		1' '		2#	3' '		2#	1\'92 '\cf4 \
+\cf2 6th Row 		2' '		2#	1' '		2#	2\'92 '\cf4 \
+\cf2 7th Row 		3' '		1#	0' '		0#	3\'92 '
+\fs42 \cf0 \cb1 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx1087\pardeftab1087\pardirnatural\partightenfactor0
+
+\fs36 \cf2 \cb3 Loop 2 (initialization; condition; increment) 
+\fs42 \cf0 \cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+}

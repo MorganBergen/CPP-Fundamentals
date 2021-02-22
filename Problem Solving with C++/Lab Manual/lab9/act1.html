@@ -1,0 +1,237 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 9 - 1 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 9-1 - Separate
+Compilation</font></font></b>
+<br><a href="pre_lab.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act2.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>C++ has facilities for dividing a program into parts that can be kept
+in different files.&nbsp; These files can be compiled separately and then
+linked together when the program is about to run. One thing that is commonly
+done in programs with classes is that the class definition is placed in
+one file and the implementation in another.&nbsp; The ADT (Abstract Data
+Type) is a class that is designed to separate the interface and the implementation
+of the class.&nbsp; All class definitions should be ADTs.&nbsp; If you
+wish to define a class as an ADT, then you should separate the specification
+of how the class is used from the details of how the class is implemented.&nbsp;
+The separation must be such that you can change the implementation and
+any program that uses the class can still use it without a need to make
+any change.
+<p>In order to illustrate how the separate compilation of different pieces
+is done, let's look at program P84.cpp and see how we can break it in several
+pieces.&nbsp; Each piece is shown with a different color.
+<p>// This and the following 5 lines will go to the main program, main_prog.cpp
+<br>// Additional include statements should be added
+<br>// P91.cpp - This program is a driver written to demonstrate how we
+can use a
+<br>// class inside another one.
+<br>#include&lt;iostream>
+<br>using namespace std;
+<p><font color="#009900">// This part will go to ID.h file</font>
+<br><font color="#009900">class ID</font>
+<br><font color="#009900">{</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; public:</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ID(
+);</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ID(int,
+int, int);</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void
+display();</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; private:</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+left;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+middle;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+right;</font>
+<br><font color="#009900">};</font>
+<p><font color="#000099">// This part will go to Loan.h file</font>
+<br><font color="#000099">class Loan&nbsp; // Loan class definition</font>
+<br><font color="#000099">{</font>
+<br><font color="#000099">&nbsp;&nbsp; public:</font>
+<br><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp; Loan( );</font>
+<br><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp; Loan(ID id, float amount,
+float rate, int term);</font>
+<br><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp; void set( );</font>
+<br><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp; float payment( );</font>
+<br><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp; void display( );</font>
+<br><font color="#000099">&nbsp;&nbsp; private:</font>
+<br><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ID id;&nbsp; //
+assume an unique integer in three integer parts</font>
+<br><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float amount;
+// $ amount of the loan</font>
+<br><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float rate; //
+annual interest rate</font>
+<br><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int term;&nbsp;
+// number of months, length of the loan</font>
+<br><font color="#000099">&nbsp;};</font>
+<p>// This part will go to the main program, main_prog.cpp
+<br>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp; Loan loan1(ID(111,22,4444), 2300, 5.5, 48);&nbsp;
+// initialize to values given
+<p>&nbsp;Loan loan2;
+<p>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Display loan1 \n";
+<br>&nbsp;&nbsp;&nbsp; loan1.display();
+<p>&nbsp;&nbsp;&nbsp; loan2.set( ); // set the values
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Display loan2 \n";
+<br>&nbsp;&nbsp;&nbsp; loan2.display();
+<p>&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p><font color="#990000">// This part part will go to the ID.cpp file</font>
+<br><font color="#990000">ID::ID( )</font>
+<br><font color="#990000">{</font>
+<br><font color="#990000">&nbsp;&nbsp; // use default values</font>
+<br><font color="#990000">}</font>
+<p><font color="#990000">ID::ID(int l, int m, int r)</font>
+<br><font color="#990000">{</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp; left = l;</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp; middle = m;</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp; right = r;</font>
+<br><font color="#990000">}</font>
+<p><font color="#990000">void ID::display()</font>
+<br><font color="#990000">{</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; right
+&lt;&lt; "-" &lt;&lt; middle &lt;&lt; "-" &lt;&lt; right &lt;&lt; endl;</font>
+<br><font color="#990000">}</font>
+<br>&nbsp;
+<p><font color="#00CC00">// This part will go to the Loan.cpp file</font>
+<br><font color="#00CC00">Loan::Loan( )</font>
+<br><font color="#00CC00">{</font>
+<br><font color="#00CC00">}</font>
+<p><font color="#00CC00">Loan::Loan(ID I, float am, float rt, int trm)</font>
+<br><font color="#00CC00">{</font>
+<br><font color="#00CC00">&nbsp;&nbsp; id = I;</font>
+<br><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amount = am;</font>
+<br><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rate = rt;</font>
+<br><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; term = trm;</font>
+<br><font color="#00CC00">}</font>
+<p><font color="#00CC00">void Loan::set( )</font>
+<br><font color="#00CC00">{</font>
+<br><font color="#00CC00">&nbsp;&nbsp; int l, m, r;</font>
+<br><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ID temp_id;</font>
+<br><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Initialize
+the loan1 object</font>
+<br><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+"Enter the left part of the loan ID \n";</font>
+<br><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> l;</font>
+<br><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+"Enter the middle part of the loan ID \n";</font>
+<br><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> m;</font>
+<br><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+"Enter the right part of the loan ID \n";</font>
+<br><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> r;</font>
+<p><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; id = ID(l, m, r);</font>
+<p><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter
+the amount of this loan \n";</font>
+<br><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> amount;</font>
+<p><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter
+the annual interest rate of this loan (in %) \n";</font>
+<br><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> rate;</font>
+<p><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter
+the term (number of months, length of the loan) \n";</font>
+<br><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> term;</font>
+<br><font color="#00CC00">}</font>
+<p><font color="#00CC00">void Loan::display()</font>
+<br><font color="#00CC00">{</font>
+<br><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp; id.display();</font>
+<br><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; amount
+&lt;&lt; endl;</font>
+<br><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; rate &lt;&lt;
+endl;</font>
+<br><font color="#00CC00">&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; term &lt;&lt;
+endl;</font>
+<br><font color="#00CC00">}</font>
+<p><font color="#000000">As we mentioned before, the definition of a class
+will be placed in one file and the implementation of it in another file.&nbsp;
+In the above program, we have two classes, thus, we will have four files;&nbsp;
+two .h files that keep the class definition and two .cpp files that keep
+the implementation. All together we will have 5 files, 3 .cpp files and
+2 .h files.&nbsp; Here is the list of file names:</font>
+<br><font color="#000000">1) </font>main_prog.cpp<font color="#000000">&nbsp;&nbsp;&nbsp;
+This is the main program that has the core of implementation and computation
+in it</font>
+<br><font color="#000000">2) ID.cpp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+This file keeps the implementation of class ID</font>
+<br><font color="#000000">3) ID.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+This file keeps the definition of class ID</font>
+<br><font color="#000000">4) Loan.cpp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+This file keeps the implementation of class Loan</font>
+<br><font color="#000000">5) Loan.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+This file keeps the definition of class Loan</font>
+<p><font color="#000000">As you may expect, once you separate the files,
+you need to let the main function know where to get the information on
+each class.&nbsp; Also, when you use objects of a different class inside
+a class, you need to know the definition for the class that is being used.&nbsp;
+In order to do this we will use the <i>include </i>directive.&nbsp; For
+example, now that we have two different files for two classes, at the top
+of main function we need to have:</font>
+<p><font color="#000000">#include&nbsp; "ID.h"</font>
+<br><font color="#000000">#include&nbsp; "Loan.h"</font>
+<p><font color="#000000">Also, we need to include the ID.h in the Loan
+file, because Loan class uses the ID class.&nbsp; There is something you
+need to be aware of when you include a .h file at the top of a program,
+it is as if you have listed the contents of that file there.&nbsp; As you
+can imagine, if you include something twice, you will get an error.&nbsp;
+So if a .h file is already included in the Loan.h file, and then you include
+Loan.h and ID.h at the top of main, you seem to have the ID.h file listed
+twice.&nbsp; To fix this problem, we will somehow let the compiler know
+that the ID.h has been seen in Loan.h so it won't get listed again.&nbsp;
+So, for the .h file that may be listed more than once, we include a flag
+to avoid listing things twice.&nbsp; The flag has three parts, commented
+below with //1, //2, and //3.&nbsp; You do not need to include the comments
+in your version.</font>
+<p><font color="#000000">#ifndef ID_H&nbsp;&nbsp; //1</font>
+<br><font color="#000000">#define&nbsp; ID_H&nbsp; //2</font>
+<p><font color="#000000">#include&lt;iostream></font>
+<p><font color="#009900">class ID</font>
+<br><font color="#009900">{</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; public:</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ID(
+);</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ID(int,
+int, int);</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void
+display();</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; private:</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+left;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+middle;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+right;</font>
+<br><font color="#009900">};</font>
+<p><font color="#000000">#endif&nbsp; // 3</font>
+<p><font color="#000000">What we do is test to see whether the ID_H has
+been visited, or defined.&nbsp; If the .h file has not beenn defined (#ifndef
+ID_H), the definition following this statement is used to define the class
+(#define).&nbsp; If it has been defined, everything between the #ifndef
+ID_H and #endif is skipped.&nbsp; The format is the same for all other
+.h files, for example:</font>
+<p><font color="#000000">In the Loan.h file</font>
+<br><font color="#000000">#ifndef Loan_H&nbsp;&nbsp; //1</font>
+<br><font color="#000000">#define&nbsp; Loan_H&nbsp; //2</font>
+<br><font color="#000000">&nbsp;....</font>
+<br><font color="#000000">&nbsp;....</font>
+<br><font color="#000000">#endif&nbsp; // 3</font>
+<p><a NAME="ex91"></a><b><font color="#00CC00"><font size=+1>Exercise 9.1</font></font></b>
+<br><font color="#000000">Write the above program in five different files
+as described by the comments at the top of each section.&nbsp; Once you
+have created the 5 files, include the ID.h and Loan.h file in the main.&nbsp;
+Make the changes in the other .h files so they will be visited twice.&nbsp;
+Once you have made all these changes, compile and link all parts using
+the following command:</font>
+<p><font color="#000000">% g++&nbsp; main_prog.cpp&nbsp; Loan.cpp&nbsp;
+ID.cpp</font>
+<p><font color="#000000">This will create an a.out file that should produce
+the same results as the program that had all pieces together.</font>
+<br>&nbsp;
+</body>
+</html>

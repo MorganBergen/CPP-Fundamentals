@@ -1,0 +1,234 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 8 - 1 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 8-1 - Friend
+Function</font></font></b>
+<br><a href="pre_lab.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act2.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>So far, you have learned to define a class and to use member functions
+of the class to access the private variable members of that class.&nbsp;
+Previously, we mentioned that a private variable member of a class could
+be accessed by a member function, however, that is not the only way to
+access a private variable member.&nbsp;&nbsp; A function can be made a
+<b>friend</b>
+of a class, and thus, can be given the authority to access the private
+variable members of that class.&nbsp; In such a case, the friend function
+is not a class member and can be used throughout the program as an independent
+function.&nbsp; A friend function not only can access the private variable
+members, but it can also change them.&nbsp; One may find it tempting to
+define all functions used in a program friend of all classes in that program
+with an argument that in such a case there is no need for accessor or mutator
+functions.&nbsp; Although in theory this may be true, it is not practical.&nbsp;
+I am sure you can think of several good reasons for not defining all functions
+as friend of all classes.
+<p>In the following program, we will use a class Alt<i>Money</i> to add
+two dollar amounts.&nbsp; The class is defined with a member function <i>add</i>
+that adds the dollars and cents amounts for the two inputs.&nbsp; <i><u>Please
+note that the AltMoney class presented in this lab is a much simpler version
+of the one in Display 8.3 of the textbook.</u></i>
+<p>// P81.cpp - This program adds two different people's money
+<br>#include&lt;iostream>
+<br>#include&lt;cstdlib>
+<br>using namespace std;
+<p>class AltMoney
+<br>{
+<br>&nbsp;&nbsp;&nbsp; public:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AltMoney();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AltMoney(int d, int c);
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void add(AltMoney m1, AltMoney
+m2);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void display_money( );
+<br>&nbsp;&nbsp;&nbsp; private:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int dollars;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int cents;
+<br>};
+<p>void read_money(int&amp; d, int&amp; c);
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; int d, c;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; AltMoney m1, m2, sum;
+<p>&nbsp;&nbsp;&nbsp;&nbsp; sum = AltMoney(0,0);
+<p>&nbsp;&nbsp;&nbsp;&nbsp; read_money(d, c);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; m1 = AltMoney(d,c);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The first money is:";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; m1.display_money();
+<p>&nbsp;&nbsp;&nbsp;&nbsp; read_money(d, c);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; m2 = AltMoney(d,c);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The second money is:";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; m2.display_money();
+<p>&nbsp;&nbsp;&nbsp;&nbsp; sum.add(m1,m2);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The sum is:";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; sum.display_money();
+<p>&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>AltMoney::AltMoney()
+<br>{
+<br>}
+<p>AltMoney::AltMoney(int d, int c)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dollars = d;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cents = c;
+<br>}
+<p>void AltMoney::display_money()
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "$" &lt;&lt; dollars &lt;&lt;
+"." &lt;&lt; cents &lt;&lt; endl;
+<br>}
+<p>void AltMoney::add(AltMoney m1, AltMoney m2)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; int extra = 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cents = m1.cents + m2.cents;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; if(cents >=100){
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cents = cents - 100;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extra = 1;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp;&nbsp; dollars = m1.dollars + m2.dollars + extra;
+<br>}
+<p>void read_money(int&amp; d, int&amp; c)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter dollar \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cin >> d;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter cents \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cin >> c;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; if( d &lt; 0 || c &lt; 0)
+<br>&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Invalid dollars and cents, negative values\n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+exit(1);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>}
+<p>In this program, all functions are members of class AltMoney, except
+read_money.&nbsp; Suppose, we define the add function as:
+<p>void add(AltMoney m1, AltMoney m2)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; int extra = 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cents = m1.cents + m2.cents;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; if(cents >=100){
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cents = cents - 100;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extra = 1;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp;&nbsp; dollars = m1.dollars + m2.dollars + extra;
+<br>}
+<p>As you may have noticed, based on this definition, function <i>add</i>
+is not a member function any more.&nbsp; Now, <i>add</i> cannot access
+the dollars and cents of m1 and m2.&nbsp; In fact, if you try the program
+like this, without making any change, you will get several syntax errors.&nbsp;
+In order to give <i>add</i> (in its new definition) the authority to access
+the private variable members, we will make it a <b>friend </b>of class
+AltMoney.
+<p>Here is the new version of P81.cpp program with add as a friend function.
+<p>// P81a.cpp - This program adds money of two different people
+<br>#include&lt;iostream>
+<br>#include&lt;cstdlib>
+<br>using namespace std;
+<p>class AltMoney
+<br>{
+<br>&nbsp;&nbsp;&nbsp; public:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AltMoney();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AltMoney(int d, int c);
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><font color="#CC0000">friend</font></b>
+void <b><font color="#009900">add</font></b>(AltMoney m1, AltMoney m2,
+AltMoney&amp; sum);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void display_money( );
+<br>&nbsp;&nbsp;&nbsp; private:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int dollars;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int cents;
+<br>};
+<p>void read_money(int&amp; d, int&amp; c);
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; int d, c;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; AltMoney m1, m2, sum;
+<p>&nbsp;&nbsp;&nbsp;&nbsp; sum = AltMoney(0,0);
+<p>&nbsp;&nbsp;&nbsp;&nbsp; read_money(d, c);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; m1 = AltMoney(d,c);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The first money is:";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; m1.display_money();
+<p>&nbsp;&nbsp;&nbsp;&nbsp; read_money(d, c);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; m2 = AltMoney(d,c);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The second money is:";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; m2.display_money();
+<p>&nbsp;&nbsp;&nbsp;&nbsp; <b><font color="#009900">add</font></b>(m1,m2,
+sum);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The sum is:";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; sum.display_money();
+<p>&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>AltMoney::AltMoney()
+<br>{
+<br>}
+<p>AltMoney::AltMoney(int d, int c)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dollars = d;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cents = c;
+<br>}
+<p>void AltMoney::display_money()
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "$" &lt;&lt; dollars &lt;&lt;
+".";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; if(cents &lt;= 9)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "0";&nbsp;
+//to display a 0 in the left for numbers less than 10
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; cents &lt;&lt; endl;
+<br>}
+<p>void <b><font color="#009900">add</font></b>(AltMoney m1, AltMoney m2,
+AltMoney&amp; sum)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; int extra = 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; sum.cents = m1.cents + m2.cents;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; if(sum.cents >=100){
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sum.cents = sum.cents
+- 100;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extra = 1;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sum.dollars = m1.dollars + m2.dollars
++ extra;
+<br>}
+<p>void read_money(int&amp; d, int&amp; c)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter dollar \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cin >> d;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter cents \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cin >> c;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; if( d &lt; 0 || c &lt; 0)
+<br>&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Invalid dollars and cents, negative values\n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+exit(1);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>}
+<p>In this program the function <b><font color="#009900">add</font></b>
+is no longer a member function, but it is a <b>friend</b> to the class
+AltMoney and has access to private variable members.&nbsp; In general,
+we may want to include the function that does the reading of variables
+as a function member or make it a friend so that it reads the dollars and
+cents and directly assigns them to the dollars and cents of an object.
+<p><a NAME="ex81"></a><b><font color="#00CC00"><font size=+1>Exercise 8.1</font></font></b>
+<br>Modify the above program to include the following changes.&nbsp; Call
+your new program ex1.cpp.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1) make function add of type AltMoney.&nbsp; Thus, this function now computes
+the sum of dollars and cents and returns it as AltMoney.&nbsp; Note that
+in the above version of the program, you have passed the object sum as
+call_by_reference.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2) add a new friend function, <b>subtract</b>, that computes the subtraction
+of one money from the other.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+3) Make <i>read_money</i> a member function.&nbsp; Note that if you make
+<i>read_money</i>
+a member function, then you can use it to directly initialize the dollars
+and cents of an AltMoney type object directly.
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

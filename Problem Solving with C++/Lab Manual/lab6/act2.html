@@ -1,0 +1,297 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 6 - 2 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 6-2 - Classes
+- A New Type Definition</font></font></b>
+<br><b><font color="#000099"><font size=+3>A Package of Values and Functions
+of Different Types</font></font></b>
+<br><a href="act1.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act3.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>A <b>class</b> is a data type whose variables are objects.&nbsp; In
+the previous activity, you learned about the struct.&nbsp; A struct can
+hold variables of different types, but cannot hold any function.&nbsp;
+However, in a similar way that you created different structures of a particular
+type, you can use a class definition to create many instances of a class.&nbsp;
+A class is usually defined in a similar fashion as a struct.&nbsp; However,
+in general, a class has two parts; the <i>public</i> and the <i>private</i>
+parts.
+<p>Suppose we want to write the <i>Loan</i> struct using a class:
+<br>&nbsp;
+<br>&nbsp;
+<table BORDER COLS=2 WIDTH="100%" >
+<tr>
+<td>
+<center><b>Class Loan</b></center>
+</td>
+
+<td>
+<center><b>Struct Loan</b></center>
+</td>
+</tr>
+
+<tr>
+<td><i>class Loan&nbsp;</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int ID;&nbsp; // assume an unique integer between 1111-9999</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+float amount; // $ amount of the loan</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+float rate; // annual interest rate</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int term;&nbsp; // number of months, length of the loan</i>
+<br><i>};</i></td>
+
+<td><i>struct Loan&nbsp; // Loan is called <b>structure tag</b></i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ID;&nbsp; // assume an
+unique integer between 1111-9999</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float amount; // $ amount of
+the loan</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float rate; // annual interest rate</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int term;&nbsp; // number of months,
+length of the loan</i>
+<br><i>};</i></td>
+</tr>
+</table>
+
+<p>Actually, at this stage, these two are almost identical.&nbsp; They
+may go through two different sets of steps in the machine, but will come
+out with the same end result.
+<p>// <b><font color="#CC0000">P62.cpp</font></b> - This program uses a
+class for a loan, initializes it from the keyboard, then
+<br>// displays the class
+<p>#include&lt;iostream>
+<br>#include&lt;cmath>
+<br>using namespace std;
+<p><i>class Loan&nbsp; // loan class definition</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; public:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ID;&nbsp; // assume an
+unique integer between 1111-9999</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float amount; // $ amount of
+the loan</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float rate; // annual interest rate</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int term;&nbsp; // number of months,
+length of the loan</i>
+<br><i>};</i>
+<p><i>float payment(Loan l);</i>
+<p><i>int main( )</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Loan loan1;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float monthly_payment;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Initialize the loan1 object</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the ID of this
+loan \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> loan1.ID;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the amount of
+this loan \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> loan1.amount;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the annual interest
+rate of this loan (in %) \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> loan1.rate;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the term (number
+of months, length of the loan) \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> loan1.term;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; monthly_payment&nbsp; = payment(loan1);</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The monthly payment
+for loan " &lt;&lt; loan1.ID &lt;&lt; " is: " &lt;&lt; monthly_payment
+&lt;&lt; endl;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;</i>
+<br><i>}</i>
+<p><i>float payment(Loan l)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; l.rate = l.rate/1200;&nbsp; // To
+convert % yearly rate to monthly fraction</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return l.amount*l.rate*(&nbsp; pow(
+(l.rate+1), l.term)/ (pow( (l.rate+1), l.term) - 1) );</i>
+<br><i>}</i>
+<p>The reason that the class and struct definitions are the same is because
+we haven't used a function yet.&nbsp; As soon as we decide to include a
+function in our data type, a struct is no longer a possibility, it can't
+do it.&nbsp; You may also have noticed that the <b>data members </b>of
+the class (<i>ID, amount, rate, and term</i>) are all listed under the
+<b>public</b>
+section and there is no <b>private </b>section in the class definition.&nbsp;
+In general, we want the data members to go under the private section of
+the class and that is where the trouble begins.&nbsp; Why? Once you put
+the variable members under private, you no longer can access them in the
+main or any other functions that are not included in the class definition.&nbsp;
+They are private members of the class and can only be access by the functions
+defined in the private or public section of the class.&nbsp; Suppose we
+decide to rewrite the <i>Loan </i>class again to meet this requirement:
+<p><i>class Loan&nbsp; // Loan is called <b>structure tag</b></i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; public:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b><font color="#CC0000"><font size=+1>??</font></font></b></i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b><font color="#CC0000"><font size=+1>??</font></font></b></i>
+<br><i>&nbsp;&nbsp; private:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ID;&nbsp; // assume an
+unique integer between 1111-9999</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float amount; // $ amount of
+the loan</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float rate; // annual interest rate</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int term;&nbsp; // number of months,
+length of the loan</i>
+<br><i>};</i>
+<p>If we make this change in P61.cpp, the program no longer works.&nbsp;
+In order for the <i>payment</i> function to be able to <u>access</u> the
+private data members, it must be included in the definition of the class,
+i.e., it has to become a <b>member function</b>.&nbsp; This member function
+only accesses the data members and will not modify them. These types of
+functions are called <b>accessor functions.&nbsp; </b>On the other hand
+we may have a function that modifies the data member or assigns values
+to them.&nbsp; These are called <b>mutator functions</b>.&nbsp; Also, we
+no longer can access the data members in the main to display them, thus,
+we need another member function to do the display.&nbsp; So, for now, we
+need three functions.
+<p>void set( )
+<br>// This function will initialize the data members of an object
+<p>float payment( )
+<br>// This function will compute the monthly payment for a loan object
+<p>void display()
+<br>// This function will display a loan object
+<p>These functions should be included in the public part of the class definition
+(where we have left two question marks).
+<p><i>class Loan&nbsp; // Loan is called <b>structure tag</b></i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; public:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void set( );</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float payment(
+);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void display( );</i>
+<br><i>&nbsp;&nbsp; private:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ID;&nbsp; // assume an
+unique integer between 1111-9999</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float amount; // $ amount of
+the loan</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float rate; // annual interest rate</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int term;&nbsp; // number of months,
+length of the loan</i>
+<br><i>&nbsp;};</i>
+<p>The next thing we need to do is to write these functions.&nbsp; We will
+use the <b>scope resolution operator (::) </b>to distinguish between a
+member function and a regular function.&nbsp; For example function <i>set</i>
+is now a member of class <i>Loan</i>.&nbsp; Thus, we use :: to identify
+it.
+<p><i>void Loan::set( )</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Initialize the loan1 object</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the ID of this
+loan \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> ID;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the amount of
+this loan \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> amount;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the annual interest
+rate of this loan (in %) \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> rate;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the term (number
+of months, length of the loan) \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> term;</i>
+<br><i>}</i>
+<p>Note that we don't need to specify whose data members we are initializing
+because the function will be called with a <b>dot operator, as any_object.set(
+), </b>which tells the compiler that it is the data members of the any_object
+that you are initializing.&nbsp; For example, to call the set function
+in the main, we first define an object of type <i>Loan</i>, let's say:
+<br><i>Loan loan1</i>;
+<p>Then, you will call the set as:
+<br>laon1.set( );
+<p>in the main function to initialize its data members.&nbsp; To initialize
+the data members of loan2, you need to go through a similar process.
+<p>Here is a driver that can be used to test the set function.
+<p>// <b><font color="#CC0000">P62a.cpp </font></b>- This program is a
+driver written to demonstrate how the set function works.
+<br>#include&lt;iostream>
+<br>using namespace std;
+<p><i>class Loan&nbsp; // Loan is called <b>structure tag</b></i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; public:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void set( );</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float payment(
+);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void display( );</i>
+<br><i>&nbsp;&nbsp; private:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ID;&nbsp; // assume an
+unique integer between 1111-9999</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float amount; // $ amount of
+the loan</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float rate; // annual interest rate</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int term;&nbsp; // number of months,
+length of the loan</i>
+<br><i>&nbsp;};</i>
+<p><i>int main( )</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; Loan loan1;</i>
+<p><i>&nbsp;&nbsp;&nbsp; loan1.set( );</i>
+<p><i>&nbsp;&nbsp;&nbsp; return 0;</i>
+<br><i>}</i>
+<p><i>void Loan::set( )</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Initialize the loan1 object</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the ID of this
+loan \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> ID;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the amount of
+this loan \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> amount;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the annual interest
+rate of this loan (in %) \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> rate;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the term (number
+of months, length of the loan) \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> term;</i>
+<br><i>}</i>
+<br>&nbsp;
+<p><a NAME="ex62"></a><b><font color="#00CC00"><font size=+1>Exercise 6.2</font></font></b>
+<br>Complete program P62.cpp by defining the member functions <i>display
+</i>and
+<i>payment</i>
+for class
+<i>loan</i>.&nbsp; Note that the <i>display</i> function will
+display all the information about a loan, i.e.,
+<br>ID:
+<br>Amount:
+<br>Rate:
+<br>Term:
+<p>You will display the monthly payment in the main by assigning the returned
+value from the <i>payment </i>function to a variable of type float. Suppose,
+in the main we have declared:
+<p>&nbsp;.....
+<br>float p;
+<br>Loan loan1;
+<br>loan1.set( );
+<br>&nbsp; .....
+<br>loan1.display( ) // will display the data members of loan1
+<p>p = loan1.payment( ) // will return the monthly payment of loan1
+<p>&nbsp; .....
+<p><a NAME="ex63"></a><b><font color="#00CC00"><font size=+1>Exercise 6.3</font></font></b>
+<br>Modify the class <i>loan </i>and include the <i>monthly_payment </i>as
+a data member in that class.&nbsp; Also, add a new function called <i>add_loans,
+</i>defined
+as:
+<br><i>float add_loans(Loan loan1, Loan loan2);&nbsp; </i>Note that you
+still have the <i>payment</i> function that computes the payment.&nbsp;
+Since you include the <i>monthly_payment </i>as a member, instead of returning
+a value from the function, you directly set the value for <i>monthly_payment</i>
+in that function.&nbsp; The new function, <i>add_loans,</i> takes two loan
+objects and computes the total monthly payment, i.e., the sum of monthly
+payments of the two loans.&nbsp; Call your new program ex63.cpp.
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

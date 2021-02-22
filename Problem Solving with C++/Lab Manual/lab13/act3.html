@@ -1,0 +1,79 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 13 - 3 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 13-3 -
+Recursion Versus Iteration</font></font></b>
+<br><a href="act2.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act4.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In the previous activity, you tried a program in which a recursive
+function was used.&nbsp; Recursion is not absolutely necessary.&nbsp; In
+fact, some programming languages do not allow it.&nbsp; Any task that can
+be done using recursion can also be done using <b>iteration</b>.&nbsp;
+Using iteration, we go through a segment of the main program that is very
+similar to the recursive function.&nbsp; Instead of recursion, we will
+use a loop to go through the code segment as many times as it is required
+to get to the end.
+<p>We will modify the P13_1.cpp program and we use an iterative process
+instead of recursion.
+<p>// P13_2.cpp - This program demonstrates the iterative process
+<br>// It takes a string and displays half of it on a line until there
+is only
+<br>// one character left
+<p>#include&lt;iostream>
+<br>#include&lt;string>
+<br>#include&lt;cstring>
+<br>#include&lt;cmath>
+<p>using namespace std;
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; string my_string;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int length, count = 1, j;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; string temp;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter a string \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> my_string;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; length = strlen(my_string.c_str(
+))/2;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp = my_string.substr(0, length);
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while( length != 1)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+length /= 2;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+count++;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while( count > 0)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; j = strlen(my_string.c_str(
+))/pow(2,count);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp =
+my_string.substr(0, j);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+temp &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count--;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>This program produces the same results as the one given in the previous
+activity but uses an iterative process instead of recursive process.&nbsp;
+As you may have noticed, in this program we also have a stopping case.&nbsp;
+To reach the base case, we used a counter to stop the iteration when the
+necessary number of iterations are made.
+<br>&nbsp;
+<p><a NAME="ex13.3"></a><b><font color="#00CC00"><font size=+1>Exercise
+13.3</font></font></b>
+<br>Write the program that computes the factorial of a number using an
+iterative process.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+n! = n(n-1)(n-2)(n-3)...(2)(1)
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

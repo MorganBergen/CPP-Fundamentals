@@ -1,0 +1,82 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 2 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 3-2 - Type Changing
+Functions (Type Casting)</font></font></b>
+<br><a href="act1.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act3.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In problem 3 of the prelab, you were asked to determine a possible
+source of error in the given program.&nbsp; Perhaps, you have found that
+dividing two integers will not always result in the correct answer.&nbsp;
+For example, that program produced 0 when you divide 2 by 4 as two integers.&nbsp;
+There is a way to fix this problem temporarily, <i>type casting </i>that
+utilizes predefined functions.&nbsp; <i>Type casting </i>allows us to change
+the type of a variable at the line where it is used. For example, in the
+program given in problem 3, one can change the variable type of the numerator
+(type cast) to <i>float</i>, so that the division will become a float divided
+by an integer.
+<p><font color="#000000">#include&lt;iostream></font>
+<br>using namespace std;<font color="#000000"></font>
+<p><font color="#000000">int main(void)</font>
+<br><font color="#000000">{</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int x,y;</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+"Enter 2 values for x and y separated by space, then press &lt;Enter> :";</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> x >> y;</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+endl;</font>
+<p><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "With
+type casting on x " &lt;&lt; x &lt;&lt; "/" &lt;&lt; y &lt;&lt; " = " &lt;&lt;
+</font><font color="#CC0000">static_cast&lt;float>(</font><font color="#000000">x</font><font color="#CC0000">)</font><font color="#000000">/y
+&lt;&lt; endl;</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Just to show you that the type for
+<i>x</i>
+is reset back to int again
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+"Right after type casting " &lt;&lt; x &lt;&lt; "/" &lt;&lt; y &lt;&lt;
+" = " &lt;&lt; x/y &lt;&lt; endl;</font>
+<p><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;</font>
+<br><font color="#000000">}</font>
+<p>The change is shown in red font for clarity.&nbsp; Note that variable
+x will stay an integer regardless of the <font color="#CC0000">static_cast&lt;float>(</font><font color="#006600">x</font><font color="#CC0000">)</font><font color="#006600">/y
+</font><font color="#000000">statement.&nbsp;
+Type casting will not change the type for <i>x</i>, instead </font><font color="#CC0000">static_cast&lt;float></font><font color="#000000"><i>(x)</i>
+is a function call to the predefined function </font><font color="#CC0000">static_cast&lt;float></font><font color="#000000">
+with one argument,
+<i>x,
+</i>with the value returned that is of type <i>float</i>.&nbsp;
+Thus, the division will be the <i>float</i> type value of <i>x </i>by the
+<i>integer
+</i>type value
+<i>y</i>, which results in a <i>float</i> value.</font>
+<p><a NAME="ex35"></a><b><font color="#00CC00"><font size=+1>Exercise 3.5</font></font></b>
+<br>The following program is supposed to convert a temperature in degree
+Fahrenheit to degree Celsius, but it will not produce the correct result.&nbsp;
+Use type casting to fix the problem and run the program for the test values.&nbsp;
+Call your new program ex35.C.
+<p>#include&lt;iostream>
+<br>using namespace std;
+<br>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int t_in_fah, t_in_cel;&nbsp; //Notice
+that we declared these two as integers, not the best choice
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter a temperature in
+Fahrenheit \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> t_in_fah;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t_in_cel = 5/9*(t_in_fah - 32);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The temperature in Celsius
+is: " &lt;&lt; t_in_cel &lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p><b><font color="#009900">Test cases:</font></b>
+<p>32 F is 0 C
+<br>212 F is 100 C
+</body>
+</html>

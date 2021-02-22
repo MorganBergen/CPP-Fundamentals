@@ -1,0 +1,163 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 5 - 3 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 5-3 - Reading
+to The End of File</font></font></b>
+<br><b><font color="#000099"><font size=+3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Member Functions <i>get</i> and <i>put</i></font></font></b>
+<br><b><font color="#000099"><font size=+3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Member Function <i>eof</i></font></font></b>
+<br><a href="act2.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act4.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In Program P52.cpp, you read all the integers from a file and did the
+required computations.&nbsp; In that program, you used:
+<p><i><font color="#3333FF">&nbsp;&nbsp;&nbsp; while( in_s >> x) // Step
+(4)-Read all numbers one-by-one to the end of the file</font></i>
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....
+<p>&nbsp;&nbsp;&nbsp; }
+<p>to do the reading.&nbsp; Let's see if we can use a similar technique
+to read a text file and display its contents.&nbsp; In order to do this,
+let's first create the following input file.
+<p><a NAME="ex54"></a><b><font color="#00CC00"><font size=+1>Exercise 5.4</font></font></b>
+<br>Create a file called act54.txt and type the following text exactly
+as it appears below into that file. You may cut and paste the following
+10 lines into that file.
+<p><font color="#000099">We have learned that "\n" means go to a new line</font>
+<br><font color="#000099">when it is used with the <i>cout</i> statement.</font>
+<br><font color="#000099">In C++, '\n' and "\n" look very similar.</font>
+<br><font color="#000099">In fact, in a <i>cout </i>statement, they both
+act the same.</font>
+<p><font color="#000099">However, they do not mean the same in all situations.</font>
+<br><font color="#000099">'\n' is a value of type <i>char</i> and can be
+stored in a variable</font>
+<br><font color="#000099">of type char, for example:&nbsp; <i>int c = '\n';</i></font>
+<br><font color="#000099">On the other hand, "\n" is a string,</font>
+<br><font color="#000099">that happens to be made up of one character.</font>
+<p>The following program uses a similar technique as in program P52.cpp
+to read the entire contents of the act54.txt file and to display its entire
+contents exactly as they appear above.
+<p>// P54.cpp - This program reads the entire contents of an input file
+and will
+<br>// display it with the same format.
+<br>#include&lt;iostream>
+<br>#include&lt;fstream>&nbsp; // Step (1)
+<br>#include&lt;cstdlib>
+<br>using namespace std;
+<p>void get_input_stream(ifstream&amp; in_s);
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp; char c;
+<br>&nbsp;&nbsp;&nbsp; ifstream in_s;&nbsp; // Step (2)-B - declaration
+of the stream of type input
+<p>&nbsp;&nbsp;&nbsp; get_input_stream(in_s);
+<p>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Here are the entire contents of the
+input file \n";
+<p>&nbsp;&nbsp;&nbsp; while( in_s >> c) // Step (4)-Read all numbers one-by-one
+to the end of the file.
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;&nbsp;
+c;
+<br>&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp; cout &lt;&lt; "\n I am done with writing the contents of
+the file \n";
+<p>&nbsp;&nbsp;&nbsp; in_s.close( );&nbsp; // Step (5)-Close the connection
+(close the file)
+<p>&nbsp;&nbsp; return 0;
+<br>}
+<p>void get_input_stream(ifstream&amp; in_s)
+<br>{
+<br>&nbsp;char input_file[15]; // Step (2)-A
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Please input the input file name
+\n"; // Step (3)-A Get the file name
+<br>&nbsp;&nbsp;&nbsp; cin >> input_file;
+<p>&nbsp;&nbsp;&nbsp; in_s.open(input_file); // Step (3)-B - Connect to
+the input file and test
+<br>&nbsp;&nbsp;&nbsp; if(in_s.fail( ))
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Input file opening
+failed. \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit(1);&nbsp; // if we couldn't
+open the file to read from we exit
+<br>&nbsp;&nbsp;&nbsp; }
+<br>}
+<p><a NAME="ex55"></a><b><font color="#00CC00"><font size=+1>Exercise 5.5</font></font></b>
+<br>Cut and paste or carefully copy the P54.cpp program into a file called
+ex55.cpp.&nbsp; Compile the program to make sure it compile without any
+error.&nbsp; Then run the program and use the act54.txt file as the input
+file.
+<p>Does this program produce the same exact output as shown above?
+<p>What do you think the problem is?
+<p><b><font color="#000099"><font size=+1>The <i>get</i> and <i>put </i>Member
+Functions</font></font></b>
+<p>We will help you find the answer very soon.&nbsp; The problem is that
+<i>cin
+</i>does
+not read the white spaces, i.e., it skips blank spaces, tabs (\t), and
+new lines (\n).&nbsp; Thus, the entire text will appear in one piece without
+the separating spaces and new lines.&nbsp; In order to read and write the
+entire text with correct spacing, we will use a member function with the
+input stream.&nbsp; The <i><font color="#CC0000">get(c) </font></i><font color="#000000">function,
+where </font><font color="#CC0000">c </font><font color="#000000">is a
+character, allows us to read all characters from the file one character
+at a time.&nbsp; So to fix the above program we could simply us this function
+instead of the <i>cin</i>.&nbsp; We used:</font>
+<p>&nbsp;&nbsp; while( in_s >> c) // Step (4)-Read all numbers one-by-one
+to the end of the file
+<br>&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....
+<br>&nbsp;&nbsp; }
+<p>to read the contents of the file.&nbsp; Now we can replace the <i>in_s
+>> c </i>with <i>in_s.get(c)</i>.
+<p><a NAME="ex56"></a><b><font color="#00CC00"><font size=+1>Exercise 5.6</font></font></b>
+<br>Modify the ex55.cpp program by replacing <i>in_s >> c </i>with <i>in_s.get(c)
+</i>in
+the while loop.&nbsp; Compile, then run the program for the act53.txt input.&nbsp;
+Call your new program ex56.cpp.
+<p>Does your program produce the correct output this time?
+<p>The member function <i><font color="#CC0000">put(c)</font></i> will
+do the opposite of what the&nbsp; member function <i><font color="#CC0000">get(c)
+</font></i>does.&nbsp;
+It writes to the output stream one character at a time.&nbsp;&nbsp; To
+practice with this function, in program ex56.cpp, you can replace the:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;&nbsp;
+c;
+<p>with
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout.<i><font color="#CC0000">put(c)</font></i>;
+<p>That does the same thing.
+<p><b><font color="#000099"><font size=+1>The <i>eof</i> Member Function</font></font></b>
+<br>There is yet another way to read a file (any file) to the end.&nbsp;
+The member function <i><font color="#CC0000">eof( )</font></i> can be used
+with a stream of input type to determine the End-Of-File.&nbsp; This function
+returns true when the end of the input file is reached.&nbsp; Thus, it
+can be used in a while loop to control the looping process.&nbsp; In general,
+you need to read one character before you check to see if the end of the
+file is reached.&nbsp; Here is a way to use the <i><font color="#CC0000">eof(
+)</font></i>.&nbsp; Please note that we haven't shown the complete program.
+<p>// Other lines of program
+<br>ifstream in_s;
+<br>char next_char;
+<br>// Other lines of programs
+<p>in_s.get(next_char);
+<p>while( ! in_s.<i><font color="#CC0000">eof( ) </font><font color="#000000">)</font></i>
+<br><i><font color="#000000">{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; next_char;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// you could use cout.put(next_char) too</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; </font></i>in_s.get(next_char);
+<br>}
+<p><a NAME="ex57"></a><b><font color="#00CC00"><font size=+1>Exercise 5.7</font></font></b>
+<br>Modify the program ex55.cpp by using the <i><font color="#CC0000">eof(
+) </font></i><font color="#000000">to read to the end of file act53.txt
+and to display its entire contents.&nbsp; Make sure to check that the displayed
+contents are exactly the same and in the same format.</font>
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

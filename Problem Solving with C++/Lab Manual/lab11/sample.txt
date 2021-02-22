@@ -1,0 +1,6 @@
+The C and C++ compilers are integrated; G++ is a script to call Gcc with options to recognize C++.
+Gcc processes input files through one or more stages.
+
+In general G++ program.cpp or G++ program.C will cause the Gcc to create an executable file as a.out.
+This file can be run to produce the output from the program.  The G++ command on some machines is 
+replaced with CC.  In either case, the G++ or CC command will call the Gcc compiler.

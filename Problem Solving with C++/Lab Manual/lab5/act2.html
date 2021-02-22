@@ -1,0 +1,79 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 5 - 2 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 5-2 - Streams
+as Arguments to Functions</font></font></b>
+<br><a href="act1.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act3.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>A stream can be the argument to a function.&nbsp; The only restriction
+is that any input or output must be passed to a function must be passed
+as <i>call-by-reference</i>.&nbsp; Here is a modified version of P51.cpp
+in which we have used a function that reads a file name and then returns
+a stream, in_s, that is connected to that file to the main function.
+<p>// P52.cpp - This program reads some integers from a file and displays:
+<br>// The number, number^2, and the sum of all numbers read up to that
+point
+<br>#include&lt;iostream>
+<br>#include&lt;fstream>&nbsp;<b><font color="#CC0000"> // Step (1)</font></b>
+<br>#include&lt;cstdlib>
+<br>#include&lt;cmath>
+<br>using namespace std;
+<p>void get_stream(ifstream<font color="#000099"><b>&amp;</b> </font><font color="#000000">in_s);</font>
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp; int x, count = 0;
+<br>&nbsp;&nbsp;&nbsp; float sum = 0, avg;
+<p>&nbsp;&nbsp;&nbsp; ifstream in_s;&nbsp; <b><font color="#CC0000">//
+Step (2)-B - declaration of the stream of type input</font></b>
+<p>&nbsp;&nbsp;&nbsp; get_stream(<font color="#000000">in_s);</font>
+<p>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "\t&nbsp; x \t\t x^2 \t\t Current Sum
+\n";
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "\t === \t\t === \t\t ========== \n";
+<p>&nbsp;&nbsp;&nbsp; while( in_s >> x) <b><font color="#CC0000">// Step
+(4)-Read all numbers one-by-one to the end of the file</font></b>
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sum = sum + x;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "\t&nbsp;
+" &lt;&lt; x &lt;&lt;"\t\t&nbsp; " &lt;&lt; pow(x,2) &lt;&lt; "\t\t&nbsp;
+" &lt;&lt; sum &lt;&lt; "\n";
+<br>&nbsp;&nbsp; count++;
+<br>&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;avg = sum/count;
+<br>&nbsp;cout &lt;&lt; "\n \t\t The average of these " &lt;&lt; count
+&lt;&lt; " numbers is: " &lt;&lt; avg &lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp; in_s.close( );&nbsp; <b><font color="#CC0000">//
+Step (5)-Close the connection (close the file)</font></b>
+<p>&nbsp;&nbsp; return 0;
+<br>}
+<p>&nbsp;void get_stream(ifstream<b><font color="#3333FF">&amp;</font></b><font color="#000000">in_s)</font>
+<br><font color="#000000">{</font>
+<br>&nbsp;&nbsp;&nbsp; char input_file[15]; <b><font color="#CC0000">//
+Step (2)-A</font></b>
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Please input the input file name
+\n"; <b><font color="#CC0000">// Step (3)-A Get the file name</font></b>
+<br>&nbsp;&nbsp;&nbsp; cin >> input_file;
+<p>&nbsp;&nbsp;&nbsp; in_s.open(input_file); <b><font color="#CC0000">//
+Step (3)-B - connect to the input file and test</font></b>
+<br>&nbsp;&nbsp;&nbsp; if(in_s.fail( ))
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Input file opening
+failed. \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit(1);&nbsp; // if we couldn't
+open the file to read from we exit
+<br>&nbsp;&nbsp;&nbsp; }
+<br>}
+<p><a NAME="ex53"></a><b><font color="#00CC00"><font size=+1>Exercise 5.3</font></font></b>
+<br>Modify the above program such that the program writes the output file
+output.txt.&nbsp; You need to modify the function <i>get_stream </i>such
+that it returns two streams to the main, one for the input and the other
+for the output.&nbsp; Call your new program ex53.cpp.
+<br>&nbsp;
+</body>
+</html>

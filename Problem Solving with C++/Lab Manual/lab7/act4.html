@@ -1,0 +1,56 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 7 - 4 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 7-4 -&nbsp;<i>
+Blocks and The Scope of a Variable in a Block</i></font></font></b>
+<br><a href="act3.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="post_lab.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>Each branch of a <i>switch </i>statement or of an <i>if </i>statement
+does a separate task and is considered a <b>block</b>.&nbsp; Sometimes
+in a program you have a compound statement with multiple declarations of
+variables throughout the program.&nbsp; All variables declared inside a
+block are local to that block.&nbsp; Here is an example:
+<p>// P74.cpp - This program illustrates the scope of variables in a block
+<p>#include&lt;iostream>
+<br>using namespace std;
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; int x = 10;
+<p>&nbsp;&nbsp;&nbsp;&nbsp; for(int i = 0; i &lt; x; i++)
+<br>&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int x = 5;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "i = " &lt;&lt; i &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "x = " &lt;&lt; x &lt;&lt;
+endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p><a NAME="ex75"></a><b><font color="#00CC00"><font size=+1>Exercise 7.5</font></font></b>
+<br>Without compiling the above program, determine its output.
+<p>Copy and paste or carefully copy the program in a file called P74.cpp.&nbsp;
+Compile and run the program and see if you have gotten the correct answer.
+<p>Now, suppose in the program we replace the <i>for </i>loop with the
+following segment:
+<p>&nbsp;&nbsp;&nbsp;&nbsp; for(int i = 0; i &lt; x; i++)
+<br>&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+x = 5;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "i = " &lt;&lt; i &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<p>What is the output of the program with this segment?&nbsp; Modify the
+program and see if you have gotten the correct answer.
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

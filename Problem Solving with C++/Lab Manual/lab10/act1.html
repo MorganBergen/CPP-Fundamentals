@@ -1,0 +1,410 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 10 - 1 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 10-1 -
+Introduction to Arrays</font></font></b>
+<br><a href="pre_lab.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act2.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>So far all of our variables have been able to hold only one value at
+any one point in time. Such variables are called <i>scalar</i> variables.
+Now it is time for our first non-scalar variable, an <i>array</i>.
+<p>An array is a variable capable of storing multiple values. When we declare
+an array we tell the compiler how many values we want the array to hold.
+We also tell the compiler what type of values the array can store. All
+of the values in an array must be of the same type.
+<p>Here is a declaration of an array called <i>numlist</i> that will be
+used to store 8 integers:
+<pre>int numlist[8];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // declaring an integer array that can store 8 values</pre>
+Each of the integers in the array is stored in the same number of bytes
+as a scalar integer, which on most machines is 4 bytes. Thus, the entire
+array will occupy 32 bytes of memory. The compiler always stores an array
+in contiguous memory locations (all of the elements of the array are stored
+in one chunk of memory with no gaps).&nbsp; Here is one way you may visualize
+the above array numlist when it stores the following 8 integers: 12,&nbsp;
+8, 10, 123, 1000, 23, 4, 10
+<br>&nbsp;
+<table BORDER COLS=9 WIDTH="100%" >
+<tr>
+<td>
+<center><b><font color="#CC0000">Imaginary</font></b>
+<br><b><font color="#CC0000">Memory</font></b>
+<br><b><font color="#CC0000">Address</font></b></center>
+</td>
+
+<td>
+<center>1023</center>
+</td>
+
+<td>
+<center>1024</center>
+</td>
+
+<td>
+<center>1025</center>
+</td>
+
+<td>
+<center>1026</center>
+</td>
+
+<td>
+<center>1027</center>
+</td>
+
+<td>
+<center>1028</center>
+</td>
+
+<td>
+<center>1029</center>
+</td>
+
+<td>
+<center>1030</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><b><font color="#CC0000">Array Index</font></b></center>
+</td>
+
+<td>
+<center>0</center>
+</td>
+
+<td>
+<center>1</center>
+</td>
+
+<td>
+<center>2</center>
+</td>
+
+<td>
+<center>3</center>
+</td>
+
+<td>
+<center>4</center>
+</td>
+
+<td>
+<center>5</center>
+</td>
+
+<td>
+<center>6</center>
+</td>
+
+<td>
+<center>7</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><b><font color="#CC0000">Indexed</font></b>
+<br><b><font color="#CC0000"><i>numlist</i> Variable</font></b></center>
+</td>
+
+<td>
+<center>numlist[0]</center>
+</td>
+
+<td>
+<center>numlist[1]</center>
+</td>
+
+<td>
+<center>numlist[2]</center>
+</td>
+
+<td>
+<center>numlist[3]</center>
+</td>
+
+<td>
+<center>numlist[4]</center>
+</td>
+
+<td>
+<center>numlist[5]</center>
+</td>
+
+<td>
+<center>numlist[6]</center>
+</td>
+
+<td>
+<center>numlist[7]</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><b><font color="#CC0000">Array</font></b>
+<br><b><font color="#CC0000">Content</font></b></center>
+</td>
+
+<td>
+<center>12</center>
+</td>
+
+<td>
+<center>8</center>
+</td>
+
+<td>
+<center>10</center>
+</td>
+
+<td>
+<center>123</center>
+</td>
+
+<td>
+<center>1000</center>
+</td>
+
+<td>
+<center>23</center>
+</td>
+
+<td>
+<center>4</center>
+</td>
+
+<td>
+<center>10</center>
+</td>
+</tr>
+</table>
+
+<p>The individual values stored in an array are called the <i>elements</i>
+of the array. You will also hear them called <i>indexed variables</i> or
+<i>subscripted
+variables</i>. Each of the elements of an array is assigned an <i>index</i>.
+An index is a natural number in the range {0,1,2,...}.&nbsp; Note that
+the array index started from 0.
+<p>As it is shown in the above table, to access one of the elements of
+an array, you put the index of that element in square brackets after the
+name of the array. The 0<sup>th</sup> element in the array called numlist
+is numlist[0], the next one is numlist[1], and so forth. Since we start
+the numbering with 0, the last element in numlist is numlist[7].
+<p>To put the value of 12 into the 0<sup>th</sup> element of numlist, we
+will use:
+<pre>numlist[0] = 12;</pre>
+If we wanted to store a value that is entered from the keyboard into element
+numlist[1] we use:
+<pre>cin >> numlist[1];</pre>
+An array element like numlist[4] can be used in any way that a scalar variable
+can be used. All of the following statements are legal:
+<pre>if(numlist[2] > numlist[1]) // Compares the third element of the array with
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // the second element of the array
+cout &lt;&lt; numlist[5];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Displays the sixth element of the array
+
+sum = sum + numlist[7];&nbsp;&nbsp;&nbsp;&nbsp; // Adds the 8<sup>th</sup> element to sum</pre>
+The index inside the square brackets does not have to be an integer constant
+such as 3 or 4.&nbsp; It can be any integral expression that evaluates
+to an integer within the permitted range of the array's index. So an expression
+such as this:
+<p><i>for(i = 0; i &lt; 3; i++)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; numlist[2*i+1] = 0;&nbsp; // set the odd
+elements of the array to 0</i>
+<p>If you wish to fill the array numlist with the integers typed from the
+keyboard, you can use a <i>for loop </i>too. Here is a <i>for loop</i>
+that will allow you to enter 8 values from the keyboard and will store
+them in the array numlist. Notice that we have used the variable i as an
+index for array numlist.
+<pre><i>for (i=0; i&lt;8; ++i)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the next value: ";
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> numlist[i];
+}</i></pre>
+It might be easier for our user to keep up with different values that need
+to be entered if we display something more helpful than "Enter the next
+value: ".&nbsp; Since users typically number items in a list starting from
+1, we will say "Enter value #1: " when asking for numlist[0], "Enter value
+#2: " when asking for numlist[1], and so forth. Here is the improved vrsion
+of the loop:
+<pre><i>for (i=0; i&lt;8; ++i)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter value #" &lt;&lt; i+1 &lt;&lt; ": ";
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> numlist[i];
+}</i></pre>
+By asking for value 1, then value 2, etc., we are allowing our user to
+count in a more natural way than C++ forces us to count.&nbsp; That is
+the most confusing part of working with arrays.&nbsp; It is natural to
+think that an array of size 8 will keep 8 values, thus, assuming that the
+indices would be 1 through 8.&nbsp; For an array of size 8, index 1 is
+a valid index, but index 8 is invalid and will cause a run-time error if
+it is used.
+<p>The following program allows you to enter 8 integers from the keyboard
+and will store those values in array numlist.
+<p>// P10_1.cpp - A program that uses an array of integers
+<br>#include &lt;iostream>
+<br>using namespace std;
+<br>int main(void)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int numlist[8], i;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Read 8 integers from the
+keyboard
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i = 0; i&lt;8; i++
+)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Enter value #" &lt;&lt; i+1 &lt;&lt; ": ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cin >> numlist[i];
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display the numbers in
+a reverse order
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i = 8; i > 0; i-- )
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Value #" &lt;&lt; i &lt;&lt; ": ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; numlist[i-1] &lt;&lt; endl;&nbsp; //<font color="#CC0000">Pay
+attention to i-1!</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<h2>
+<font color="#000099"><font size=+1>Array Index Out of Range</font></font></h2>
+A common error when working with an array is attempting to access an element
+of the array using an index that is out of range. In the above program,
+array numlist has 8 elements. The final value is called numlist[7]. If
+we try to access numlist[8], most C++ compilers will not give us an error
+message at run time. C++ does not verify that your index is within the
+proper range when you compile the program. If you print the value of numlist[8],
+the compiler will grab the 4 bytes following numlist[7], interpret whatever
+is stored there as an integer and print the value of that integer. If you
+store a value at numlist[8], the compiler will place that value into the
+first 4 bytes following numlist[7], even if those bytes happen to be storing
+a different variable! That is what happens in the following program.
+<p>// P10_1a.cpp - This program illustrates array index out of range.
+<p>#include &lt;iostream>
+<br>using namespace std;
+<br>int main(void)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int numlist[8], i;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; " \t i \t numlist[i]
+\n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; " \t =====
+\t ======== \n";
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i = 0; i &lt;= 8; i++)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+numlist[i] = i*2;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; " \t " &lt;&lt; i &lt;&lt; "\t " &lt;&lt; numlist[i] &lt;&lt;
+endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>Here is the output of this program:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+numlist[i]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =====&nbsp;&nbsp;&nbsp;
+========
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+6
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+8
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+10
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+12
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+14
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#990000">16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Do you see any thing wrong here?</font>
+<h2>
+<font color="#000099"><font size=+1>Initializing Arrays</font></font></h2>
+A scalar variable can be initialized when it is declared, like this:
+<pre>int num = 4;</pre>
+An array can also be initialized when it is declared. Here we put the value
+0 into numlist[0], the value 1 into numlist[1], etc.:
+<p>int numlist[8] = {12,&nbsp; 8, 10, 123, 1000, 23, 4, 10};
+<p>If you list fewer values within the braces { and } than the <b>declared
+size</b> (8 in the above example) of the array, our C++ compiler will initialize
+all the rest of the elements to 0. However, not all C++ compilers will
+do this. If you initialize an array when it is declared, you can omit the
+size of the array. C++ will use the number of initializers in your list
+as the size of the array. Here is an example:
+<pre>char vowels[] = {'a', 'e', 'i', 'o', 'u'};</pre>
+This declared a character array of size 5 which stores the lowercase vowels,
+<i>a,
+e, i, o, </i>and<i> u</i>.
+<p><b><font color="#000099"><font size=+1>Creating Arrays of Flexible Size</font></font></b>
+<br>One way to create an array with a particular size is to use a global
+variable to define the size of that array. Thus, every time one can change
+that number to increase or decrease the size of an array.&nbsp; This requires
+you to recompile the program for the new size to take effect.&nbsp; Let's
+modify program 10_1.cpp to work on flexible size arrays.
+<p>// P10_1b.cpp - A program that uses a flexible size array of integers
+<br>#include &lt;iostream>
+<br>using namespace std;
+<br><font color="#CC0000">const int SIZE = 8;&nbsp; // Set the maximum
+size for the array</font>
+<p>int main(void)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int numlist[<font color="#CC0000">SIZE</font>];
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Read <font color="#CC0000">SIZE</font>
+integers from the keyboard
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i&lt;<font color="#CC0000">SIZE</font>;
+i++ )
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Enter value #" &lt;&lt; i+1 &lt;&lt; ": ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cin >> numlist[i];
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display the numbers in
+a reverse order
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = <font color="#CC0000">SIZE</font>;
+i > 0; i-- )
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Value #" &lt;&lt; i &lt;&lt; ": ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; numlist[i-1] &lt;&lt; endl;&nbsp; <font color="#009900">//Pay
+attention to i-1!</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>This produces the same result as P10_1.cpp.&nbsp; Now, you are limited
+to array of 8 integers.&nbsp; By changing the value for <font color="#CC0000">SIZE</font><font color="#000000">,
+you can read as many numbers as you wish.</font>
+<p><b><font color="#009900"><font size=+1>Exercise 10.1</font></font></b>
+<br>Modify program P10_1b.cpp such that it reads some number of integers
+as defined by <font color="#CC0000">SIZE, </font>stored them in array numlist,
+displays the array numlist, then reverses the contents of the array, and
+at last displays the contents of that array again.
+<p>Make your program as general as possible.&nbsp; Thus, your program should
+be able to reverse the contents of an array of any size defined by <font color="#CC0000">SIZE</font>.&nbsp;
+Note that we didn't ask you to display the array in reverse, that would
+be what program P10_2.cpp is doing.&nbsp; We want you to reverse the contents
+of the array, then display the array itself.&nbsp; Example:
+<p>int A = {1, 2, 4, 5, 8, 2, 0, 9};
+<p>After you reverse the contents of array A, that array would become:
+{9, 0, 2, 8, 5, 4, 2, 1}.&nbsp; So, you will display the array A before
+you reverse the content and after you reversed the contents.
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

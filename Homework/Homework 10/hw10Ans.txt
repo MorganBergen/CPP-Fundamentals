@@ -1,0 +1,167 @@
+Last login: Fri Dec  4 08:08:23 on console
+owner@Morgan-3 ~ % cat
+C++ code snippet alongwith driver program
+
+#include<bits/stdc++.h>
+using namespace std;
+class Zipcode
+{
+public:
+    Zipcode()=default;
+    Zipcode(string s);
+    array<int,5>get_digits();
+    string get_string();
+    string get_POSTNET();
+    void set_zipcode(string zip);
+    void print_barcode(std::ostream& sout=std::cout);
+private:
+    std::string m_zip="00601";
+};
+Zipcode::Zipcode(string s)
+{
+    this->m_zip=s;
+}
+string Zipcode::get_string()
+{
+    string s=this->m_zip;
+    string res="";
+    for(int i=1;i<s.size()-1;i++)
+    {
+        res.push_back(s[i]);
+        if(i%5==0)
+            res.push_back(' ');
+    }
+    return res;
+}
+string Zipcode::get_POSTNET()
+{
+    return this->m_zip;
+}
+array<int,5> Zipcode::get_digits()
+{
+    array<int,5>digits;
+    array<int,5>post_dig={7,4,2,1,0};
+    string code=get_string();
+    int j=0;
+    for(int i=0;i<5;i++)
+    {
+        int cnt=0,d=0;
+        while(code[j]!=' '||j<code.size())
+        {
+C++ code snippet alongwith driver program
+
+#include<bits/stdc++.h>
+using namespace std;
+class Zipcode
+{
+public:
+    Zipcode()=default;
+    Zipcode(string s);
+    array<int,5>get_digits();
+    string get_string();
+    string get_POSTNET();
+    void set_zipcode(string zip);
+    void print_barcode(std::ostream& sout=std::cout);
+private:
+    std::string m_zip="00601";
+};
+Zipcode::Zipcode(string s)
+{
+    this->m_zip=s;
+}
+string Zipcode::get_string()
+{
+    string s=this->m_zip;
+    string res="";
+    for(int i=1;i<s.size()-1;i++)
+    {
+        res.push_back(s[i]);
+        if(i%5==0)
+            res.push_back(' ');
+    }
+    return res;
+}
+string Zipcode::get_POSTNET()
+{
+    return this->m_zip;
+}
+array<int,5> Zipcode::get_digits()
+{
+    array<int,5>digits;
+    array<int,5>post_dig={7,4,2,1,0};
+    string code=get_string();
+    int j=0;
+    for(int i=0;i<5;i++)
+    {
+        int cnt=0,d=0;
+        while(code[j]!=' '||j<code.size())
+        {
+            if(code[j]=='1')
+            {
+;
+                if(d==11)
+                    d=0;
+            }
+
+            if(code[j]==' ')
+                break;
+            cnt++;
+            j++;
+
+        }
+        j++;
+        digits[i]=d;
+    }
+    return digits;
+}
+void Zipcode::set_zipcode(string s)
+{
+    this->m_zip=s;
+}
+void Zipcode::print_barcode(std::ostream&sout/*=std::cout*/)
+{
+    array<int,5>arr=get_digits();
+    for(int i=0;i<5;i++)
+        sout<<arr[i]<<" ";
+}
+int main()
+{
+    Zipcode z("10110010001001010110011000101001");
+    string s=z.get_string();
+    cout<<s<<endl;
+    z.print_barcode();
+}                d+=post_dig[cnt];
+                if(d==11)
+                    d=0;
+            }
+
+            if(code[j]==' ')
+                break;
+            cnt++;
+            j++;
+
+        }
+        j++;
+        digits[i]=d;
+    }
+    return digits;
+}
+void Zipcode::set_zipcode(string s)
+{
+    this->m_zip=s;
+}
+void Zipcode::print_barcode(std::ostream&sout/*=std::cout*/)
+{
+    array<int,5>arr=get_digits();
+    for(int i=0;i<5;i++)
+        sout<<arr[i]<<" ";
+}
+int main()
+{
+    Zipcode z("10110010001001010110011000101001");
+    string s=z.get_string();
+    cout<<s<<endl;
+    z.print_barcode();
+
+}
+

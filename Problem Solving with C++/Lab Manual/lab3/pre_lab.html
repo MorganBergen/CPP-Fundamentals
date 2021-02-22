@@ -1,0 +1,67 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>pre_lab</title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Pre-Lab - Lab (3)</font></font></b>
+<br><a href="index.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act1.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>Before coming to the lab, read Chapter 3 of the text and try to answer
+the following questions in writing.
+<p>1. The following C++ program computes the value of 3<sup>4</sup>.&nbsp;
+Modify the program to do the computation for 2<sup>4</sup>, 3<sup>3</sup>,
+5<sup>4</sup>, and 4<sup>4</sup>, at once, and to display the results.
+<br>// This C++ program computes the value of 3<sup>4</sup>.
+<br>#include&lt;iostream>
+<br>using namespace std;
+<p>int main(void)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int i = 0, p = 1;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int x = 3, y = 4;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while(i &lt; 4)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+p = p * x;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+i++;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; x &lt;&lt; " to
+the power of " &lt;&lt; y &lt;&lt; " is = " &lt;&lt; p &lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>Note: Do not write 4 programs, modify the same program to compute all
+of them in one program.
+<p>2. Suppose you have a C++ program, like the one that does your taxes,
+and you want to display the results both rounded up and down.&nbsp; How
+would you round a
+<br>real value up?&nbsp; How would you round a real value down?
+<p>3. What does the following C++ program display?
+<br>#include&lt;iostream>
+<br>using namespace std;
+<p>int main(void)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int x,y;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter 2 values for x
+and y separated by space, then press &lt;Enter> :";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> x >> y;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; x &lt;&lt; "/" &lt;&lt;
+y &lt;&lt; " = " &lt;&lt; x/y &lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>Does your program produce the correct answer for x = 2 and y = 4?
+<p>If not, explain why it does not produce the correct answer and how you
+would go to fix the problem.
+<p>As we mentioned in Lab2, looping helped us simplify our computation
+significantly.&nbsp; In Lab3, we will use functions to simplify our computations
+even more.
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

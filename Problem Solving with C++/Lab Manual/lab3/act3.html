@@ -1,0 +1,224 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 3 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 3-3 - Functions
+that return a value</font></font></b>
+<br><b><font color="#000099"><font size=+3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Procedural Abstraction</font></font></b>
+<br><a href="act2.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act4.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>We can write our own functions to perform some computations.&nbsp;
+These type of functions are referred to as <b>programmer-defined functions</b>.&nbsp;
+A programmer-defined function may have three parts: 1) Function definition,
+2) Function Call, and/or 3) Function declaration.
+<p>The following program, which computes the total cost of purchases made
+in a store uses a function to compute the cost plus 5% sales tax of&nbsp;
+purchases made.
+<p>// <font color="#CC0000">P33_1.cpp </font>This program computes the
+total cost of purchases made,
+<br>//including 5% sales tax, on number_par items at a cost of price_par
+each.
+<br>#include &lt;iostream>
+<br>using namespace std;
+<p><font color="#3333FF">double</font><font color="#CC0000"> total_cost(int
+number_par, double price_par); // (1) Function declaration</font>
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double price, bill;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int number;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the
+number of items purchased: ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> number;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the
+price per item $";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> price;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bill = <font color="#CC0000">total_cost(number,
+price)</font>; <font color="#CC0000">// (2) Function call</font>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // <font color="#3333FF">The
+following three lines are used for formatting purposes.&nbsp; Since a precision
+of 2</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //&nbsp;
+is set, then all numbers will be displayed with two decimal points.&nbsp;
+We work with $</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //&nbsp;
+this seems to be the most appropriate way to display the numbers..</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout.setf(ios::fixed);</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout.setf(ios::showpoint);</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout.precision(2);</font>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; number &lt;&lt;
+" items at "
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; "$" &lt;&lt; price &lt;&lt; " each.\n"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; "Final bill, including tax, is $" &lt;&lt; bill
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p><font color="#CC0000">// (3) Function definition</font>
+<br><font color="#3333FF">double</font><font color="#CC0000"> total_cost(int
+number_par, double price_par)&nbsp; // Function heading</font>
+<br><font color="#CC0000"><b>{ </b>// Function body begins here</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const
+double TAX_RATE = 0.05; //5% sales tax, const is to make sure this value
+stays unchanged</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double
+subtotal;</font>
+<p><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; subtotal
+= price_par * number_par;</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+</font><font color="#3333FF">(subtotal
++ subtotal*TAX_RATE)</font><font color="#CC0000">;</font>
+<br><font color="#CC0000">}// Function body ends here</font>
+<p>As you can see, we have used a function called <i>total_cost</i> to
+compute the cost + 5% tax.&nbsp; Note that this function has computed the
+total cost and has returned a <u>single</u> value at <font color="#CC0000">return
+</font><font color="#3333FF">(subtotal
++ subtotal*TAX_RATE)</font><font color="#CC0000">; </font><font color="#000000">The
+returned value is of type <i>double</i>.</font>
+<p><b><font color="#006600"><font size=+2>Remarks</font></font></b>
+<br><font color="#000000">When you work with functions, there are at least
+4 things that you must remember .</font>
+<p><font color="#000000">&nbsp;&nbsp;&nbsp; 1) A function must have a name,
+in the above program the function name was </font><font color="#CC0000">total_cost.</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; 2) A function must have a
+type, the type for the above function is </font><font color="#3333FF">double.</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; 3) A function must have correct
+argument definitions.&nbsp; This means that the arguments, if any, must
+have type consistency and correct ordering at the:</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a) function declaration, b) function call, and c) function definition.</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; 4) A function must have the
+correct return type. In our example, the function was of type </font><font color="#3333FF">double
+</font><font color="#000000">and
+it returns a value of type double.</font>
+<p><font color="#000000">Violation of any of these will result in syntax
+or logical errors.</font>
+<p><b><font color="#006600"><font size=+2>Procedural Abstraction and Parameter
+Ordering</font></font></b>
+<br>A function must be written like a black box.&nbsp; The user does not
+need to have any knowledge of the details in the body of the function.&nbsp;
+He/she should be able to determine what the function will do by looking
+at the function prototype and providing the correct input values with correct
+types to obtain the correct result from a function.
+<p>A function may have several arguments of different types.&nbsp; It is
+critical that the parameters passed to a function have the same order at
+a) the function prototype, b) the function call, and c) the function definition.&nbsp;
+Violation of the correct ordering may result in a) syntax error or b) logical
+error.&nbsp; It is very hard to find the error when the ordering is incorrect.&nbsp;
+So if you get an error when you are using a function, the first thing you
+may want to check is the type and ordering constancy in all instances of
+the function.
+<p><b><font color="#006600"><font size=+2>Scope of a variable</font></font></b>
+<br>The scope of a variable declared inside a function is the body of that
+function.&nbsp; For example, in the above program variable <i>bill </i>isdeclared
+inside the body of the main function.&nbsp; Thus, <i>bill</i> is unknown
+in the total_cost function.&nbsp; If we attempt to use <i>bill</i> without
+declaring it in the function total_cost, we will get a syntax error that
+bill is undeclared.&nbsp; Similarly, variable <i>subtotal </i>is unknown
+to the main function, because it is a variable defined in the total_cost
+function and its scope is the body of the total_cost function only.&nbsp;
+These types of variables are referred to as <b>local variables</b>.&nbsp;
+They are local to the function in which they are declared.&nbsp; There
+is, however, a method to define a variable such that it is known to all
+functions.&nbsp; These types of variables are defined at the top of the
+program right after the include directives.&nbsp; Any variable defined
+this way is known as <b>global variable</b>.
+<p>The parameters passed to a function are also local to the function within
+which they are defined.&nbsp; Thus, a parameter that may go through changes
+inside a function that is called by another, will assume its original value
+upon the completion of the called function. This is referred to as <b>call_by_value</b>.
+The following example will help you understand all these definitions.
+<p>// <font color="#CC0000">P33_2.cpp </font><font color="#000000">This
+program illustrates the local and global variables and call-by-value.</font>
+<br>// This program computes the side area and the cross section area of
+a cylinder
+<br>#include&lt;iostream>
+<br>#include&lt;cmath>
+<br>using namespace std;
+<p><font color="#3333FF">double PI = 3.14159;</font>&nbsp; // This variable
+is defined globally, known to all functions in this program as PI
+<p>double cross_area(double r);&nbsp; // Function prototype for function
+cross_area
+<br>double side_area(double r, double h);&nbsp; // Function prototype for
+function Side_area
+<p>int main(void)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; double h, r;&nbsp; //<font color="#009900">variables
+local to the main function</font>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the radius and the
+height of the cylinder in Cm &lt;Enter> ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> r >> h;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Before I do any computation
+or call any function, I want to let you know that \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "you have entered r =
+" &lt;&lt; r &lt;&lt; " and h = " &lt;&lt; h &lt;&lt; "." &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "I am planning to use
+inch, thus in the first function, I will convert r, and " &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "in the second one I will
+convert h \n";
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The cross section area
+of the cylinder is " &lt;&lt; cross_area(r) &lt;&lt; "&nbsp; inch-sqr endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The side area of the
+cylinder is " &lt;&lt; side_area(r,h) &lt;&lt; " inch-sqr \n\n";
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>double cross_area(double r)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; //Cross secion area includes the disks at
+the bottom and the top
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">r = r * 0.3937;&nbsp;
+//</font> <font color="#CC0000">converting r to inch</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 2*<font color="#3333FF">PI</font>*pow(r,2);
+<br>}
+<p>double side_area(double r, double h)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double area; //<font color="#009900">variable
+local to Side_area function</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; h = h * 0.3937;&nbsp;
+//</font> <font color="#CC0000">converting h to inch</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; area = 2*<font color="#3333FF">PI</font>*r*h;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return area;
+<br>}
+<p>In the above program, r and h are declared in the main function and
+are local to that function.&nbsp; These two have been passed to the function
+side_area with the same names but they are still local to both functions
+regardless of their names. But, PI is defined globally and will be known
+to all the functions as PI.&nbsp; If by any chance the value for PI changes
+in one of these functions, every function which is using PI will use it
+with its new value. That is why it is a good practice to define a variable
+that should remain unchanged througout the program as a global variable
+using a constant modifier,&nbsp; <i><font color="#3333FF">const.</font></i>
+<p>For example, in the above program, PI should be defined as:&nbsp; <font color="#3333FF">const
+double PI = 3.14159;</font>
+<p><a NAME="ex36"></a><b><font color="#00CC00"><font size=+1>Exercise 3.6</font></font></b>
+<br><font color="#000000">Copy or cut and paste program P33_2.cpp to a
+new program called ex36.cpp.&nbsp; Compile and run the program for the
+following values:</font>
+<br><font color="#000000">r = 2 Cm, h = 10 Cm</font>
+<p><font color="#000000">The answer should be:</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The cross section area of the cylinder
+is <font color="#009900">3.8955634</font> c
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The side area of the cylinder is <font color="#009900">19.474819</font>&nbsp;
+inch-sqr
+<p><font color="#000000">Did you get the same answer?&nbsp; Explain the
+reason for such an error and fix the problem.</font>
+<p><a NAME="ex37"></a><b><font color="#00CC00"><font size=+1>Exercise 3.7</font></font></b>
+<br><font color="#000000">Modify the ex36.cpp to include a new function
+called total_area, that computes the total suface area of a cylinder.&nbsp;
+The total surface area is the sum of side area and cross section area.&nbsp;
+Call your new program ex37.cpp.</font>
+<p><font color="#000000">For the above test values the total area must
+be:&nbsp; </font><font color="#009900">23.370382 </font><font color="#000000">inch-sqr</font>
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

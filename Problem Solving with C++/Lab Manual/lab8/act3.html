@@ -1,0 +1,208 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 8 - 3 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 8-3 - Overloading
+Operators >> and &lt;&lt;</font></font></b>
+<br><a href="act2.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act4.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>The input and output operators >> and &lt;&lt; can be overloaded like
+other operators.&nbsp; In such a case, the value returned must be the stream
+and the type for the value returned must have the &amp; symbol added to
+the end of the type name.&nbsp;&nbsp; Here is the declaration:
+<p><b>declaration:</b>
+<br><i>class Class_Name</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; public:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; friend istream&amp;
+operator >>(istream&amp; parameter_1, Class_Name&amp; parameter_2);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; friend ostream&amp;
+operator &lt;&lt;(ostream&amp; parameter_3, const Class_Name&amp; parameter_4);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<p><b>definition:</b>
+<br><i>istream&amp; operator >>(istream&amp; parameter_1, Class_Name&amp;
+parameter_2)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>}</i>
+<p><i>ostream&amp; operator &lt;&lt;(istream&amp; parameter_3, Class_Name&amp;
+parameter_4)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>}</i>
+<p>Following is a new version of the program P82.cpp, in which we read
+the two input values from an input file, <i>in_file.dat</i>, and writes
+the results into an output file, <i>out_file.dat</i>.
+<p>// P83.cpp - This program adds money of two different people
+<br>// It reads the amounts for two people from an
+<br>// input file in_file.dat and writes the result into a file out_file.dat
+<p>#include&lt;iostream>
+<br>#include&lt;cstdlib>
+<br>#include&lt;fstream>
+<br>using namespace std;
+<p>class AltMoney
+<br>{
+<br>&nbsp;&nbsp;&nbsp; public:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AltMoney();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; friend void read_money(istream&amp;
+ins, AltMoney&amp; m);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; friend AltMoney operator
++(AltMoney m1, AltMoney m2);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; friend void write_money(ofstream&amp;
+ous, AltMoney m);
+<br>&nbsp;&nbsp;&nbsp; private:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int dollars;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int cents;
+<br>};
+<p>void read_money(istream&amp; ins, AltMoney&amp; m);
+<br>void get_streams(ifstream&amp; ins, ofstream&amp; ous);
+<br>void write_money(ofstream&amp; ous, AltMoney m);
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ifstream ins;
+<br>&nbsp;&nbsp;&nbsp; ofstream ous;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; AltMoney m1, m2, sum;
+<p>&nbsp;&nbsp;&nbsp;&nbsp; get_streams(ins, ous);
+<p>&nbsp;&nbsp;&nbsp;&nbsp; read_money(ins, m1);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ous &lt;&lt; "The first money is:";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; write_money(ous, m1);
+<p>&nbsp;&nbsp;&nbsp;&nbsp; read_money(ins, m2);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ous &lt;&lt; "The second money is:";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; write_money(ous, m2);
+<p>&nbsp;&nbsp;&nbsp;&nbsp; sum = m1+m2;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ous &lt;&lt; "The sum is:";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; write_money(ous, sum);
+<p>&nbsp;&nbsp;&nbsp;&nbsp; ins.close();
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ous.close();
+<p>&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>AltMoney::AltMoney()
+<br>{
+<br>}
+<p>void write_money(ofstream&amp; ous, AltMoney m)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ous &lt;&lt; "$" &lt;&lt; m.dollars &lt;&lt;
+".";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; if(m.cents &lt;= 9)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ous &lt;&lt; "0";&nbsp;
+//to display a 0 on the left for numbers less than 10
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ous &lt;&lt; m.cents &lt;&lt; endl;
+<br>}
+<p>AltMoney operator +(AltMoney m1, AltMoney m2)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; AltMoney temp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; int extra = 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; temp.cents = m1.cents + m2.cents;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; if(temp.cents >=100){
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp.cents = temp.cents
+- 100;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extra = 1;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp.dollars = m1.dollars + m2.dollars
++ extra;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return temp;
+<br>}
+<p>void read_money(istream&amp; ins, AltMoney&amp; m)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; int d, c;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ins >> d;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ins >> c;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; if( d &lt; 0 || c &lt; 0)
+<br>&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Invalid dollars and cents, negative values\n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+exit(1);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp; m.dollars = d;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; m.cents = c;
+<br>}
+<p>void get_streams(ifstream&amp; ins, ofstream&amp; ous)
+<br>{
+<p>&nbsp;&nbsp;&nbsp; ins.open("in_file.dat");
+<br>&nbsp;&nbsp;&nbsp; if(ins.fail())
+<br>&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Failed to open
+the input file. \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit(1);
+<br>&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp; ous.open("out_file.dat");
+<br>&nbsp;&nbsp;&nbsp; if(ous.fail())
+<br>&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Failed to open
+the output file. \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit(1);
+<br>&nbsp;&nbsp;&nbsp; }
+<br>}
+<p>We will overload the >> so that writing an object of type AltMoney can
+be done using >>.&nbsp;&nbsp; In order to overload >> to read an object
+of type AltMoney, you need to make the following changes in the program.
+<p>1) In the class AltMoney, replace the read_money function with the operator
+>> as described below:
+<br>class AltMoney
+<br>{
+<br>&nbsp;&nbsp;&nbsp; public:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AltMoney();
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; friend
+istream&amp; operator >>(istream&amp; ins, AltMoney&amp; m);</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; friend AltMoney operator
++(AltMoney m1, AltMoney m2);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; friend void write_money(ofstream&amp;
+ous, AltMoney m);
+<br>&nbsp;&nbsp;&nbsp; private:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int dollars;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int cents;
+<br>};
+<p>2) Prototype (comes before the main function)
+<br><font color="#CC0000">istream&amp; operator >>(istream&amp; ins, AltMoney&amp;
+m);</font>
+<p>3) In the main:
+<br>&nbsp;&nbsp;&nbsp;&nbsp; get_streams(ins, ous);
+<p><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp; ins >> m1;</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ous &lt;&lt; "The first money is:";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; write_money(ous, m1);
+<p><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp; ins >> m2;</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ous &lt;&lt; "The second money is:";
+<p>4) replace read_money function with:
+<br><font color="#CC0000">istream&amp; operator >>(istream&amp; ins, AltMoney&amp;
+m)</font>
+<br>{
+<br>&nbsp; int d, c;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ins >> d;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ins >> c;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; if( d &lt; 0 || c &lt; 0)
+<br>&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Invalid dollars and cents, negative values\n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+exit(1);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp; m.dollars = d;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; m.cents = c;
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp; return ins;</font>
+<br>}
+<p><a NAME="ex84.C"></a><b><font color="#00CC00"><font size=+1>Exercise
+8.3</font></font></b>
+<br>In program P83.cpp, make the above changes, save the program as ex83.cpp,
+compile and run the program and make sure the correct output is produced.&nbsp;
+Your input file, in_file.dat, will have four integer values representing
+the dollars and cents part of the first amount and the dollars and cents
+part of the second amount.
+<p>Example: for input $50.34 and $86.73, you may have:
+<br>50 34
+<br>86 73
+<p>Once your program has successfully compiled and run, overload the write_money
+function as well.
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 4 </title>
+</head>
+<body bgcolor="#FFFFF0">
+<b><font color="#000099"><font size=+3>Activity 2-4 - Simple
+Flow of Control</font></font></b>
+<br><b><font color="#000099"><font size=+3>Event-controlled <i>while </i>and
+<i>do
+... while </i>loops</font></font></b>
+<br><a href="act3.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="post_lab.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In the previous parts, you learned to use a while loop with fix number
+of loops and then with variable number of loops.&nbsp; In both cases, you
+used a <i>counting</i> mechanism to stop the looping.&nbsp; There are times
+that you want to use a condition to stop the looping.&nbsp; For example,
+in the previous program, suppose you want to ask the user to see whether
+he/she wishes to enter a new grade.&nbsp; For now, we will use an integer
+to control the looping number.&nbsp; Here, the user will enter a 1 if he/she
+wishes to loop one more time and will enter a 0 or any other number to
+stop the looping.
+<p>// <font color="#CC0000">P24_1.cpp </font>- Read and average some integers,
+print the result.
+<br>// This program continue asking for a new number until the user enters
+a 0 to terminate the program
+<br>#include &lt;iostream.h>
+<br>using namespace std;
+<br>int main(void)
+<br>{
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+x;</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+count = 0;&nbsp;&nbsp; // (1) initialize a counter to 0 to count number
+of values</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+choice = 1; // This is the choice that controls the looping continuation
+or termination</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double
+sum = 0; // initialize the sum to 0 to make sure the sum at the beginning
+is 0</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double average;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">while(
+choice == 1) // (2) read N grades and compute their sum, count ensures
+N entries</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// read each number and compute the sum:</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "\n Enter a grade &lt;Enter>: ";</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cin >> x;</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sum = sum + x;</font>
+<br><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;
+count++;&nbsp; // (3) update the count</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// prompt the user:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Do you wish to enter another grade? (1 for yes and 0 or
+other key for no): " &lt;&lt; endl;
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cin >> choice;</font>
+<br><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(count == 0)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "You haven't entered any number, no average will be computed,
+bye \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#000099">average
+= sum/count;&nbsp; //Notice that we have divided by count this time</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "The average of these " &lt;&lt; count &lt;&lt; " grades
+is " &lt;&lt; average &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p><a NAME="ex241"></a><b><font color="#00CC00"><font size=+1>Exercise
+24-1</font></font></b>
+<br><font color="#000000">In program 24_1.cpp, right at the beginning you
+have initialized the choice to 1.&nbsp; You did that to get the <i>while
+loop</i> to run at least once. If you use a <i>do ... while </i>instead,
+you wouldn't need to initialize the choice.&nbsp; Re-write the above program,
+call the new program ex24_1.cpp, so that is uses <i>do ... while</i>.&nbsp;
+Do not initialize the choice to 1 this time and compile and run the program.&nbsp;
+Does the program work the same way?</font>
+</body>
+</html>

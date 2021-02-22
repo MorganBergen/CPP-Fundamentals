@@ -1,0 +1,65 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 3</title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 4-3 - Function
+Calling Another Function</font></font></b>
+<br><a href="act2.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act4.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>You have already seen a function that has called another function,
+but you may not have paid close attention to it.&nbsp; In the previous
+labs, you called a predefined function from the main.&nbsp; You also called
+the function get_input from the main function in the previous lab.&nbsp;
+In order to call a function inside another function, you need to have the
+declaration of the function that is being called before the declaration
+of the calling function.
+<br>Here is an example:
+<p><font color="#000099">void that_function(double&amp; x );</font>
+<br><font color="#009900">double this_function( ); //This function can
+now call </font><font color="#3333FF">that function</font>
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; double y;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ....
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ....
+<br>&nbsp;&nbsp;&nbsp;&nbsp; y = <font color="#009900">this_function( );</font>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; ....
+<p>&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p><font color="#009900">double this_function( )</font>
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double x;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#000099">that_function(x
+);&nbsp; // </font><font color="#3333FF">that function </font><font color="#000000">is
+being called inside</font><font color="#009900"> this function</font>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return x;
+<br>}
+<p><font color="#3333FF">void that_function(double&amp; x )</font>
+<br>{
+<br>&nbsp;&nbsp;&nbsp; ....
+<br>&nbsp;&nbsp;&nbsp; ....
+<br>}
+<p><a NAME="ex44"></a><b><font color="#00CC00"><font size=+1>Exercise 4.4</font></font></b>
+<br>The following function will use <b>a, b, </b>and <b>c</b> as the coefficients
+of a quadratic equation to compute <b>b</b><sup>2</sup> - 4<b>ac.</b>&nbsp;&nbsp;
+This function calls on another function called <i>get_a_b_c</i> to get
+the values for <b>a</b>, <b>b</b>, and <b>c.</b>
+<p>Write the complete program, ex43.cpp, compile and run it.
+<p>double bb_4ac( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double a, b, c;&nbsp; //
+Coefficients of a quadratic equation
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; get_a_b_c(a, b, c);
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return b*b - 4*a*c;
+<br>}
+<br>&nbsp;
+</body>
+</html>

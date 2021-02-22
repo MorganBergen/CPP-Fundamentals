@@ -1,0 +1,68 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>pre_lab</title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Pre-Lab - Lab (11)</font></font></b>
+<br><a href="index.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act1.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>Answer the following questions in writing.
+<p>1) In Lab(5), you used an array of characters to store file names.&nbsp;
+You used:
+<p>char inp_file[15], out_file[15];
+<p>You learned to read these two names from the keyboard and then use the
+names to connect streams to them.&nbsp; Can you explain a way to check
+and see whether the inp_file and out_file name are the same?&nbsp; Write
+the C++ code segment that does the checking.
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<p>2) Can you tell whether there is any difference between the following
+two statements?
+<p>char my_string[] = "Hello";
+<br>char my_string[] ={'H', 'e', 'l', 'l', 'o'};
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<p>Suppose I define two character arrays in my program as:
+<p>char first_array[15] = "Hello";
+<br>char second_array[6] = "Dear";
+<br>&nbsp;
+<p>Write the C++ code segment to modify the first array so that it contains
+its contents plus the contents of the second array? i.e., Hello Dear
+<br>&nbsp;
+<p>3) The following code segment causes a run-time error.&nbsp; Explain
+what the error is and suggest a solution to fix the problem.
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; char a_string[8];
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(i = 0; i &lt; 9; i++)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Enter a character \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cin >> a_string[i];
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<p>4) Could you change the size of the array while the program was running
+to avoid the error? We can use vectors to do that... how?&nbsp; Soon you
+will learn.
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

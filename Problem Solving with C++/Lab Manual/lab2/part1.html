@@ -1,0 +1,297 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>part1</title>
+</head>
+<body>
+<b><font size=+1>Variables and Assignments</font></b>
+<center>"<i>All variables must be declared before they are used in a C++
+program."</i></center>
+All variables used in a C++ program must be declared.&nbsp; The declaration
+of a variable can be done several different ways; 1) right at the beginning
+of the main function, 2) right before its use in the program, and 3) right
+before the main function.&nbsp; As it was shown in the sample C++ program
+in the previous lab, we declared variables of typ integer and float there.&nbsp;
+In general the syntax for variable declaration is:
+<br><i><font color="#3333FF">Type_name&nbsp; Variable_Name_1, Variable_Name_2;</font></i>
+<p><font color="#000000">Example:</font>
+<br><i><font color="#3333FF">int&nbsp; number_of_cases, bottles_per_case;</font></i>
+<p>Here is the list of the most common varibale types used in C++:
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="81%" >
+<tr>
+<td>
+<center><b><font color="#990000">Variable Name</font></b></center>
+</td>
+
+<td>
+<center><b><font color="#990000">Variable Name</font></b></center>
+</td>
+</tr>
+
+<tr>
+<td><i><font color="#009900">short (short int) - 2 bytes&nbsp;</font></i>
+<br><i><font color="#000099">short x; or short x = 34;</font></i></td>
+
+<td><i><font color="#009900">long - 4 bytes</font></i>
+<br><i><font color="#000099">long x; or long x = 34;</font></i></td>
+</tr>
+
+<tr>
+<td><i><font color="#009900">int - 4 bytes</font></i>
+<br><i><font color="#000099">int x; or int x = 34;</font></i></td>
+
+<td><i><font color="#009900">float - 4 bytes, 7 digits precision</font></i>
+<br><i><font color="#000099">float x; or float x = 34.56;</font></i></td>
+</tr>
+
+<tr>
+<td><i><font color="#009900">double -&nbsp; 8 bytes, 15 digits precision</font></i>
+<br><i><font color="#000099">double x; or double x = 34.56;</font></i></td>
+
+<td><i><font color="#009900">long double - 10 bytes, 19 digits precision&nbsp;</font></i></td>
+</tr>
+
+<tr>
+<td><i><font color="#009900">char - holds any single character on the keyboard</font></i>
+<br><i><font color="#000099">char c; or char c = 'a';</font></i></td>
+
+<td><i><font color="#009900">bool - True (1), False (0)</font></i>
+<br><i><font color="#000099">bool x; or bool x = TRUE;</font></i></td>
+</tr>
+</table></center>
+
+<p>Every variable is indentfied by a name that is referred to as <b>identifier</b>.&nbsp;
+An identifier must start with either a letter or the underscore symbol.&nbsp;
+The remaining characters must all be letters, digits, or the underscore
+symbol.
+<p>In general, we should assign a value the type.&nbsp; An attempt to assing
+a value of a different type to a variable is referred to as type mismatch.&nbsp;
+One has to be very careful that not all compilers will allow type mismatch,
+i.e., may produce an error when such attempts are made.
+<p>Arithmetic Operators and Expressions
+<br>To perform mathematical calculations, we combine variables and/or numbers
+using arithmetic operators such as: + <i>for addition, - for subtraction,
+* for multiplication, </i>and <i>/ for division.&nbsp; </i>The arithmetic
+operators can be used with numbers of type int, long, double, float, long
+double, short, or with a combination of different types. When you use arithmetic
+operators, you need to be careful that if the correct variable types are
+not used, the result can be different from what you were expecting.&nbsp;
+For example: 7.0/2 = 3.5, 7/2.0 = 3.5, however, 7/2 = 3 (not 3.5).&nbsp;
+The reason for such a significant difference is because the last one is
+actually uses integer division.&nbsp; Perhaps the most significant problem
+will be seen in cases where the numerator is smaller than the numerator.&nbsp;
+In such cases the integer division will result 0.&nbsp; An example of such
+a case is 5/9 = 0.
+<p>There are some shorthand notation that combines the assignment operator
+( = ) and an arithmetic operator. The genral form for this notations is:
+<br><i><font color="#3333FF">Variable Operator</font> = <font color="#CC0000">Expression</font>,
+</i>which
+is equivalent to:&nbsp; <i><font color="#3333FF">Variable</font> = <font color="#3333FF">Variable
+Operator</font> (<font color="#CC0000">Expression</font>).</i>
+<p>The expression can be another variable, a constant, or a more complicated
+arithmetic expression.&nbsp; Here is some examples:
+<br>&nbsp;
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="71%" >
+<tr>
+<td>
+<center><b><font color="#006600">Shorthand Notation</font></b></center>
+</td>
+
+<td>
+<center><b><font color="#006600">Equivalent</font></b></center>
+</td>
+</tr>
+
+<tr>
+<td><font color="#3333FF">total +</font><font color="#000000">= </font><font color="#CC0000">2</font>;</td>
+
+<td>&nbsp;<font color="#3333FF">total </font>= <font color="#3333FF">total+</font><font color="#CC0000">2</font>;</td>
+</tr>
+
+<tr>
+<td><font color="#3333FF">amount +</font>=&nbsp; <font color="#CC0000">tax
+- rebate</font></td>
+
+<td><font color="#3333FF">amount +</font>=&nbsp; <font color="#3333FF">amount
++ </font><font color="#CC0000">(tax - rebate)</font></td>
+</tr>
+</table></center>
+
+<p>Similarily, we may use -=, *=, /=, and %=.
+<p><font color="#009900">Activity:</font>
+<br>Dtermine the answer to the follwoing stetemtns:
+<br>&nbsp;&nbsp;&nbsp; Question 2.1&nbsp;&nbsp;&nbsp;&nbsp; 3 -= 4*5;
+<br>&nbsp;&nbsp;&nbsp; Question 2.2&nbsp;&nbsp;&nbsp;&nbsp; 40 %= 16/2;
+<br>&nbsp;&nbsp;&nbsp; Question 2.3&nbsp;&nbsp;&nbsp;&nbsp; 88 /= 82%4;
+<p>Simple Flow of Control
+<br>In the programs that you have seen so far, we have had a list of statements
+that was executed in the order that are witten into that .C file.&nbsp;
+In more complicated programs, you may need to change the order in which
+statements are executed.&nbsp; The order of execution for statements in
+your program is referred to as <b>flow of control</b>.
+<p>Let's look at one example.&nbsp; Suppose you are organizing an event
+that cost $12 for everyone older than 8 and $6 for any one 8 year and younger.&nbsp;
+One way to do this is to say the ticket is $12, if you are 8 or younger,
+then it is $6.&nbsp;&nbsp; In this case, in you can write:
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="78%" >
+<tr>
+<td>
+<center>Pseudo Code (English like statement)</center>
+</td>
+
+<td>
+<center>C++ equivalent</center>
+</td>
+</tr>
+
+<tr>
+<td>ticket = 12;&nbsp;
+<br>if(<font color="#009900">age is 8 or younger</font>)
+<br>&nbsp;&nbsp;&nbsp; ticket = 6;</td>
+
+<td>double ticket = 12.00, age;&nbsp;
+<br>if(<font color="#009900">age &lt;= 8</font>)
+<br>&nbsp;&nbsp;&nbsp; ticket = 6;</td>
+</tr>
+</table></center>
+
+<p>There is another way to do this.
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="78%" >
+<tr>
+<td>
+<center>Pseudo Code (English like statement)</center>
+</td>
+
+<td>
+<center>C++ equivalent</center>
+</td>
+</tr>
+
+<tr>
+<td>if(<font color="#009900">age is 8 or younger</font>)
+<br>&nbsp;&nbsp;&nbsp; ticket = 6;
+<br>else
+<br>&nbsp;&nbsp;&nbsp; ticket = 12;</td>
+
+<td>if(<font color="#009900">age &lt;= 8</font>)
+<br>&nbsp;&nbsp;&nbsp; ticket = 6;
+<br>else
+<br>&nbsp;&nbsp;&nbsp; ticket = 12;</td>
+</tr>
+</table></center>
+
+<p>Both of these do the same thing.&nbsp; In both cases, you will change
+the flow of execution when you reach the statement; "<font color="#009900">age
+is 8 or younger</font><font color="#000000">"</font><font color="#009900">.
+</font><font color="#000000">If that statement happen to be true, i.e.,
+age is 8 or younger, then the value for ticket will change to $6, otherwise,
+you will go with its initailized value of $12.</font>
+<p>In general, the statement in the paranthesis is either TRUE or FALSE.
+Depending on that being true or false, you will change the flow of execution
+of the statements in the program. In order for your program to decide about
+the flow of the execution, it uses a comparison operator.&nbsp; Examples
+of comparison operators are:
+<br>&nbsp;&nbsp;&nbsp; 1) <font color="#000000"><i>equal to , </i>= , which
+will be written as </font><font color="#009900">==</font><font color="#000000">
+(2 </font><font color="#009900">=</font><font color="#000000">'s) in C++,
+with a general form of: </font><font color="#3333FF">statement1</font><font color="#009900">==
+</font><font color="#3333FF">statement2.</font><font color="#000000">
+Example:
+</font><font color="#3333FF">y</font><font color="#000000"> </font><font color="#009900">==
+</font><font color="#3333FF">x
++ 1</font>
+<br>&nbsp;&nbsp;&nbsp; 2) <i>not <font color="#000000">equal to ,&nbsp;<img SRC="imageBA9.JPG" height=15 width=15></font></i><font color="#000000">,
+which will be written as </font><font color="#009900">!=</font><font color="#000000">
+in C++, with a general form of: </font><font color="#3333FF">statement1</font><font color="#009900">!=
+</font><font color="#3333FF">statement2.</font><font color="#000000">
+Example:
+</font><font color="#3333FF">y</font><font color="#000000"> </font><font color="#009900">!=
+</font><font color="#3333FF">x
++ 1</font>
+<br>&nbsp;&nbsp;&nbsp; 3) <i>less than<font color="#000000"> , &lt;</font></i><font color="#000000">,
+which will be written as </font><font color="#009900">&lt;</font><font color="#000000">
+in C++, with a general form of: </font><font color="#3333FF">statement1</font><font color="#009900">&lt;
+</font><font color="#3333FF">statement2.</font><font color="#000000">
+Example:
+</font><font color="#3333FF">y</font><font color="#000000"> </font><font color="#009900">&lt;
+</font><font color="#3333FF">x
++ 1</font>
+<br>&nbsp;&nbsp;&nbsp; 4) <i>less than or equal to<font color="#000000">
+,&nbsp;<img SRC="imagePEI.JPG" height=16 width=13></font></i><font color="#000000">,
+which will be written as </font><font color="#009900">&lt;=</font><font color="#000000">
+in C++, with a general form of: </font><font color="#3333FF">statement1</font><font color="#009900">&lt;=
+</font><font color="#3333FF">statement2.</font><font color="#000000">
+Example:
+</font><font color="#3333FF">y</font><font color="#000000"> </font><font color="#009900">&lt;=
+</font><font color="#3333FF">x
++ 1</font>
+<br>&nbsp;&nbsp;&nbsp; 5) <i>greater than<font color="#000000"> , ></font></i><font color="#000000">,
+which will be written as </font><font color="#009900">></font><font color="#000000">
+in C++, with a general form of: </font><font color="#3333FF">statement1</font><font color="#009900">>
+</font><font color="#3333FF">statement2.</font><font color="#000000">
+Example:
+</font><font color="#3333FF">y</font><font color="#000000"> </font><font color="#009900">>
+</font><font color="#3333FF">x
++ 1</font>
+<br>&nbsp;&nbsp;&nbsp; 6) <i>greater than or equalt to<font color="#000000">
+,&nbsp;<img SRC="imageQJH.JPG" height=16 width=13></font></i><font color="#000000">,
+which will be written as </font><font color="#009900">>=</font><font color="#000000">
+in C++, with a general form of: </font><font color="#3333FF">statement1</font><font color="#009900">>=
+</font><font color="#3333FF">statement2.</font><font color="#000000">
+Example:
+</font><font color="#3333FF">y</font><font color="#000000"> </font><font color="#009900">>=
+</font><font color="#3333FF">x
++ 1</font>
+<br>&nbsp;&nbsp;&nbsp; 7) OR, which will be written as <font color="#009900">||</font>
+(2 of the<font color="#009900"> |</font>'s) in C++, with a general form
+of: <font color="#3333FF">statement1</font><font color="#009900">|| </font><font color="#3333FF">statement2</font><font color="#000000">.&nbsp;
+Which may be True when either one of the two</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; statements
+are TRUE.</font>
+<br>&nbsp;&nbsp; 8) AND, which will be written as <font color="#009900">&amp;&amp;</font>
+(2 of the<font color="#009900"> &amp;</font>'s) in C++, with a general
+form of: <font color="#3333FF">statement1</font><font color="#009900">&amp;&amp;
+</font><font color="#3333FF">statement2</font><font color="#000000">.&nbsp;
+Which may be True ONLY when both</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; statements
+are TRUE.</font>
+<p>Now that you learn about changing the flow of control, let's write a
+program called ticket.C that asks users to enter an age and displays the
+cost of the ticket based on the criteria that was given above.&nbsp; Use
+both mehtods to make sure
+<p>// ticket.C -&nbsp; This program asks for an age and display the cost
+of the ticket
+<br>#include&lt;iostream.h>
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double age, ticket = 12;
+<br>&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Please enter the age
+\n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> age;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(<font color="#009900">age &lt;= 8</font>)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ticket
+= 6;
+<br>&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Your ticket costs " &lt;&lt;
+ticket &lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>Activity
+<br>Change the ticket.C program such that it display $6 for people who
+are 8 years or younger or 65 years or older.
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

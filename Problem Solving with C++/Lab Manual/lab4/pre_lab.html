@@ -1,0 +1,70 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>pre_lab</title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Pre-Lab - Lab (4)</font></font></b>
+<br><a href="index.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act1.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>Before coming to the lab, you should answer the following questions
+in writing.
+<p><font color="#000000">1. Write a C++ program that asks users for two
+entries of type double, x and y, and then displays their product.&nbsp;
+Your code should have:</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; 1) a function called <i>get_x
+</i>that
+asks the users for the value of x, then returns x to the main function.</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; 2) a function called <i>get_y
+</i>that
+asks the users for the value of y, then returns y to the main function.</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; 3) a function called <i>mult_xy</i>
+that takes x and y as its arguments and returns their product to the main
+function.</font>
+<p><font color="#000000">This program must use all three functions.</font>
+<p><font color="#006600">2. We mentioned that a function can only return
+one value using the return statement.&nbsp; Is there any way that a function
+returns more than one value?&nbsp; In the above program, could you read
+both x and y in the same function, and then return both of them to the
+main?</font>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<p><font color="#006600">3. Can a function call another function? Maybe
+this helps you answer this question.</font>
+<br><font color="#006600">In the following program, is main a function?</font>
+<br><font color="#006600">Does it call another function?</font>
+<p><font color="#006600">#include&lt;iostream></font>
+<br>using namespace std;
+<p><font color="#000000">float divide_xy(int x, int y);</font>
+<p><font color="#006600">int main(void)</font>
+<br><font color="#006600">{</font>
+<br><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int x,y;</font>
+<br><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float qt;</font>
+<p><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter
+2 values for x and y separated by space, then press &lt;Enter> :";</font>
+<br><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> x >> y;</font>
+<br><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+endl;</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; qt = divide_xy(x,y);
+<p><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; x
+&lt;&lt; "/" &lt;&lt; y &lt;&lt; " = " &lt;&lt; qt &lt;&lt; endl;</font>
+<p><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;</font>
+<br><font color="#006600">}</font>
+<p><font color="#000000">float divide_xy(int x, int y)</font>
+<br><font color="#000000">{</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return static_cast&lt;float>(x)/y;</font>
+<br><font color="#000000">}</font>
+<p>4. Explain how you may have use for a function that does not return
+any value?
+<br>&nbsp;
+<p>5. Explain how you may have use for a function that does not have any
+argument?
+</body>
+</html>

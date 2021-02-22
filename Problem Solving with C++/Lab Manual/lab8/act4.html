@@ -1,0 +1,160 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 8 - 4 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 8-4 - A
+Class Inside Another Class</font></font></b>
+<br><a href="act3.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="post_lab.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>It is possible to use a class inside another one.&nbsp; For example,
+suppose ID has three integer parts;&nbsp; left, middle, and right parts.&nbsp;
+So, one can define a class <i>ID </i>as:
+<p>class ID
+<br>{
+<br>&nbsp;&nbsp;&nbsp; public:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ID( );
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ID(int, int, int);
+<br>&nbsp;&nbsp;&nbsp; private:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int left;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int middle;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int right;
+<br>};
+<p>Now we can use this in the <i>Loan</i> class definition.
+<p><i>class Loan&nbsp; // Loan is called <b>structure tag</b></i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; public:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Loan( );</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Loan(ID id, float
+amount, float rate, int term);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void set( );</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float payment(
+);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void display( );</i>
+<br><i>&nbsp;&nbsp; private:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ID id;&nbsp; // assume an unique
+integer between 1111-9999</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float amount; // $ amount of
+the loan</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float rate; // annual interest rate</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int term;&nbsp; // number of months,
+length of the loan</i>
+<br><i>&nbsp;};</i>
+<p>The following program is very similar to the one you used in Lab(6),
+P63.cpp.&nbsp; The difference is that ID now is defined as a class.
+<p>// P84.cpp - This program is a driver written to demonstrate how we
+can use a
+<br>// class inside another one.
+<br>#include&lt;iostream>
+<br>using namespace std;
+<p><i>class ID</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; public:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ID( );</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ID(int, int, int);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void display();</i>
+<br><i>&nbsp;&nbsp;&nbsp; private:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int left;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int middle;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int right;</i>
+<br><i>};</i>
+<p><i>class Loan&nbsp; // Loan is called structure tag</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp; public:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; Loan( );</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; Loan(ID id, float amount, float rate, int
+term);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; void set( );</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; float payment( );</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; void display( );</i>
+<br><i>&nbsp;&nbsp; private:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ID id;&nbsp; // assume an unique
+integer between 1111-9999</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float amount; // $ amount of the
+loan</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float rate; // annual interest rate</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int term;&nbsp; // number of months,
+length of the loan</i>
+<br><i>&nbsp;};</i>
+<p><i>int main( )</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; Loan loan1(ID(111,22,4444), 2300, 5.5, 48);&nbsp;
+// initialize to values given</i>
+<p><i>&nbsp;Loan loan2;</i>
+<p><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Display loan1 \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; loan1.display();</i>
+<p><i>&nbsp;&nbsp;&nbsp; loan2.set( ); // set the values</i>
+<br><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Display loan2 \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; loan2.display();</i>
+<p><i>&nbsp;&nbsp;&nbsp; return 0;</i>
+<br><i>}</i>
+<p><i>ID::ID( )</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp; // use default values</i>
+<br><i>}</i>
+<p><i>ID::ID(int l, int m, int r)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; left = l;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; middle = m;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; right = r;</i>
+<br><i>}</i>
+<p><i>void ID::display()</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; right &lt;&lt; "-" &lt;&lt;
+middle &lt;&lt; "-" &lt;&lt; right &lt;&lt; endl;</i>
+<br><i>}</i>
+<p><i>Loan::Loan( )</i>
+<br><i>{</i>
+<br><i>}</i>
+<p><i>Loan::Loan(ID I, float am, float rt, int trm)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp; id = I;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amount = am;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rate = rt;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; term = trm;</i>
+<br><i>}</i>
+<p><i>void Loan::set( )</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp; int l, m, r;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ID temp_id;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Initialize the loan1 object</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the left part
+of the loan ID \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> l;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the middle part
+of the loan ID \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> m;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the right part
+of the loan ID \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> r;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; id = ID(l, m, r);</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the amount of
+this loan \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> amount;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the annual interest
+rate of this loan (in %) \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> rate;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the term (number
+of months, length of the loan) \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> term;</i>
+<br><i>}</i>
+<p><i>void Loan::display()</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; id.display();</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; amount &lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; rate &lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; term &lt;&lt; endl;</i>
+<br><i>}</i>
+<p><a NAME="ex84"></a><b><font color="#00CC00"><font size=+1>Exercise 8.4</font></font></b>
+<br>Use operator overloading to overload == such that every time you run
+the program, it will tell you whether the two loans are the same, i.e.
+ID, amount, rate, and term are the same for both.
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

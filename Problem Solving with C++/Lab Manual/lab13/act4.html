@@ -1,0 +1,59 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 13 - 4 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 13-4 -
+Binary Search Using Recursion</font></font></b>
+<br><a href="act3.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="post_lab.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>Since binary search is very important, we will have a look at a method
+that uses recursion.&nbsp; The purpose of a binary search is to search
+an array and find out whether it contains a specific value.&nbsp; The array
+used to conduct a binary search is a sorted array.&nbsp; The search is
+conducted by splitting the original array into two halves.&nbsp; Since
+the initial array is sorted, one can determine the half in which the desired
+number might be found.&nbsp; Once one of the two halves is selected as
+a candidate, we will go through the same process until the last split,
+which will leave us with two numbers.&nbsp; One of these two numbers might
+be the one we are searching for.&nbsp; Here is the pseudocode for a binary
+search:
+<p>int a[some_Size_Value];
+<p>Algorithm to search a[first] through a[last]
+<br>// Precondition - sorted array
+<br>// a[first] &lt;= a[first + 1] &lt;= a[first + 2] &lt;= ... &lt;= a[last]
+<p>To locate the value key:
+<p>&nbsp;&nbsp;&nbsp; if( first > last) // a stopping case
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; found = false;
+<br>&nbsp;&nbsp;&nbsp; else
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mid = approximate midpoint
+between first and last;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(key == a[mid]) // A stopping
+case
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+found = true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+location = mid;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if( key &lt; a[mid]
+) // a case with recursion
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+search a[first] through a[mid - 1];
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if( key > a[mid] )
+// a case with recursion
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+search a[mid + 1] through a[last];
+<br>}
+<p>The recursive function for binary search is shown on Display 13.6 of
+the textbook.
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

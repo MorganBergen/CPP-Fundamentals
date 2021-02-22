@@ -1,0 +1,106 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 17 - 4 </title>
+<script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+</script>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 17-4 -
+Programming Techniques for Exception Handling</font></font></b>
+<br><a href="act3.html"><img SRC="lfarrow.jpg" BORDER=0 height=35 width=36></a><a href="post_lab.html"><img SRC="rtarrow.jpg" BORDER=0 height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>So we talked about exception handling and went through some examples,
+but we never discussed how to make a good and realistic use of exception
+handling.
+<p><b><font color="#000099"><font size=+1>When to Throw an Exception</font></font></b>
+<br>In complicated programs you may want to separate throwing an exception
+and catching the exception into separate functions.&nbsp; In most cases,
+you should include any throw-statement within a function definition, list
+the exception in the exception specification for that function, and place
+the catch-clause in a <i>different function</i>.&nbsp; Here is a preferred
+way to do this:
+<p><i>void functionA( ) throw (MyException)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw MyException(&lt;Maybe
+an argument>);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>}</i>
+<p>Then in some other function we will have:
+<p><i>void functionB( )</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp; try</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; functionA( );</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp; }</i>
+<br><i>&nbsp;&nbsp;&nbsp; catch(MyException e)</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Handle exception></i>
+<br><i>&nbsp;&nbsp;&nbsp; }</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>}</i>
+<br>&nbsp;
+<p>In general, you want to use throw-statements within functions listed
+in a exception specification for the function.
+<p><b><font color="#000099">Testing for Available Memory</font></b>
+<br>Sometimes we create dynamic variables with code such as:
+<p><i>struct Node</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; int data;</i>
+<br><i>&nbsp;&nbsp;&nbsp; Node *link;</i>
+<br><i>};</i>
+<p><i>typedef Node* NodePtr;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</i>
+<br><i>NodePtr pointer = new Node;</i>
+<p>This works fine without any problem but will cause a segmentation fault
+when there is not enough memory.&nbsp; Since <i>new </i>throws a <i>bad_alloc</i>
+exception when there is not enough memory to create the node, we can use
+it to check whether we will run out of memory:
+<p><i>try</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NodePtr&nbsp; pointer
+= new Node;</i>
+<br><i>}</i>
+<br><i>catch(bad_alloc)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Run out
+of memory!";</i>
+<br><i>}</i>
+<p>You can do other things besides giving a warning message, for example,
+you can set the value to zero or to a very large number.
+<p><a NAME="ex17.4"></a><b><font color="#00CC00"><font size=+1>Exercise
+17.4</font></font></b>
+<br>Use the suggestions that are given for exception handling in this activity
+and re-write ex17.3.
+<br>&nbsp;
+</body>
+</html>

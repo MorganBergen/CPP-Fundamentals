@@ -1,0 +1,212 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 15 - 3 </title>
+<script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+</script>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 15-3 -
+Inserting in the Middle of a Linked List</font></font></b>
+<br><b><font color="#000099"><font size=+3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Deleting from the Middle of a Linked List</font></font></b>
+<br><a href="act2.html"><img SRC="lfarrow.jpg" BORDER=0 height=35 width=36></a><a href="act4.html"><img SRC="rtarrow.jpg" BORDER=0 height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In the Activity 1, you learned to insert a new node at the top of a
+linked list and in Activity 2, you learned to search for an item in a linked
+list.&nbsp; We can use things that we learned from these two activities
+to insert a node in the middle of the linked list and/or delete a node
+from the middle of a liked list.&nbsp; Before we get into any of these
+two scenarios, let's have one basic rule in mind.&nbsp; If we remove one
+a link from the middle of a chain, the remaining two pieces will become
+a new chain only if somehow you connect the end of the fisrt piece to the
+end of the second one.&nbsp; The same is true when we want to add a link
+in the middle of a chain.&nbsp; You break the chain into two pieces, connect
+the last link on the first piece to the new link, and at last connect the
+other end of the newly added link to the first link on the second piece.&nbsp;
+We will follow a similar process to insert or remove a node from the middle
+of a linked list.
+<p><b><font color="#000066"><font size=+1>Inserting in the Middle of a
+Linked List</font></font></b>
+<br>When you want to insert a node in the middle of a linked list, you
+need to know the location where the insertion will take place.&nbsp; Thus,
+one of the arguments to a function that performs the insertion in the middle
+of the list would be that location, suppose for now we call that location
+<i>after_me</i>.&nbsp;
+Of course, you immediately realize that if you want to insert a node into
+a specific location, you need to first find that location, i.e., the node
+after which you will add the new node.&nbsp; Thus, we first use the <i>search
+</i>function
+to locate the node after which the insertion will happen, then we do the
+insertion.&nbsp; The insertion in the middle of a linked list is a bit
+tricky.&nbsp; Here is the process (Suppose the insertion is going to happen
+between <i>after_me</i> and <i>second </i>Nodes):
+<br>&nbsp;&nbsp;&nbsp; 1) Search for the node, <i>after_me</i>, after which
+you wish to insert the new Node, <i>new_node</i>
+<br><i>&nbsp;&nbsp;&nbsp; </i>2) Disconnect the link between <i>after_me
+</i>Node
+and the <i>second </i>Node
+<br>&nbsp;&nbsp;&nbsp; 3) Connect the link from Node <i>after_me</i> to
+the Node <i>new_node</i>
+<br>&nbsp;&nbsp;&nbsp; 4) Connect the link from the <i>new_node </i>to
+the <i>second </i>Node
+<p>Now, let's modify program p15_2.cpp to insert a new Node.
+<p><i>// P15_3.cpp - Program to demonstrate the function insert.</i>
+<br><i>// It asks users to input an item and the count and will ask</i>
+<br><i>// them where they want to insert the new node. If the request</i>
+<br><i>// is valid, the new node will be inserted.</i>
+<p><i>#include &lt;iostream></i>
+<br><i>#include &lt;cstddef></i>
+<br><i>#include &lt;string></i>
+<br><i>using namespace std;</i>
+<p><i>struct Node</i>
+<br><i>{</i>
+<br><i>&nbsp;string item;</i>
+<br><i>&nbsp;&nbsp;&nbsp; int count;</i>
+<br><i>&nbsp;&nbsp;&nbsp; Node *link;</i>
+<br><i>};</i>
+<p><i>typedef Node* NodePtr;</i>
+<p><i>void insert(NodePtr after_me, string an_item, int a_number);</i>
+<br><i>void head_insert(NodePtr&amp; head, string an_item, int a_number);</i>
+<br><i>void show_list(NodePtr&amp; head);</i>
+<br><i>NodePtr search(NodePtr head, string target);</i>
+<p><i>int main()</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; string new_item, target;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; int new_count;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; NodePtr head = NULL;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; head_insert(head, "Tea", 2);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; head_insert(head, "Jam", 3);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; head_insert(head, "Rolls", 10);</i>
+<p><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "List contains:" &lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp; show_list(head);</i>
+<p><i>&nbsp;&nbsp;&nbsp; NodePtr after_me = head;</i>
+<br><i>&nbsp;&nbsp;&nbsp; after_me = after_me ->link;</i>
+<p><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the item you wish to insert
+(string) \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; cin >> new_item;</i>
+<br><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the count of new item \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; cin >> new_count;</i>
+<p><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the item after which you
+want \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "to insert the new node \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; cin >> target;</i>
+<br><i>&nbsp;&nbsp;&nbsp; after_me = search(head, target);</i>
+<br>&nbsp;
+<p><i>&nbsp;&nbsp;&nbsp; if(after_me != NULL)</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+"\nWill insert " &lt;&lt;&nbsp; new_item &lt;&lt; " with count" &lt;&lt;
+endl</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; new_count &lt;&lt; " after the node with "</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; (after_me -> item) &lt;&lt; endl &lt;&lt; endl;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; insert(after_me,
+new_item, new_count);</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+"List now contains:" &lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; show_list(head);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; }</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; else</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+"I can't find " &lt;&lt; target</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; " in the list, so I can't insert anything \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; }</i>
+<p><i>&nbsp;&nbsp;&nbsp; return 0;</i>
+<br><i>}</i>
+<p><i>//Uses cstddef:</i>
+<br><i>void insert(NodePtr after_me, string an_item, int a_number)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; NodePtr temp_ptr;</i>
+<br><i>&nbsp;&nbsp;&nbsp; temp_ptr = new Node;</i>
+<p><i>&nbsp;&nbsp;&nbsp; temp_ptr -> item = an_item;</i>
+<br><i>&nbsp;&nbsp;&nbsp; temp_ptr -> count = a_number;</i>
+<p><i>&nbsp;&nbsp;&nbsp; temp_ptr ->link = after_me -> link;</i>
+<br><i>&nbsp;&nbsp;&nbsp; after_me ->link = temp_ptr;</i>
+<br><i>}</i>
+<p><i>//Uses cstddef:</i>
+<br><i>void head_insert(NodePtr&amp; head, string an_item, int a_number)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; NodePtr temp_ptr;</i>
+<br><i>&nbsp;&nbsp;&nbsp; temp_ptr = new Node;</i>
+<p><i>&nbsp;&nbsp;&nbsp; temp_ptr -> item = an_item;</i>
+<br><i>&nbsp;&nbsp;&nbsp; temp_ptr -> count = a_number;</i>
+<p><i>&nbsp;&nbsp;&nbsp; temp_ptr->link = head;</i>
+<br><i>&nbsp;&nbsp;&nbsp; head = temp_ptr;</i>
+<br><i>}</i>
+<p><i>//Uses iostream and cstddef:</i>
+<br><i>void show_list(NodePtr&amp; head)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; NodePtr here = head;</i>
+<p><i>&nbsp;&nbsp;&nbsp; while (here != NULL)</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+here-> item &lt;&lt; "\t";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+here-> count &lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; here = here->link;</i>
+<br><i>&nbsp;&nbsp;&nbsp; }</i>
+<br><i>}</i>
+<p><i>NodePtr search(NodePtr head, string target)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp; // Point to the head node</i>
+<br><i>&nbsp;&nbsp;&nbsp; NodePtr here = head;</i>
+<p><i>&nbsp;&nbsp;&nbsp; // If the list is empty nothing to search</i>
+<br><i>&nbsp;&nbsp;&nbsp; if (here == NULL)</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return NULL;</i>
+<br><i>&nbsp;&nbsp;&nbsp; }</i>
+<br><i>&nbsp;&nbsp;&nbsp; // Search for the item</i>
+<br><i>&nbsp;&nbsp;&nbsp; else</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // while you have still
+items and you haven't found the target yet</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (here-> item !=
+target &amp;&amp; here->link != NULL)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+here = here->link;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Found the target, return the pointer at that location</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (here-> item == target)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return here;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Search unsuccessful, return Null</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return NULL;</i>
+<br><i>&nbsp;&nbsp;&nbsp; }</i>
+<br><i>}</i>
+<p><b><font color="#000066"><font size=+1>Deleting a Node from the Middle
+of a Linked List</font></font></b>
+<br>The deletion of a node from a linked list must be done in several steps.
+<p>Here is the process (Suppose the <i>target </i>is located between two
+nodes <i>before</i> and <i>after)</i>
+<br>&nbsp;&nbsp;&nbsp; 1) Search for the node that is to be removed, <i>target</i>
+<br>&nbsp;&nbsp;&nbsp; 2) Connect the link from node <i>before </i>to <i>after</i>
+<br>&nbsp;&nbsp;&nbsp; 3) Discard the node <i>target</i>
+<p><a NAME="ex15.3"></a><b><font color="#00CC00"><font size=+1>Exercise
+15.3</font></font></b>
+<br>Modify P15_3.cpp such that it deletes a requested node from the middle
+of the linked list.
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

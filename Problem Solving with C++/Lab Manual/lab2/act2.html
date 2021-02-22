@@ -1,0 +1,171 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 2 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 2-2 - Simple
+Flow of Control</font></font></b>
+<br><b><font color="#000099"><font size=+3><i>if</i> Statement</font></font></b>
+<br><b><font color="#000099"><font size=+3><i>if ... else </i>Statement</font></font></b>
+<br><a href="act1.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act3.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In the programs you have seen so far, we have had a list of statements,
+which were executed in the order that they were written in your program
+(the .cpp file).&nbsp; In more complicated programs, you may need to change
+the order in which statements are executed.&nbsp; The order of execution
+for statements in your program is referred to as <b>flow of control</b>.
+<p>Let's look at one example.&nbsp; Suppose you are organizing an event
+that costs $12 for everyone older than 8 and $6 for any one 8 years or
+younger.&nbsp; One way to do this is to say the ticket is $12, unless you
+are 8 or younger, then it is $6.&nbsp;&nbsp; In this case, you can write:
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="78%" >
+<tr>
+<td>
+<center>Pseudo Code (English like statement)</center>
+</td>
+
+<td>
+<center>C++ equivalent</center>
+</td>
+</tr>
+
+<tr>
+<td>ticket = 12;&nbsp;
+<br>if(<font color="#009900">age is 8 or younger</font>)
+<br>&nbsp;&nbsp;&nbsp; ticket = 6;</td>
+
+<td>double ticket = 12.00, age;&nbsp;
+<br>if(<font color="#009900">age &lt;= 8</font>)
+<br>&nbsp;&nbsp;&nbsp; ticket = 6;</td>
+</tr>
+</table></center>
+
+<p>There is another way to do this.
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="78%" >
+<tr>
+<td>
+<center>Pseudo Code (English like statement)</center>
+</td>
+
+<td>
+<center>C++ equivalent</center>
+</td>
+</tr>
+
+<tr>
+<td>if(<font color="#009900">age is 8 or younger</font>)
+<br>&nbsp;&nbsp;&nbsp; ticket = 6;
+<br>else
+<br>&nbsp;&nbsp;&nbsp; ticket = 12;</td>
+
+<td>if(<font color="#009900">age &lt;= 8</font>)
+<br>&nbsp;&nbsp;&nbsp; ticket = 6;
+<br>else
+<br>&nbsp;&nbsp;&nbsp; ticket = 12;</td>
+</tr>
+</table></center>
+
+<p>Both of these do the same thing.&nbsp; In both cases, you will change
+the flow of execution when you reach the statement; "<font color="#009900">age
+is 8 or younger</font><font color="#000000">"</font><font color="#009900">.
+</font><font color="#000000">If
+that statement happens to be true, i.e., age is 8 or younger, then the
+value of ticket will change to $6, otherwise, you will go with its initialized
+value of $12.</font>
+<p>In general, the statement in the parentheses is either TRUE or FALSE.
+Depending on that being true or false, you will change the flow of execution
+of the statements in the program. In order for your program to decide about
+the flow of the execution, it uses a comparison operator.&nbsp; Examples
+of <u>comparison operators</u> are:
+<br>&nbsp;&nbsp;&nbsp; 1) <font color="#000000"><i>equal to , </i>= , which
+will be written as </font><font color="#009900">==</font><font color="#000000">
+(2 </font><font color="#009900">=</font><font color="#000000">'s) in C++,
+with a general form of: </font><font color="#3333FF">statement1</font><font color="#009900">==
+</font><font color="#3333FF">statement2.</font><font color="#000000">
+Example:
+</font><font color="#3333FF">y</font><font color="#000000"> </font><font color="#009900">==
+</font><font color="#3333FF">x
++ 1</font>
+<br>&nbsp;&nbsp;&nbsp; 2) <i>not <font color="#000000">equal to ,&nbsp;<img SRC="imageBA9.JPG" height=15 width=15></font></i><font color="#000000">,
+which will be written as </font><font color="#009900">!=</font><font color="#000000">
+in C++, with a general form of: </font><font color="#3333FF">statement1</font><font color="#009900">!=
+</font><font color="#3333FF">statement2.</font><font color="#000000">
+Example:
+</font><font color="#3333FF">y</font><font color="#000000"> </font><font color="#009900">!=
+</font><font color="#3333FF">x
++ 1</font>
+<br>&nbsp;&nbsp;&nbsp; 3) <i>less than<font color="#000000"> , &lt;</font></i><font color="#000000">,
+which will be written as </font><font color="#009900">&lt;</font><font color="#000000">
+in C++, with a general form of: </font><font color="#3333FF">statement1</font><font color="#009900">&lt;
+</font><font color="#3333FF">statement2.</font><font color="#000000">
+Example:
+</font><font color="#3333FF">y</font><font color="#000000"> </font><font color="#009900">&lt;
+</font><font color="#3333FF">x
++ 1</font>
+<br>&nbsp;&nbsp;&nbsp; 4) <i>less than or equal to<font color="#000000">
+,&nbsp;<img SRC="imagePEI.JPG" height=16 width=13></font></i><font color="#000000">,
+which will be written as </font><font color="#009900">&lt;=</font><font color="#000000">
+in C++, with a general form of: </font><font color="#3333FF">statement1</font><font color="#009900">&lt;=
+</font><font color="#3333FF">statement2.</font><font color="#000000">
+Example:
+</font><font color="#3333FF">y</font><font color="#000000"> </font><font color="#009900">&lt;=
+</font><font color="#3333FF">x
++ 1</font>
+<br>&nbsp;&nbsp;&nbsp; 5) <i>greater than<font color="#000000"> , ></font></i><font color="#000000">,
+which will be written as </font><font color="#009900">></font><font color="#000000">
+in C++, with a general form of: </font><font color="#3333FF">statement1</font><font color="#009900">>
+</font><font color="#3333FF">statement2.</font><font color="#000000">
+Example:
+</font><font color="#3333FF">y</font><font color="#000000"> </font><font color="#009900">>
+</font><font color="#3333FF">x
++ 1</font>
+<br>&nbsp;&nbsp;&nbsp; 6) <i>greater than or equal to<font color="#000000">
+,&nbsp;<img SRC="imageQJH.JPG" height=16 width=13></font></i><font color="#000000">,
+which will be written as </font><font color="#009900">>=</font><font color="#000000">
+in C++, with a general form of: </font><font color="#3333FF">statement1</font><font color="#009900">>=
+</font><font color="#3333FF">statement2.</font><font color="#000000">
+Example:
+</font><font color="#3333FF">y</font><font color="#000000"> </font><font color="#009900">>=
+</font><font color="#3333FF">x
++ 1</font>
+<br>&nbsp;&nbsp;&nbsp; 7) OR, which will be written as <font color="#009900">||</font>
+(2 of the<font color="#009900"> |</font>'s) in C++, with a general form
+of: <font color="#3333FF">statement1</font><font color="#009900">|| </font><font color="#3333FF">statement2</font><font color="#000000">.&nbsp;
+Which may be True when either one of the two statements are TRUE.</font>
+<br>&nbsp;&nbsp; 8) AND, which will be written as <font color="#009900">&amp;&amp;</font>
+(2 of the<font color="#009900"> &amp;</font>'s) in C++, with a general
+form of: <font color="#3333FF">statement1 &amp;&amp;statement2</font><font color="#000000">.&nbsp;
+Which may be True ONLY when both statements are TRUE.</font>
+<p>Now that you have learned about changing the flow of control, let's
+write a program called ticket.cpp that asks users to enter an age and displays
+the cost of the ticket based on the criteria that was given above.&nbsp;
+Use both methods to make sure
+<p>// ticket.cpp -&nbsp; This program asks for an age and displays the
+cost of the ticket
+<br>#include&lt;iostream.h>
+<br>using namespace std;
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double age, ticket = 12;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Please enter the age \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> age;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(<font color="#009900">age &lt;= 8</font>)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ticket
+= 6;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Your ticket costs " &lt;&lt;
+ticket &lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p><a NAME="ex221"></a><b><font color="#00CC00"><font size=+1>Exercise
+22-1</font></font></b>
+<br>Change the ticket.cpp program such that it displays $6 for people who
+are 8 years old or younger OR 65 years or older.
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 17 - 2 </title>
+<script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+</script>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 17-2 -
+Defining Your Own Exception Classes</font></font></b>
+<br><b><font color="#000099"><font size=+3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Multiple Exceptions</font></font></b>
+<br><a href="act1.html"><img SRC="lfarrow.jpg" BORDER=0 height=35 width=36></a><a href="act3.html"><img SRC="rtarrow.jpg" BORDER=0 height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>A throw_statement can throw a value of any type.&nbsp; A common thing
+to do is to define a class whose objects can carry the precise kind of
+information you want to throw to the catch-block.&nbsp; For what other
+reason may you want to have a specialized exception class?&nbsp; You can
+have different types to identify each possible kind of exceptional situation.&nbsp;
+Remember that an exception class is just a class.&nbsp; What makes it an
+exception class is how it's used.
+<p>Here is a revised version of the program in the previous activity with
+a home-made exception class.
+<p>// P17_2.cpp - This program computes donuts per glasses of milk
+<br>// It uses a home-made exception class
+<br><i>#include &lt;iostream></i>
+<br><i>using namespace std;</i>
+<p><i><font color="#CC0000">class NoMilk</font></i>
+<br><i><font color="#CC0000">{</font></i>
+<br><i><font color="#CC0000">public:</font></i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp; NoMilk();</font></i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp; NoMilk(int how_many);</font></i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp; int get_donuts();</font></i>
+<br><i><font color="#CC0000">private:</font></i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp; int count;</font></i>
+<br><i><font color="#CC0000">};</font></i>
+<p><i>int main()</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; int donuts, milk;</i>
+<br><i>&nbsp;&nbsp;&nbsp; double dpg;</i>
+<p><i>&nbsp;&nbsp;&nbsp; try</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter
+number of donuts:\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> donuts;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter
+number of glasses of milk:\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> milk;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (milk &lt;= 0)</i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throw NoMilk(donuts);</font></i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dpg = donuts/double(milk);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; donuts
+&lt;&lt; " donuts.\n"</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; milk &lt;&lt; " glasses of milk.\n"</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; "You have " &lt;&lt; dpg</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; " donuts for each glass of milk.\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; }</i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp; catch(NoMilk e)</font></i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp; {</font></i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; e.get_donuts() &lt;&lt; " donuts, and No Milk!\n"</font></i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; "Go buy some milk.\n";</font></i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp; }</font></i>
+<br><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "End of program.";</i>
+<br><i>&nbsp;&nbsp;&nbsp; return 0;</i>
+<br><i>}</i>
+<br>&nbsp;
+<p><i><font color="#CC0000">NoMilk::NoMilk()</font></i>
+<br><i><font color="#CC0000">{}</font></i>
+<br><i><font color="#CC0000">NoMilk::NoMilk(int how_many) : count(how_many)</font></i>
+<br><i><font color="#CC0000">{}</font></i>
+<p><i><font color="#CC0000">int NoMilk::get_donuts()</font></i>
+<br><i><font color="#CC0000">{</font></i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp; return count;</font></i>
+<br><i><font color="#CC0000">}</font></i>
+<p>In the above program we had:
+<p><i>throw NoMilk(donuts);</i>
+<p>The part <i>NoMilk(donuts)</i> is an invocation of a constructor for
+the class <i>NoMilk</i>.&nbsp; This constructor takes one <i>int </i>argument
+and creates an object of the class <i>NoMilk</i>.&nbsp; That object is
+then "thrown."
+<p>Important Note: When catching multiple exceptions, the order of the
+catch-blocks can be important.&nbsp; You have to remember that the catch-block
+will be tried in the order that they appear in the program, thus, the first
+one that matches the type of the exception thrown is the one that is executed.
+<p><u>Interesting case:</u> The following is a special kind of catch-block
+that will catch a thrown value of any type:
+<br><i>catch (...) // The three dots must be placed</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; &lt;place whatever you want in here></i>
+<br><i>}</i>
+<p>This is the most general case, so this catch should be included at the
+end after all other cases.
+<br>&nbsp;
+<p><a NAME="ex17.2"></a><b><font color="#00CC00"><font size=+1>Exercise
+17.2</font></font></b>
+<br>The following program solves a quadratic equation.&nbsp; Use an exception
+handler similar to the one above to handle the exceptional situation that
+has occured.
+<br>Include a general exception handler for exceptions that may need to
+be included, such as for the case that all coefficients are 0 or for other
+situations.
+<p><i>// Program to solve quadratic equation</i>
+<br><i>#include &lt;iostream></i>
+<br><i>#include &lt;cstdlib></i>
+<br><i>#include &lt;cmath></i><i></i>
+<p><i>using namespace std;</i><i></i>
+<p><i>int main( )</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; double a, b, c; // coefficient of ax^2 + bx +
+c = 0</i>
+<br><i>&nbsp;&nbsp;&nbsp; double x1, x2; // The two roots</i><i></i>
+<p><i>&nbsp;&nbsp;&nbsp; double temp;</i><i></i>
+<p><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the three coefficients \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; cin >> a >> b >> c;</i><i></i>
+<p><i>&nbsp;&nbsp;&nbsp; if(a != 0)</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+temp = b*b - 4*a*c;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if(temp >= 0)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Two roots</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+x1 = ( -b + sqrt(temp))/2*a;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+x2 = ( -b - sqrt(temp))/2*a;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "The two roots are: " &lt;&lt; x1 &lt;&lt; " and " &lt;&lt;
+x2 &lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Square root of negative values is not defined \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+exit(1);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</i><i></i>
+<p><i>&nbsp;&nbsp;&nbsp; }</i>
+<br><i>&nbsp;&nbsp;&nbsp; else</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Division by zero, not defined \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+exit(1);</i>
+<br><i>&nbsp;&nbsp;&nbsp; }</i><i></i>
+<p><i>&nbsp;&nbsp;&nbsp; return 0;</i><i></i>
+<p><i>}</i>
+</body>
+</html>

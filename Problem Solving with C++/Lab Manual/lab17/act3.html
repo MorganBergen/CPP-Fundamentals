@@ -1,0 +1,187 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 17 - 3 </title>
+<script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+</script>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 17-3 -
+Throwing an Exception in a Function</font></font></b>
+<br><a href="act2.html"><img SRC="lfarrow.jpg" BORDER=0 height=35 width=36></a><a href="act4.html"><img SRC="rtarrow.jpg" BORDER=0 height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>Sometimes you may want to delay handling an exception.&nbsp; For example,
+you may have a function with code that throws an exception if there is
+an attempt to divide by zero, but you may not want to catch the exception
+in that function.&nbsp; This becomes an important issue because one program
+that uses this function should end if the exception is thrown, and other
+programs that use this function may want to do something else.&nbsp; So
+in such cases, it makes sense to not catch the exception in the function
+definition, but instead to have any program that uses the function place
+the function invocation in a try-block and then catch the exception in
+a catch-block that follows that try-block.
+<p>Here is an example:
+<p><i>// P17_3.cpp - This program illustrates throwing an exception inside
+a function</i>
+<br><i>#include &lt;iostream></i>
+<br><i>#include &lt;cstdlib></i>
+<br><i>using namespace std;</i>
+<p><i>class DivideByZero</i>
+<br><i>{};</i>
+<p><i><font color="#3333FF">double safe_divide(int top, int bottom) throw
+(DivideByZero);</font></i>
+<p><i>int main()</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; int numerator;</i>
+<br><i>&nbsp;&nbsp;&nbsp; int denominator;</i>
+<br><i>&nbsp;&nbsp;&nbsp; double quotient;</i>
+<br><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter numerator:\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; cin >> numerator;</i>
+<br><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter denominator:\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; cin >> denominator;</i>
+<p><i>&nbsp;&nbsp;&nbsp; try</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; quotient = safe_divide(numerator,
+denominator);</i>
+<br><i>&nbsp;&nbsp;&nbsp; }</i>
+<br><i>&nbsp;&nbsp;&nbsp; catch(DivideByZero)</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Error:
+Division by zero!\n"</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; "Program aborting.\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit(0);</i>
+<br><i>&nbsp;&nbsp;&nbsp; }</i>
+<p><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; numerator &lt;&lt; "/" &lt;&lt;
+denominator</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;&lt; " = "
+&lt;&lt; quotient &lt;&lt; endl;</i>
+<p><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "End of program.\n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; return 0;</i>
+<br><i>}</i>
+<p><i><font color="#3333FF">double safe_divide(int top, int bottom) throw
+(DivideByZero)</font></i>
+<br><i>{</i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp; if (bottom == 0)</font></i>
+<br><i><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throw DivideByZero();</font></i>
+<p><i>&nbsp;&nbsp;&nbsp; return top/double(bottom);</i>
+<br><i>}</i>
+<p>In this program there is no throw statement visible in the try-block.&nbsp;
+The statement that does the throwing in that program is:
+<p><font color="#CC0000">&nbsp;&nbsp;&nbsp; if (bottom == 0)</font>
+<br><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw
+DivideByZero();</font>
+<p>and it is not visible in the try-block, however, it is in the try-block
+in terms of program execution.&nbsp; If you look closely, you will see
+an <i>if statement</i> in the body of function <i>safe_divide</i> which
+will be invoked in the try-block.
+<p><b><font color="#000099">Exception Specifications</font></b>
+<br>If a function does not catch an exception, it should at least warn
+programmers that any invocation of the function might possibly throw an
+exception.&nbsp; If there are exceptions that might be thrown, but not
+caught in the function definition, then those exception types should be
+listed in an <b>exception specification</b>, which is illustrated by the
+following:
+<p><i><font color="#3333FF">double safe_divide(int top, int bottom) throw
+(DivideByZero);</font></i>
+<p>The exception specification must appear in both the function declaration
+and the function definition.&nbsp; If a function has more than one declaration,
+all function declarations must have the same exception specification.&nbsp;
+The exception specification is also referred to as a <b>throw-list</b>.
+<p>If more than one exception is thrown in a function, then they are separated
+by commas:
+<p><i>void some_function( ) throw (DivideByZero, OtherException);</i>
+<p>If an exception is thrown into a function but that function does not
+include the specification, then the program ends once it has reached the
+exception situation.
+<p><a NAME="ex17.3"></a><b><font color="#00CC00"><font size=+1>Exercise
+17.3</font></font></b>
+<br>The following program solves a quadratic equation.&nbsp; Use the concepts
+that you have learned in this activity to rewrite the program such that
+it uses the exception handlers to handle exceptional situations.
+<p>// Program to solve quadratic equation
+<br>#include &lt;iostream>
+<br>#include &lt;cstdlib>
+<br>#include &lt;cmath>
+<p>using namespace std;
+<br>void all_zero( );
+<br>void roots(double a, double b, double c);
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp; double a, b, c; // coefficient of ax^2 + bx + c
+= 0
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the three coefficients \n";
+<br>&nbsp;&nbsp;&nbsp; cin >> a >> b >> c;
+<p>&nbsp;&nbsp;&nbsp; roots(a, b, c);
+<p>&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>void all_zero( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp; exit(1);
+<br>}
+<p>void roots(double a, double b, double c)
+<br>{
+<br>&nbsp;&nbsp;&nbsp; double x1, x2; // The two roots
+<br>&nbsp;&nbsp;&nbsp; double temp;
+<p>&nbsp;&nbsp;&nbsp; if( !(a == 0 &amp;&amp; b == 0 &amp;&amp; c == 0)
+)
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(a != 0)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+temp = b*b - 4*a*c;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if(temp >= 0)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Two roots
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+x1 = ( -b + sqrt(temp))/2*a;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+x2 = ( -b - sqrt(temp))/2*a;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "The two roots are: " &lt;&lt; x1 &lt;&lt; " and " &lt;&lt;
+x2 &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Square root of negative values is not defined \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+exit(1);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Division by zero, not defined \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+exit(1);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;}
+<br>&nbsp;&nbsp;&nbsp; else
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; all_zero( );
+<br>&nbsp;&nbsp;&nbsp; }
+<br>}
+<br>&nbsp;
+</body>
+</html>

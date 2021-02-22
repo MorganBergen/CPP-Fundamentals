@@ -1,0 +1,140 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 9 - 3 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 9-3 - Placing
+a Class in a Namespace</font></font></b>
+<br><a href="act2.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="post_lab.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In Activity 9-2, we placed functions in different name spaces and used
+a function with the same name and same number of parameters to do different
+things.&nbsp; Note that function overloading would allow us to use functions
+of the same name but with a different number of arguments or different
+argument types to do different things.&nbsp; In this activity we look into
+another possibility with namespace where we place a class in a name space.
+<p><b><font color="#000099">Creating a Namespace with a class</font></b>
+<br>To place some program in a namespace, simply include the program in
+the <b>namespace grouping:</b>
+<p>#ifndef CLASSNAME_H
+<br>#define CLASSNAME_H
+<br>#include&lt;iostream>
+<br>#include&lt;ALL OTHERS>
+<p><font color="#CC0000">namespace classname</font>
+<br><font color="#CC0000">{</font>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; class myclass</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };</i>
+<p><font color="#CC0000">} // end classname</font>
+<p>#endif
+<p>To make the class defined in this namespace available to your programs,
+use using directive:
+<p><i><font color="#CC0000">using namespace classname;</font></i>
+<p>To illustrate this let's apply this to a class ID that we used in Activity
+1.
+<p><font color="#000000">#define&nbsp; ID_H</font>
+<br><font color="#000000">#ifndef ID_H</font>
+<p><font color="#000000">#include&lt;iostream></font>
+<p><font color="#CC0000">namespace idclass1</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; class ID</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public:</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ID( );</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ID(int, int, int);</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+void display();</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; private:</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int left;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int middle;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int right;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; };</font>
+<br><font color="#CC0000">} // end of idclass namespace</font>
+<p><font color="#000000">#endif</font>
+<p>Now we can use this in a program.
+<p><b><font color="#009900">// File ID.h</font></b>
+<br><font color="#009900">#ifndef ID_H</font>
+<br><font color="#009900">#define&nbsp; ID_H</font>
+<p><font color="#009900">#include&lt;iostream.h></font>
+<p><font color="#009900">namespace idclass1</font>
+<br><font color="#009900">{</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; class ID</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public:</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ID( );</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ID(int, int, int);</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+void display();</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; private:</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int left;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int middle;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int right;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; };</font>
+<br><font color="#009900">} // end of idclass1 namespace</font>
+<p><font color="#009900">#endif</font>
+<br>&nbsp;
+<p><b><font color="#990000">// File ID.cpp</font></b>
+<br><font color="#990000">#include&lt;iostream.h></font>
+<br><font color="#990000">#include "ID.h"</font>
+<p><font color="#990000">using namespace idclass1;</font>
+<p><font color="#990000">ID::ID( )</font>
+<br><font color="#990000">{</font>
+<br><font color="#990000">&nbsp;&nbsp; // use default values</font>
+<br><font color="#990000">}</font>
+<p><font color="#990000">ID::ID(int l, int m, int r)</font>
+<br><font color="#990000">{</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp; left = l;</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp; middle = m;</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp; right = r;</font>
+<br><font color="#990000">}</font>
+<p><font color="#990000">void ID::display()</font>
+<br><font color="#990000">{</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; right
+&lt;&lt; "-" &lt;&lt; middle &lt;&lt; "-" &lt;&lt; right &lt;&lt; endl;</font>
+<br><font color="#990000">}</font>
+<p><b>// File main_prog.cpp</b>
+<br>// This program is a driver written to demonstrate how we can use
+<br>// namespaces
+<p>#include&lt;iostream>
+<br>#include "ID.h"
+<br>using namespace std;
+<p>// This part will go to the main program, main_prog.cpp
+<br>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp; using namespace idclass1;
+<p>&nbsp;&nbsp;&nbsp; ID id1;
+<p>&nbsp;&nbsp;&nbsp; id1 = ID(111, 22, 4444);
+<br>&nbsp;&nbsp;&nbsp; id1.display( );
+<p>&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p><a NAME="ex93"></a><b><font color="#00CC00"><font size=+1>Exercise 9.3</font></font></b>
+<br>Copy and paste the above three program segments in their corresponding
+files given at the top of each segment.&nbsp; Once all files are separated,
+compile using:
+<br>% g++&nbsp; main_prog.cpp&nbsp; ID.cpp
+<p>This will create an a.out file that you can run to display the result,
+which is 111-22-4444.
+<p>Define a new namespace that includes the loan class. Then, create a
+program that is similar to ex91.cpp but works with the two namespaces that
+you have defined here.
+<br>&nbsp;
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 14 - 2 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 14-2 -
+Templates for Classes</font></font></b>
+<br><a href="act1.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="post_lab.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<p>The syntax for class templates is basically the same as that for function
+templates:
+<p><i>template&lt;class T></i>
+<p>This statement will be placed before the template definition.&nbsp;
+The type parameter <font color="#CC0000">T </font><font color="#000000">is
+used in the class definition just like any other type.&nbsp; Here is an
+example:</font>
+<p><i><font color="#000000">// Class for a pair of values of type T:</font></i>
+<br><i><font color="#000000">template&lt;class T></font></i>
+<br><i><font color="#000000">class Pair</font></i>
+<br><i><font color="#000000">{</font></i>
+<br><i><font color="#000000">public:</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Pair( );</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Pair(T first_value, T second_value);</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+void set_element(int position, T value);</font></i>
+<p><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+T_get_element(int position) const;</font></i>
+<p><i><font color="#000000">private:</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+T first;</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+T second;'</font></i>
+<br><i><font color="#000000">};</font></i>
+<p><font color="#000000">An object of this class contains a pair of values
+of type </font><font color="#CC0000">T</font><font color="#000000">.&nbsp;
+Once the class template is defined, we can declare objects of this class.&nbsp;
+The declaration must specify what type is to be filled in for </font><font color="#CC0000">T.</font><font color="#000000">&nbsp;&nbsp;
+For example,</font>
+<p><i><font color="#000000">Pair&lt;int>&nbsp; score;&nbsp; </font></i><font color="#000000">//
+declares the object score to record a pair of integers</font>
+<br><i><font color="#000000">pair&lt;char> seat; </font></i><font color="#000000">//
+declares the object seat to record a pair of characters</font>
+<p><font color="#000000">The two objects can be used like any other objects.&nbsp;
+For example,</font>
+<p><i><font color="#000000">score.set_element(</font><font color="#FF6600">1</font><font color="#000000">,
+</font><font color="#3333FF">3</font><font color="#000000">);&nbsp;
+</font></i><font color="#000000">// Sets the score for the </font><font color="#FF6600">first
+</font><font color="#000000">team to </font><font color="#3333FF">3</font>
+<br><i><font color="#000000">score.set_element(</font><font color="#FF6600">2</font><font color="#000000">,
+</font><font color="#3333FF">0</font><font color="#000000">);&nbsp;
+</font></i><font color="#000000">// Sets the score for the </font><font color="#FF6600">second</font><font color="#000000">
+team to </font><font color="#3333FF">0</font>
+<p><font color="#000000">As you can see in the above class member function
+definitions are also templates.</font>
+<p><font color="#000000">Here are the definitions for the member functions
+<i>set_element</i>
+and the constructor <i>Pair</i> with two arguments.</font>
+<p><i><font color="#000000">// Use iostream and cstdlib</font></i>
+<br><i><font color="#000000">template&lt;class T></font></i>
+<br><i><font color="#000000">void Pair&lt;T>::set_element(int position,
+T value)</font></i>
+<br><i><font color="#000000">{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if(position == 1)</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+first = value;</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else if(position == 2)</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+second = value;</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Error: Illegal pair position. \n";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+exit(1);</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</font></i>
+<br><i><font color="#000000">}</font></i>
+<p><i><font color="#000000">template&lt;class T></font></i>
+<br><i><font color="#009900">Pair&lt;T></font><font color="#000000">::Pair(T
+first_value, T second_value) : first(first_value), second(second_value)</font></i>
+<br><i><font color="#000000">{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; // empty body</font></i>
+<br><i><font color="#000000">}</font></i>
+<p><font color="#000000">Important note:&nbsp; The class name before the
+scope resolution operator is </font><i><font color="#009900">Pair&lt;T></font></i><font color="#000000">,
+not simply <i>Pair</i>.</font>
+<p>The name of a class template may be used as the type for a function
+parameter:
+<p>For example,
+<br><i>int add_up(const Pair&lt;<font color="#FF6600">int</font>>&amp;
+the_pair);</i>
+<p>returns the sum of the two <font color="#FF6600">integers</font> in
+<i>the_pair</i>.&nbsp;
+You can use a class template within a function template.
+<p><i>template&lt;class T></i>
+<br><i>T add_up(const Pair&lt;T>&amp; the_pair);</i>
+<p><b><font color="#000099"><font size=+1>Type Definitions</font></font></b>
+<br>You can specialize a class template by giving a type argument to the
+class name, as in the following example:
+<p><i>Pair&lt;int></i>
+<p>The specialized class name, like <i>Pair&lt;int></i>, can then be used
+just like any class name.&nbsp; It can be used to declare other objects
+or to specify the type of a formal parameter. You can also define a new
+class that has <u>the same meaning&nbsp;</u> as a specialized class template
+name, such as <i>Pair&lt;int>.&nbsp; </i>The syntax for such a defined
+type name is:
+<p><i>typedef Class_Name&lt;Type_Argument>&nbsp; New_Type_Name;</i>
+<p>The type name <i>PairOfInt </i>can now be used to declare objects of
+type <i>Pair&lt;int></i>:
+<p><i>PairOfInt pair1, pair2;</i>
+<p>The type name <i>PairOfInt </i>can also be used to specify the type
+of a formal parameter.
+<p><a NAME="ex14.2"></a><b><font color="#00CC00"><font size=+1>Exercise
+14.2</font></font></b>
+<br>Write the definitions for the member functions <i>get_element</i> for
+the class template <i>Pair</i> and the constructor P<i>air( ) </i>with
+no argument.&nbsp; Add to the class a member function called <i>display_pairs
+</i>that
+displays the pairs.&nbsp; Then write a complete program that uses the class
+to read a pair of integers and a pair of strings and assign them to the
+appropriate objects, <i>grades</i> and <i>names</i>. Here is an example
+of an input pair:
+<br>first pairs:
+<br>87&nbsp; 90
+<br>second pairs:
+<br>Tom&nbsp; Martha
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

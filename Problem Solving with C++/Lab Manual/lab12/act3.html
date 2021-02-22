@@ -1,0 +1,129 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 12 - 3</title>
+<script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+</script>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 12-3 - Destructors
+and copy constructors</font></font></b>
+<br><a href="act2.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="post_lab.html"><img SRC="rtarrow.jpg" BORDER=0 height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br><b><font color="#000099"><font size=+1>Destructors</font></font></b>
+<br>We have seen that a special member function, the <i>constructor</i>,
+is called automatically when an object is first created.&nbsp; On the contrary,
+when an object goes out of scope or is destroyed, a special member function
+called the <i>destructor</i> is called automatically. A destructor has
+the same name as the constructor (which is the same as the class name ),
+but it is preceeded by a tilde (~).&nbsp; Here is an example:
+<p>class Test
+<br>{
+<br>&nbsp;&nbsp; private:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int *data;
+<br>&nbsp;&nbsp; public:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Test( )&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Constructor (same name as the name of the class)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+*data = 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FF0000">
+~Test( )&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Destructor (same name , but preceeded by a tilde (~))
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+delete data;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}
+<p>The job of a destructor is to free up the memory that is taken up by
+an object when we no longer need it.
+<p><b><font color="#000099"><font size=+1>Copy Constructors</font></font></b>
+<p><font color="#000000">We know that we can define and at the same time
+initialize an object to the value of another object. Let's say we have
+a class Area. We can say</font>
+<p><font color="#000000">Area a3(a2);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Copy initialization</font>
+<p><font color="#000000">or we can also say</font>
+<p><font color="#000000">Area a3 = a2;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Alternate syntax</font>
+<p><font color="#000000">Both styles of definition invoke a copy constructor.
+i.e., a constructor that copies its arguments into a new object. The default
+copy constructor, which is provided automatically by the compiler for every
+object, performs a member-by-member copy. This is similar to what the assignment
+operator does; the difference is that the copy constructor also creates
+a new object.</font>
+<p>You've used the assignment operator (=) many times, probably without
+thinking too much about it. we've used it to initialize integers like
+<p>int a = 67;
+<p>to initialize a variable to another variable already defined and assigned
+as in
+<p>int b = a;
+<p>we have also used it to create objects and initialize them to the value
+of other objects as
+<p>Area a3 = a2;
+<br>Area a3(a2);
+<p>The assignment operator can be overloaded. Consider
+<p>class StringVar
+<br>{
+<br>&nbsp;&nbsp; public:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+void operator =(const StringVar&amp; right_side);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Overloads the assignment operator = to copy a string
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// from one object to another.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;the rest of the definition of the class is the same as Display 12.7
+in your text>
+<br>}
+<p>void StringVar::operator =(const StringVar&amp; right_side)
+<br>{
+<br>&nbsp;&nbsp;&nbsp; int new_length = strlen(right_side.value);
+<br>&nbsp;&nbsp;&nbsp; if (new_length > max_length)
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete [] value;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max_length = new_length;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value = new char[max_length
++ 1];
+<br>&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; new_length; i++ )
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value[i] = right_side.value[i];
+<br>&nbsp;&nbsp; value[new_length]='\0';
+<br>}
+<p>The assignment operator can now be used just as you always use the assignment
+operator. string1 = string2. Notice that the argument to operator =() is
+passed by reference. It is not necessary to do this, buts is often a good
+idea.Arguments passed by value generate a copy of itself in the function
+to which it is passed. The argument passed to the operator =( ) function
+is no exception. If such objects are large, a lot of memory can be wasted.
+Values passed by reference don't generate copies, thus help conserve memory.
+<p><font color="#000000">The copy constructor, the assignment operator
+(=) and the destructor are called the <b>big three</b> because if you need
+to define any of them , then you need to define all three. For any class
+that uses pointers and the new operator, it is safest to define your own
+copy constructor, overloaded =, and destructor.</font>
+<p><b><font color="#00CC00"><font size=+1>Exercise 12.3</font></font></b>
+<br>Write a C++ program to swap the value of two objects using pointers.&nbsp;
+To test it, use a class that has two variable members: 1) the dynamic length
+of a string, <i>int length, </i>and 2) a pointer to the characters of a
+string object, <i>char *Chars;</i>.
+</body>
+</html>

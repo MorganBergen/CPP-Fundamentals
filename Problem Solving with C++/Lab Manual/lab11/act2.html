@@ -1,0 +1,114 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 11 - 2 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 11-2 -
+The Standard String Class</font></font></b>
+<br><a href="act1.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act3.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In the previous activity, you learned to create C-strings.&nbsp; The
+C-strings were simply arrays of characters terminated with the null character,
+'\0'.&nbsp; To manipulate these strings you used some functions.&nbsp;
+In almost all cases, you as the programmer need to somehow keep track of
+number of elements that you have stored in a C-string.&nbsp; The standard
+<i>string
+class </i>is defined in the library <i>&lt;string> </i>and the definitions
+are placed in the <i>std</i> namespace.&nbsp; The class string allows you
+to treat string values and string expressions very much like values of
+a simple type.&nbsp; For example, when s1, s2, and s3 are objects of type
+string, to concatenate string s2 at the end of string s1 and to store the
+resulting string into s3, we will use:
+<p>s3 = s1 + s2;
+<p>Also, to initialized a string s4, we no longer need <i>strcpy </i>function
+and we can use:
+<p>s4 = "Hello World";
+<p>The string class has a constructor that initializes the string to empty
+and one that initializes the string to a desired string.&nbsp; Following
+are the examples for these two:
+<p>string empty_string;
+<br>string something("hello");
+<p>The first one uses a constructor to create the empty_string as an empty
+string and the second one initializes the string to "hello".&nbsp; The
+following two lines are equivalent:
+<p>string something("hello");
+<br>string something = "hello";
+<p>Here is an example in which a string class is used:
+<p>// P11_2.cpp - This program demonstrates the use of string classes
+<p>#include&lt;iostream>
+<br>#include&lt;string>
+<br>using namespace std;
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; string phrase;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; string adjective("fried"), noun("ants");
+<br>&nbsp;&nbsp;&nbsp;&nbsp; string wish = "Bon appetite!";
+<p>&nbsp;&nbsp;&nbsp;&nbsp; phrase = "I love " + adjective + " " + noun
++ "!";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; phrase &lt;&lt; endl
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; wish &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>As you may have noticed, in this program "+" is overloaded in the string
+class such that it now does the concatenation of strings.
+<p>The standard string class has several functions that make things very
+easy.&nbsp; A list of these functions appear in the Display 11.7.&nbsp;
+The following program illustrates a few examples.
+<p>// P11_2a.cpp - This program demonstrate the use of functions associated
+<br>// with the string class
+<p>#include&lt;iostream>
+<br>#include&lt;string>
+<br>using namespace std;
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; string phrase,temp1, temp2;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; string adjective("fried"), noun("ants");
+<br>&nbsp;&nbsp;&nbsp;&nbsp; string wish = "Bon appetite!";
+<p>&nbsp;&nbsp;&nbsp;&nbsp; phrase = "I love " + adjective + " " + noun
++ "!";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; phrase &lt;&lt; endl
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; wish &lt;&lt; endl;
+<p>&nbsp; // copy phrase to newphrase
+<br>&nbsp; string newphrase(phrase);
+<p>&nbsp;&nbsp;&nbsp;&nbsp; // append wish to the end of newpharase
+<br>&nbsp; newphrase += wish;
+<p>&nbsp; // separates the first sentence
+<br>&nbsp;&nbsp;&nbsp;&nbsp; temp1 = newphrase.substr(0, 18);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; temp1 &lt;&lt; endl;
+<p>&nbsp; // separates the second sentence
+<br>&nbsp;&nbsp;&nbsp;&nbsp; temp2 = newphrase.substr(18, 10);
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; temp2 &lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>In the above program the statement:
+<br>&nbsp;&nbsp;&nbsp;&nbsp; temp1 = newphrase.substr(0, 18); and
+<br>&nbsp;&nbsp;&nbsp;&nbsp; temp2 = newphrase.substr(18, 10);
+<p>have something new in them.&nbsp; The <i>substr(position, length) </i>function
+is a function that returns the substring of the calling object starting
+at <i>position</i> and having <i>length </i>characters.
+<p><a NAME="ex11.2"></a><b><font color="#00CC00"><font size=+1>Exercise
+11.2</font></font></b>
+<br>I typed the following 2 lines late last night and made several mistakes.&nbsp;
+As you will immediately notice, I have written G++ for g++ and Gcc for
+gcc.&nbsp; I want you to help me fix these errors by writing a C++ program
+to replace the incorrect statements with the correct ones.&nbsp; For now,
+assume that we will type these two lines from the keyboard.&nbsp; So you
+will read the two sentences from the keyboard, and will display the corrected
+sentences at the end.
+<p>Use the above program and functions given in Display 11.7 to write a
+program that make the necessary corrections when these two sentences are
+type at the keyboard.&nbsp; I hope to have your program handy so the next
+time I make such a mistake, I can easily fix it.
+<p><i>The C and C++ compilers are integrated; G++ is a script to call Gcc
+with options to recognize C++.</i>
+<br><i>Gcc processes input files through one or more stages.</i>
+<br>&nbsp;
+</body>
+</html>

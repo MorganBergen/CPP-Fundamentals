@@ -1,0 +1,182 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 1</title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 3-1 - Predefined
+Functions</font></font></b>
+<br><a href="pre_lab.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act2.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>A function is a subprogram that is included in a C++ program to perform
+a particular task such as obtaining data, carrying out some calculations,
+displaying some
+<br>information or messages, and displaying the output data.&nbsp; In C++,
+there are many predefined functions that are written to simplify the computations.&nbsp;
+Following is an
+<br>example in which a predefined function can significantly simplify the
+computations.&nbsp; This program is very similar to the one given in the
+first question in your prelab assignment.&nbsp; Here, we want the program
+to compute 2<sup>4</sup>, 3<sup>3</sup>, and 5<sup>4</sup> all in the same
+program and displays the results.
+<p>// P31_1.cpp This C++ program computes the value of a to the power of
+b (a^b) for three cases.
+<br>#include&lt;iostream>
+<br>using namespace std;
+<p>int main(void)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int i = 0, <font color="#990000">p =
+1</font>;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int a = 2, b = 4;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#990000">while(i &lt; b)
+// computing 2^4</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+p = p * a;</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+i++;</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; a &lt;&lt; " to
+the power of " &lt;&lt; b &lt;&lt; " is = " &lt;&lt; p &lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i = 0;
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p = 1</font>;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a = 3, b = 3;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#990000">while(i &lt; b)&nbsp;
+// computing 3^3</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+p = p * a;</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+i++;</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; a &lt;&lt; " to
+the power of " &lt;&lt; b &lt;&lt; " is = " &lt;&lt; p &lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i = 0;
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p = 1</font>;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a = 5, b = 4;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#990000">while(i &lt; b)&nbsp;
+// computing 5^4</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+p = p * a;</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+i++;</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; a &lt;&lt; " to
+the power of " &lt;&lt; b &lt;&lt; " is = " &lt;&lt; p &lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>The heart of this program is the part in <font color="#990000">red</font>
+font.&nbsp; Imagine, you wanted to compute hundred of these calculations
+in a program.&nbsp; For now, it seems that we have to repeat several lines,
+which are almost identical, hundred times. But, we may have a better option.&nbsp;
+Here is a question for you to think about.&nbsp; In program P31_1.cpp,
+all variables are declared as int.&nbsp; Could you do the same computation
+for real values, i.e., could you make changes in that program such that
+it would compute something like 2.3<sup>5.48</sup>?
+<p>There is a predefined function in C++ that computes a number to the
+power of another.&nbsp; The function is called <i>pow</i>.&nbsp; This function
+will take two numbers as its <b>arguments </b>and will compute one to the
+power of the other and will return the result which is referred to as <b>value
+returned</b>.&nbsp; For example, in the above program, to compute 3<sup>4</sup>,
+we can use
+<i>p = pow(3,4)</i>.&nbsp; Here, 3 and 4 are the <b>arguments
+</b>tothis
+function and the result, is the <b>value returned</b> which is assigned
+to <i>p</i>.&nbsp; Using this predefined function, the above code can be
+simplified significantly.&nbsp; Please note that in order to use the <i>pow
+</i>predefined
+function, you need to include the c<i>math </i>directive, i.e. <i>#include&lt;cmath></i>
+<p><a NAME="ex31"></a><b><font color="#00CC00"><font size=+1>Exercise 3.1</font></font></b>
+<br>Modify the P31_1.cpp program and use the predefined function <i>pow
+</i>to
+compute the a^b power.&nbsp; Call your new program ex31.cpp.
+<p>Note that the <i>pow </i>function allows us to compute a real number
+to the power of another real number as well.&nbsp; Here is the definition
+of the <i>pow </i>function:
+<p><i>pow - computes powers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i>It
+takes two parameters of type <i>double, </i><font color="#CC0000">a</font>
+and <font color="#CC0000">b</font> and its value returned is of type <i>double</i>
+as well, <i>p = pow(a,b)</i>
+<p><a NAME="ex32"></a><b><font color="#00CC00"><font size=+1>Exercise 3.2</font></font></b>
+<br>We can further improve the new program using a <i>while loop, </i>so
+that it asks the user to input an <b>a</b> and a <b>b </b>(basically of
+any type) and computes the <i>pow</i>(<b>a, b)<i> </i></b>to compute <i>p
+= pow(a,b) </i>and displays the result. Call your new improved program
+ex32.cpp.
+<p>There are more predefined functions in C++, here are some of them:
+<br><i><font color="#009900">abs</font> - computes absolute value&nbsp;&nbsp;&nbsp;&nbsp;
+</i>It takes one parameter of type <i>integer, </i><font color="#CC0000">a</font>,
+and its value returned is of type <i>integer </i>as well. <i>p = <font color="#009900">abs</font>(</i><font color="#990000">a</font><i>)</i>
+<br><i><font color="#009900">fabs </font>- computes absolute value&nbsp;&nbsp;&nbsp;
+</i>It takes one parameter of type <i>double, </i><font color="#CC0000">a</font>,
+and its value returned is of type <i>double </i>as well. <i>p = <font color="#009900">fabs</font>(</i><font color="#990000">a</font><i>)</i>
+<br><i><font color="#009900">labs</font> - computes absolute value&nbsp;&nbsp;&nbsp;
+</i>It takes one parameter of type <i>long, </i><font color="#CC0000">a</font>,
+and its value returned is of type <i>long </i>as well. <i>p = <font color="#009900">labs</font>(</i><font color="#990000">a</font><i>)</i>
+<br><i><font color="#009900">sqrt </font>- computes square root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</i>It takes one parameter of type <i>double, </i><font color="#CC0000">a</font>,
+and its value returned is of type <i>double </i>as well. <i>p = <font color="#009900">sqrt</font>(</i><font color="#990000">a</font><i>)</i>
+<br><i><font color="#009900">ceil</font> - ceiling (round up)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</i>It takes one parameter of type <i>double, </i><font color="#CC0000">a</font>,
+and its value returned is of type <i>double </i>as well. <i>p = <font color="#009900">ceil</font>(</i><font color="#990000">a</font><i>)</i>
+<br><i><font color="#009900">floor</font> - floor (round down)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</i>It takes one parameter of type <i>double, </i><font color="#CC0000">a</font>,
+and its value returned is of type <i>double </i>as well. <i>p = <font color="#009900">floor</font>(</i><font color="#990000">a</font><i>)</i>
+<p>As you may remember in Lab2, you were asked to solve the quadratic equation.&nbsp;
+The solutions to a quadratic equation, <b>a</b><i>x<sup>2</sup></i> + <b>b</b><i>x</i>
++ <b>c</b> = 0, are:
+<center>
+<p><img SRC="imageBFP.JPG" height=47 width=141></center>
+and
+<center><img SRC="imageA6I.JPG" height=47 width=143></center>
+
+<p>The possible solutions were discussed in Lab2.&nbsp; Here, we only mention
+that before you compute these two roots, you had to make sure that the
+value under the radical was not negative and that <b>a</b> was not zero.
+<p><a NAME="ex33"></a><b><font color="#00CC00"><font size=+1>Exercise 3.3</font></font></b>
+<br>Write the C++ statements that compute <i>x<sub>1</sub></i><sub> </sub>and
+<i>x<sub>2
+</sub></i>using
+<font color="#CC0000">3</font>
+calls to predefined functions. <u>Hint:</u> you need to compute one square
+root and two powers, i.e., you will use the <i>sqrt</i> once and the <i>pow</i>
+twice.
+<p><b><font color="#009900"><font size=+1>Round up and Round down Functions</font></font></b>
+<br>Sometimes, you may want to round your numbers up or down.&nbsp; There
+are two predefined functions that are used for this purpose.&nbsp; The
+function ceil will round up a given real number to its next whole number
+and function floor will round down a given real number to its lower whole
+number.
+<br>Examples:
+<p>if x = 34.3&nbsp;&nbsp;&nbsp; then y = <i>ceil</i>(x) is 35.0
+<br>if x = 34.3&nbsp;&nbsp;&nbsp; then y = <i>floor(x)</i> is 34.0
+<p><a NAME="ex34"></a><b><font color="#00CC00"><font size=+1>Exercise 3.4</font></font></b>
+<br>Answer the following questions:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A) What are the <i>ceil</i>
+and <i>floor</i> of 34.6?
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; B) What are the <i>ceil</i>
+and <i>floor</i> of -33.2?
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C) Round 34.2, 34.6, -33.2
+and -33.7.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; D) Suggest a method to round
+a number using <i>ceil</i> or <i>floor, </i>then apply it to the numbers
+in part C.
+<p><b><font color="#009900"><font size=+1>Absolute Value of Integer and
+Real Values</font></font></b>
+<br>In C++ we have two functions that are used to find the absolute value
+of an integer or a real value.&nbsp; The first one is called <i>abs</i>
+that is used to compute the absolute value of an integer.
+<br>Example:&nbsp; x = -4, then y = <i>abs(x)</i> will be 4.
+<br>The other function is <i>fabs</i> that computes the absolute value
+of a float or double type number.
+<br>Example:&nbsp; x = -3.43, then y = <i>fabs</i>(x) will be 3.43.
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

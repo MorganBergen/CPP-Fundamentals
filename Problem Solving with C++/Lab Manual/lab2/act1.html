@@ -1,0 +1,141 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 1 </title>
+</head>
+<body bgcolor="#FFFFF0">
+
+<h1>
+<b><font color="#000099"><font size=+3>Activity 2-1 - Variables and Assignments</font></font></b></h1>
+<a href="pre_lab.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act2.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<center>"<i>All variables must be declared before they are used in a C++
+program."</i></center>
+
+<p>All variables used in a C++ program must be declared.&nbsp; The declaration
+of a variable can be done in several different ways; 1) right at the beginning
+of the main function, 2) right before its use in the program, and 3) right
+before the main function.&nbsp; As it was shown in the sample C++ program
+in the previous lab, we declared variables of type integer and float right
+at the beginning of the main function.&nbsp; In general, the syntax for
+variable declaration is:
+<br><i><font color="#3333FF">Type_name&nbsp; Variable_Name_1, Variable_Name_2;</font></i>
+<p><font color="#000000">Example:</font>
+<br><i><font color="#3333FF">int&nbsp; number_of_cases, bottles_per_case;</font></i>
+<p>Here is the list of the most common variable types used in C++:
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="81%" >
+<tr>
+<td>
+<center><b><font color="#990000">Variable Name</font></b></center>
+</td>
+
+<td>
+<center><b><font color="#990000">Variable Name</font></b></center>
+</td>
+</tr>
+
+<tr>
+<td><i><font color="#009900">short (short int) - 2 bytes&nbsp;</font></i>
+<br><i><font color="#000099">short x; or short x = 34;</font></i></td>
+
+<td><i><font color="#009900">long - 4 bytes</font></i>
+<br><i><font color="#000099">long x; or long x = 34;</font></i></td>
+</tr>
+
+<tr>
+<td><i><font color="#009900">int - 4 bytes</font></i>
+<br><i><font color="#000099">int x; or int x = 34;</font></i></td>
+
+<td><i><font color="#009900">float - 4 bytes, 7 digits precision</font></i>
+<br><i><font color="#000099">float x; or float x = 34.56;</font></i></td>
+</tr>
+
+<tr>
+<td><i><font color="#009900">double -&nbsp; 8 bytes, 15 digits precision</font></i>
+<br><i><font color="#000099">double x; or double x = 34.56;</font></i></td>
+
+<td><i><font color="#009900">long double - 10 bytes, 19 digits precision&nbsp;</font></i></td>
+</tr>
+
+<tr>
+<td><i><font color="#009900">char - holds any single character on the keyboard</font></i>
+<br><i><font color="#000099">char c; or char c = 'a';</font></i></td>
+
+<td><i><font color="#009900">bool - True (1), False (0)</font></i>
+<br><i><font color="#000099">bool x; or bool x = TRUE;</font></i></td>
+</tr>
+</table></center>
+
+<p>Every variable is identified by a name that is referred to as <b>identifier</b>.&nbsp;
+An identifier must start with either a letter or the underscore symbol.&nbsp;
+The remaining characters must all be letters, digits, or the underscore
+symbol.
+<p>In general, every variable should have a type.&nbsp; An attempt to assign
+a value of a different type other than the original assigned type to a
+variable is referred to as "type mismatch".&nbsp; One has to be very careful
+that not all compilers will allow type mismatch, i.e., may produce an error
+when such attempts are made.
+<p><b><font color="#009900"><font size=+1>Arithmetic Operators and Expressions</font></font></b>
+<br>To perform mathematical calculations, we combine variables and/or numbers
+using arithmetic operators such as: + <i>for addition, - for subtraction,
+* for multiplication, / for division</i>, and <i>% </i>to find the remainder
+of a division<i>.&nbsp; </i>The arithmetic operators can be used with numbers
+of type int, long, double, float, long double, short, or with a combination
+of different types. When you use arithmetic operators, you need to be careful
+that if the correct variable types are not used, the result can be very
+different from what you were expecting.&nbsp; For example: 7.0/2 = 3.5,
+7/2.0 = 3.5, however, 7/2 = 3 (not 3.5). The reason for such a significant
+difference is because the last one is actually using integer division.&nbsp;
+Perhaps the most significant problem will be seen in cases where the numerator
+is smaller than the denominator.&nbsp; In such cases the integer division
+will result in 0.&nbsp; An example of such a case is 5/9 = 0.
+<p>There are some shorthand notations that combine the assignment operator
+( = ) and an arithmetic operator. The general form for this notation is:
+<br><i><font color="#3333FF">Variable Operator</font> = <font color="#CC0000">Expression</font>,
+</i>which
+is equivalent to:&nbsp; <i><font color="#3333FF">Variable</font> = <font color="#3333FF">Variable
+Operator</font> (<font color="#CC0000">Expression</font>).</i>
+<p>The expression can be another variable, a constant, or a more complicated
+arithmetic expression.&nbsp; Here are some examples:
+<br>&nbsp;
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="71%" >
+<tr>
+<td>
+<center><b><font color="#006600">Shorthand Notation</font></b></center>
+</td>
+
+<td>
+<center><b><font color="#006600">Equivalent</font></b></center>
+</td>
+</tr>
+
+<tr>
+<td><font color="#3333FF">total +</font><font color="#000000">= </font><font color="#CC0000">2</font>;</td>
+
+<td>&nbsp;<font color="#3333FF">total </font>= <font color="#3333FF">total+</font><font color="#CC0000">2</font>;</td>
+</tr>
+
+<tr>
+<td><font color="#3333FF">amount +</font>=&nbsp; <font color="#CC0000">tax
+- rebate</font></td>
+
+<td><font color="#3333FF">amount </font>=&nbsp; <font color="#3333FF">amount
++ </font><font color="#CC0000">(tax - rebate)</font></td>
+</tr>
+</table></center>
+
+<p>Similarly, we may use -=, *=, /=, and %=.
+<p><a NAME="ex211"></a><b><font color="#00CC00"><font size=+1>Exercise
+21-1</font></font></b>
+<br>Determine the answer to the following statements:
+<br>&nbsp;&nbsp;&nbsp; Question 2.1&nbsp;&nbsp;&nbsp;&nbsp; 3 -= 4*5;
+<br>&nbsp;&nbsp;&nbsp; Question 2.2&nbsp;&nbsp;&nbsp;&nbsp; 40 %= 16/2;
+<br>&nbsp;&nbsp;&nbsp; Question 2.3&nbsp;&nbsp;&nbsp;&nbsp; 88 /= 82%4;
+<br>&nbsp;
+</body>
+</html>

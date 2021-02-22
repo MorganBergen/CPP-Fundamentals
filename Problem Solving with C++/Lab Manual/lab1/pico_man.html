@@ -1,0 +1,184 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Generator" content="Microsoft Word 97">
+   <meta name="Template" content="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>PICO; A Unix_based Text Editor - Short Manual</title>
+</head>
+<body link="#0000FF" vlink="#800080">
+<b><font size=-1>PICO Short
+Manual</font></b><font size=-1> <i>(print landscape) - <font color="#3333FF">"When
+using PICO, you can always look at the bottom of the screen to see if the
+command you are looking for is listed."</font></i></font>
+<table BORDER CELLPADDING=7 WIDTH="933" HEIGHT="654" >
+<tr>
+<td VALIGN=TOP WIDTH="51%" HEIGHT="646"><b><font size=-1>How to use Pico
+to edit a file</font></b>
+<br><font size=-1>In order to type your C++ or any other programs or text,
+you will use an text editor. There are several editors that one can use
+on a UNIX machine. The most common ones are vi, pico, emacs, and nedit.
+Perhaps the most powerful of these four is vi. One needs some practice
+to become comfortable with vi. For now, we will learn pico. Pico is simpler
+to learn than vi and it does most of the basic things we may need in an
+editor. There is an excellent reference for pico at: <a href="http://www.usd.edu/trio/tut/pico/">http://www.usd.edu/trio/tut/pico/</a>.&nbsp;</font>
+<p><font size=-1>Suppose, you want to edit a file that is called <i>template.C</i>.
+In order to open that file, you will type: % <b>pico</b> template.C&nbsp;</font>
+<p><font size=-1>This file could be a new file or an existing file. When
+the file is a new file, you will get a blank screen and when it is an existing
+file, the contents of that file will be displayed. For now, we assume that
+is a new file.&nbsp; Upon execution of the above command, you will get
+a screen similar to the one shown below.&nbsp;</font><img SRC="picomain1.JPG" height=218 width=440>
+<br><font size=-1>The bottom two lines of the screen contain some of the
+more common commands available. Practice typing a few lines, then save
+your work by pressing <b>^X</b> (which means&nbsp;<ctrl X><b>&lt;Ctrl-X></b>).The
+symbol ^ means use the Ctrl key. You'll need to confirm the save by pressing
+'<b>Y</b>'; typing '<b>N</b>' will discard changes made to the file.&nbsp;</font>
+<br><font size=-1>Table (1) shows some of the commands available in Pico
+(alternative keyboard commands are in parentheses). <b>^G</b> is for help,
+then <b>^v</b> is to go to the second page.</font>
+<br><font size=-1>Table (2) shows some more editing commands available
+in Pico.</font>
+<p><font color="#3333FF"><font size=-1>Note: If you wish to go to a particular
+line number from the command prompt, use:</font></font>
+<br><font size=-1>% pico&nbsp; +LineNumber&nbsp;&nbsp; FileName</font></td>
+
+<td VALIGN=TOP WIDTH="49%" HEIGHT="646">
+<center><b><font size=-1>Table (1) - Moving around in Pico&nbsp;</font></b></center>
+
+<table BORDER CELLPADDING=3 WIDTH="97%" HEIGHT="238" >
+<tr>
+<td WIDTH="25%"><b><font size=-1>Command</font></b></td>
+
+<td WIDTH="75%"><b><font size=-1>Short Description</font></b></td>
+</tr>
+
+<tr>
+<td WIDTH="25%"><font size=-1>^F (right arrow)</font></td>
+
+<td WIDTH="75%"><font size=-1>move forward a character</font></td>
+</tr>
+
+<tr>
+<td WIDTH="25%"><font size=-1>^B (left arrow)</font></td>
+
+<td WIDTH="75%"><font size=-1>Move back a character</font></td>
+</tr>
+
+<tr>
+<td WIDTH="25%"><font size=-1>^P (up arrow)</font></td>
+
+<td WIDTH="75%"><font size=-1>Move up one line</font></td>
+</tr>
+
+<tr>
+<td WIDTH="25%"><font size=-1>^N (down arrow)</font></td>
+
+<td WIDTH="75%"><font size=-1>move down one line</font></td>
+</tr>
+
+<tr>
+<td WIDTH="25%"><font size=-1>^A</font></td>
+
+<td WIDTH="75%"><font size=-1>move to the beginning of the current line</font></td>
+</tr>
+
+<tr>
+<td WIDTH="25%"><font size=-1>^E</font></td>
+
+<td WIDTH="75%"><font size=-1>move to the end of the current line</font></td>
+</tr>
+
+<tr>
+<td WIDTH="25%"><font size=-1>^V (F8)</font></td>
+
+<td WIDTH="75%"><font size=-1>move forward one screen of text</font></td>
+</tr>
+
+<tr>
+<td WIDTH="25%" HEIGHT="25"><font size=-1>^Y (F7)</font></td>
+
+<td WIDTH="75%" HEIGHT="25"><font size=-1>move backward one screen of text</font></td>
+</tr>
+</table>
+
+<center>&nbsp;<b><font size=-1>Table (2) - Editing in Pico</font></b></center>
+
+<table BORDER CELLPADDING=3 WIDTH="97%" >
+<tr>
+<td WIDTH="16%"><b><font size=-1>Command</font></b></td>
+
+<td WIDTH="84%"><b><font size=-1>Short description</font></b></td>
+</tr>
+
+<tr>
+<td WIDTH="16%"><font size=-1>^^</font></td>
+
+<td WIDTH="84%"><font size=-1>mark position as beginning of select text</font></td>
+</tr>
+
+<tr>
+<td WIDTH="16%"><font size=-1>^K (F9)</font></td>
+
+<td WIDTH="84%"><font size=-1>selected text ends on the left side of the
+current cursor position beginning must be marked already cut selected text
+(inversed text) if nothing selected this will cut the current line of text</font></td>
+</tr>
+
+<tr>
+<td WIDTH="16%"><font size=-1>^U (F10)</font></td>
+
+<td WIDTH="84%"><font size=-1>uncut or paste last cut text inserting at
+current cursor position</font></td>
+</tr>
+
+<tr>
+<td WIDTH="16%"><font size=-1>^J</font></td>
+
+<td WIDTH="84%"><font size=-1>justify the current paragraph</font></td>
+</tr>
+
+<tr>
+<td WIDTH="16%"><font size=-1>^I (Tab)</font></td>
+
+<td WIDTH="84%"><font size=-1>insert a tab at current position</font></td>
+</tr>
+
+<tr>
+<td WIDTH="16%"><font size=-1>^T&nbsp;</font></td>
+
+<td WIDTH="84%"><font size=-1>spelling checker</font></td>
+</tr>
+
+<tr>
+<td WIDTH="16%"><font size=-1>^C&nbsp;</font></td>
+
+<td WIDTH="84%"><font size=-1>print current cursor position (current line
+number)</font></td>
+</tr>
+
+<tr>
+<td WIDTH="16%"><font size=-1>^W (F6)</font></td>
+
+<td WIDTH="84%"><font size=-1>search for text - neglecting case</font></td>
+</tr>
+
+<tr>
+<td WIDTH="16%"><font size=-1>^L</font></td>
+
+<td WIDTH="84%"><font size=-1>redraw screen</font></td>
+</tr>
+
+<tr>
+<td WIDTH="16%"><font size=-1>^G (F1)&nbsp;</font></td>
+
+<td WIDTH="84%"><font size=-1>display the help text from within Pico</font></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

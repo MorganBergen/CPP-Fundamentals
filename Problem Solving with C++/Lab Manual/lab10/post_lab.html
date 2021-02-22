@@ -1,0 +1,160 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Post-lab</title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Post-Lab - Lab (10) - Image
+Processing Tool</font></font></b>
+<br><a href="act4.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="index.html"><img SRC="uparrow.jpg" height=35 width=37></a>
+<br>
+<hr WIDTH="100%">
+<br>Write a C++ program that allows users to obtain some statistics on
+an input image and to invert the image.
+<p>Before you can write your program, you need to have some background
+information on how an image is made.&nbsp; An image is made up of blocks
+called pixels. Usually, when we refer to an image as an n by m (n*m) image,
+we mean that there are n rows and m columns of pixels in that image. Thus,
+n pixels in each column and m pixels on each row. That makes n*m pixels
+all together.&nbsp; In a greyscale image, every pixel has a value between
+0 to 255. The black color is represented with a pixel value of 0 and the
+white color with a pixel value of 255.&nbsp; Different shades of grey are
+made by selecting a number in the range 0 to 255, a pure grey is 127 (50%
+black and 50% white).&nbsp; Following is an example of a 4x4 image (4 pixels
+on each column and 4 on each row).&nbsp; <u>Please note that all pixels
+are squares of the same size, some browsers may show the pixels on the
+sample image in a different size, but in the actual image, all pixels appear
+with the same size.</u>
+<br>&nbsp;
+<br>&nbsp;
+<center><table BORDER COLS=4 WIDTH="12%" >
+<tr>
+<td BGCOLOR="#000000">0</td>
+
+<td>&nbsp;</td>
+
+<td BGCOLOR="#000000">0</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td BGCOLOR="#666666">&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td BGCOLOR="#000000">&nbsp;0</td>
+</tr>
+
+<tr>
+<td BGCOLOR="#000000">0&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td BGCOLOR="#999999">&nbsp;</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td BGCOLOR="#333333">&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td BGCOLOR="#000000">&nbsp;0</td>
+</tr>
+</table></center>
+
+<p>The pixel values on this 4x4 image are:
+<p>&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 255&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 255
+<br>&nbsp;&nbsp; 255&nbsp;&nbsp;&nbsp; 127&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+255&nbsp;&nbsp;&nbsp; 0
+<br>&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 255&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+160&nbsp;&nbsp;&nbsp; 255
+<br>&nbsp;&nbsp; 255&nbsp;&nbsp;&nbsp; 86&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+255&nbsp;&nbsp;&nbsp; 0
+<br>&nbsp;
+<p>To generate this image simply create a file called <b>img1.ppm</b> and
+type the following 8 lines iin it:
+<br><font color="#990000">P3</font>
+<br><font color="#990000"># This a sample 4x4 image</font>
+<br><font color="#990000">4&nbsp; 4</font>
+<br><font color="#990000">255</font>
+<br>0&nbsp; 255&nbsp; 0&nbsp; 255
+<br>255&nbsp; 127&nbsp; 255&nbsp; 0
+<br>0&nbsp; 255&nbsp; 160&nbsp; 255
+<br>255&nbsp; 86&nbsp; 255&nbsp; 0
+<p>In this image, the first 4 lines define the format and characteristics
+of the image, in brief:
+<br><b><font color="#990000">P3</font></b>&nbsp; // Is the standard P3
+PGM format
+<br><font color="#990000"><b>#</b> This a sample 4x4 image</font>&nbsp;
+// any comments
+<br><b><font color="#990000">4&nbsp; 4</font></b>&nbsp; // number of rows
+and columns
+<br><b><font color="#990000">255</font></b>&nbsp; // maximum grey level
+observed
+<p>Once you saved the file then you can view it using an imaging software,
+such as <i>xv</i>, Paint Shop Pro, or Adobe Photo Shop.&nbsp; Note that
+since this image is very small, you may enlarge the view (zoom in) to see
+the details.&nbsp; You also can use the imaging software to convert images
+that are in other formats to pgm format.
+<p>Your assignment is to read an image, to display some statistics on that
+image, and to create its invert .&nbsp; The inverse of white color is black
+and the inverse of a black color is white.&nbsp; So you need to convert
+all the pixels of the 2-D array representing the image based on this scheme.
+Your program must be flexible, thus correctly works for images of different
+size.&nbsp; Here is a sample 8 by 8 image
+<a href="samp_img.pgm.txt">samp_img.pgm</a>.
+<p>Here is the list of functions you are required to use, but you are welcome
+to use any additional functions.
+<p><b>invert :</b> This function will take the array representing the image
+and will invert its pixels. You basically use the following formula to
+invert a single pixel:
+<br>invert of x&nbsp; = |255 -x|. For example if a pixel on the original
+image has the value of 255 after we invert it, it will become 0, a pixel
+with pixel value of 80 will be converted to 255 – 80 = 175.
+<p>The inverted image will be written into a new file, <b>img_invert.ppm</b>.&nbsp;
+Please note that the first four lines of the input image must be written
+into the inverted
+<br>image without any change. So you need to copy these four lines from
+the original image file to the inverted image.
+<p><b>avrg_row:</b> This function will take the average of each row and
+will write the result into the OutData file in the following format:
+<br>Avg Row (1) :???
+<br>Avg Row (2) :???
+<p><b>avrg_column:</b> This function will take the average of each column
+and will write the result into the OutData file in the following format:
+<br>Avg Col (1) :???
+<br>Avg Col (2) :???
+<br>…..
+<p><b>avrg_image: </b>This function will compute the average of the input
+image and will write the result into the output file OutData.
+<br>Avg Pixel: ???
+<p><b>std_image: </b>This function computes the standard deviation of the
+image based on the following formula:
+<center>
+<p><img SRC="imageQ57.JPG" height=97 width=189></center>
+
+<p>in which <i>x<sub>i</sub> </i>is the individual pixel value, <i>x<sub>avg</sub></i>is
+the mean (average) of all pixels, and N is the total number of pixels in
+that image.
+<p><b>distribution:</b> This function will compute and write the following
+6 values into the output file OutData:
+<p>Average + 1 STD: ???&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Average – 1 STD: ???
+<br>Average + 2 STD: ???&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Average – 2 STD: ???
+<br>Average + 3 STD: ???&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Average – 3 STD: ???
+<br>&nbsp;
+</body>
+</html>

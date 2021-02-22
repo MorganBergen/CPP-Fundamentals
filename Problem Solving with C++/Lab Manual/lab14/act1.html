@@ -1,0 +1,334 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 14 - 1 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 14-1 -
+Introduction to Templates</font></font></b>
+<br><b><font color="#000099"><font size=+3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Templates for Functions</font></font></b>
+<br><a href="pre_lab.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act2.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>Templates allow you to design functions that can be used with arguments
+of different types.&nbsp; They also allow us to define classes that are
+much more general than those you have seen so far.&nbsp; In order to appreciate
+the importance of Templates, let's look at one example.
+<p>The following function successfully swaps two integer values.
+<p><i>void swap_values(int&amp; variable1, int&amp; variable2)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; int temp;</i>
+<p><i>&nbsp;&nbsp;&nbsp; temp = variable1;</i>
+<br><i>&nbsp;&nbsp;&nbsp; variable1 = variable2;</i>
+<br><i>&nbsp;&nbsp;&nbsp; variable2 = temp;</i>
+<br><i>}</i>
+<p>This function applies to variables of type <i>int</i>.&nbsp; But the
+algorithm is the same for swapping two variables of type <i>char</i> or
+<i>float.</i>
+<p>To swap two variables of type <i>float</i>, we will use:
+<p><i>void swap_values(float&amp; variable1, float&amp; variable2)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; float temp;</i>
+<p><i>&nbsp;&nbsp;&nbsp; temp = variable1;</i>
+<br><i>&nbsp;&nbsp;&nbsp; variable1 = variable2;</i>
+<br><i>&nbsp;&nbsp;&nbsp; variable2 = temp;</i>
+<br><i>}</i>
+<p>To swap to variables of type <i>char</i>, we will use:
+<br><i>void swap_values(char&amp; variable1, char&amp; variable2)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; char temp;</i>
+<p><i>&nbsp;&nbsp;&nbsp; temp = variable1;</i>
+<br><i>&nbsp;&nbsp;&nbsp; variable1 = variable2;</i>
+<br><i>&nbsp;&nbsp;&nbsp; variable2 = temp;</i>
+<br><i>}</i>
+<p>This function can even be used to swap the values of two classes.&nbsp;
+Suppose we have a class Money, then we can write:
+<p><i>void swap_values(Money&amp; variable1, Money&amp; variable2)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; Money temp;</i>
+<p><i>&nbsp;&nbsp;&nbsp; temp = variable1;</i>
+<br><i>&nbsp;&nbsp;&nbsp; variable1 = variable2;</i>
+<br><i>&nbsp;&nbsp;&nbsp; variable2 = temp;</i>
+<br><i>}</i>
+<p>As you have noticed except the change in the type, all these functions
+are almost identical.&nbsp; How good it would be if we could somehow use
+one function but change the type as needed.&nbsp; Well, that is one of
+the reasons we wish to learn about templates.&nbsp; We wish to say something
+like this:
+<p><i>void swap_values(Type_Of_The_Variables&amp; variable1, Type_Of_The_Variables&amp;
+variable2)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp; Type_Of_The_Variables temp;</i>
+<p><i>&nbsp;&nbsp;&nbsp; temp = variable1;</i>
+<br><i>&nbsp;&nbsp;&nbsp; variable1 = variable2;</i>
+<br><i>&nbsp;&nbsp;&nbsp; variable2 = temp;</i>
+<br><i>}</i>
+<p><b><font color="#000099"><font size=+1>Templates for Functions</font></font></b>
+<br>In order to make a general function for swapping two variables, we
+use a C++ template for the function <i>swap_values</i>.&nbsp; This function
+template allows us to swap the values of any two variables, of any type,
+so long as these two have the same type.
+<p>// Interchanges the values of variable1 and variable2
+<br><font color="#CC0000">template&lt;class T></font>
+<p><font color="#000000">void swap_values(</font><font color="#CC0000">T</font>&amp;
+variable1, <font color="#CC0000">T</font>&amp; variable2)
+<br>{
+<br>&nbsp;&nbsp;&nbsp; <font color="#CC0000">T</font> temp;
+<br><i>&nbsp;&nbsp;&nbsp; temp = variable1;</i>
+<br><i>&nbsp;&nbsp;&nbsp; variable1 = variable2;</i>
+<br><i>&nbsp;&nbsp;&nbsp; variable2 = temp;</i>
+<br><i>}</i>
+<p>The definition and the function declaration begin with the line:
+<br><font color="#CC0000">template&lt;class T></font>
+<p><font color="#000000">This is often called the <b>template prefix</b>,
+and it tells the compiler that the function declaration that follows is
+a <b>template </b>and that </font><font color="#CC0000">T</font><font color="#000000">
+is a <b>Type parameter</b>.&nbsp; <u>In the context the word </u></font><u><i><font color="#CC0000">class</font></i><font color="#000000">
+actually means type.</font></u><font color="#000000">&nbsp;&nbsp; The type
+parameter </font><font color="#CC0000">T</font><font color="#000000"> can
+be replaced with any type.&nbsp; Within the body of the function definition
+the type parameter </font><font color="#CC0000">T</font><font color="#000000">
+is used just like any other type.&nbsp; Following is a program that uses
+the above template function to swap variables of various types.</font>
+<p><i>// p14_1.cpp Program to demonstrate a function template.</i>
+<br><i>#include &lt;iostream></i>
+<br><i>using namespace std;</i>
+<p><i>//Interchanges the values of variable1 and variable2.</i>
+<br><i>template&lt;class T></i>
+<br><i>void swap_values(T&amp; variable1, T&amp; variable2)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; T temp;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp = variable1;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; variable1 = variable2;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; variable2 = temp;</i>
+<br><i>}</i>
+<p><i>int main()</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; // <font color="#3333FF">swapping two integers</font></i>
+<br><i>&nbsp;&nbsp;&nbsp; int integer1 = 1, integer2 = 2;</i>
+<br><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Original integer values are "</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;&lt; integer1
+&lt;&lt; " " &lt;&lt; integer2 &lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp; swap_values(integer1, integer2);</i>
+<br><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Swapped integer values are "</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;&lt; integer1
+&lt;&lt; " " &lt;&lt; integer2 &lt;&lt; endl;</i>
+<p><i>&nbsp;&nbsp;&nbsp; // <font color="#3333FF">swapping two characters</font></i>
+<br><i>&nbsp;&nbsp;&nbsp; char symbol1 = 'A', symbol2 = 'B';</i>
+<br><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Original character values are
+"</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;&lt; symbol1
+&lt;&lt; " " &lt;&lt; symbol2 &lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp; swap_values(symbol1, symbol2);</i>
+<br><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Swapped character values are "</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;&lt; symbol1
+&lt;&lt; " " &lt;&lt; symbol2 &lt;&lt; endl;</i>
+<p><i>&nbsp;&nbsp;&nbsp; return 0;</i>
+<br><i>}</i>
+<p>Note that we do not have to have the type as <font color="#CC0000">T</font><font color="#000000">,
+and we can use any identifier such a V<i>ariable_Type</i> instead of </font><font color="#CC0000">T</font><font color="#000000">.</font>
+<p><font color="#000000">In the following program, function templates are
+used to sort variables of various types.</font>
+<p><b><font color="#000099"><font size=+1>Generic Sorting Function</font></font></b>
+<br><i><font color="#000000">// p14_2.cpp - This is a generic sorting function</font></i>
+<p><i><font color="#000000">#include&lt;iostream></font></i>
+<br><i><font color="#000000">using namespace std;</font></i>
+<p><i><font color="#000099">template&lt;class T></font></i>
+<br><i><font color="#000099">void swap_values(T&amp; variable1, T&amp;
+variable2)</font></i>
+<br><i><font color="#000099">{</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; T temp;</font></i>
+<p><i><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp = variable1;</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; variable1 =
+variable2;</font></i>
+<br><i><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; variable2 =
+temp;</font></i>
+<br><i><font color="#000099">}</font></i>
+<p><i><font color="#009900">template&lt;class BaseType></font></i>
+<br><i><font color="#009900">int index_of_smallest(const BaseType a[],
+int start_index, int number_used)</font></i>
+<br><i><font color="#009900">{</font></i>
+<br><i><font color="#009900">&nbsp;&nbsp;&nbsp; BaseType min = a[start_index];</font></i>
+<br><i><font color="#009900">&nbsp;&nbsp;&nbsp; int index_of_min = start_index;</font></i>
+<p><i><font color="#009900">&nbsp;&nbsp;&nbsp; for (int index = start_index
++ 1; index &lt; number_used; index++)</font></i>
+<br><i><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (a[index] &lt; min)</font></i>
+<br><i><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</font></i>
+<br><i><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+min = a[index];</font></i>
+<br><i><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+index_of_min = index;</font></i>
+<br><i><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//min is the smallest of a[start_index] through a[index]</font></i>
+<br><i><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</font></i>
+<p><i><font color="#009900">&nbsp;&nbsp;&nbsp; return index_of_min;</font></i>
+<br><i><font color="#009900">}</font></i>
+<p><i><font color="#990000">template&lt;class BaseType></font></i>
+<br><i><font color="#990000">void sort(BaseType a[], int number_used)</font></i>
+<br><i><font color="#990000">{</font></i>
+<br><i><font color="#990000">int index_of_next_smallest;</font></i>
+<br><i><font color="#990000">for(int index = 0; index &lt; number_used
+- 1; index++)</font></i>
+<br><i><font color="#990000">&nbsp;&nbsp; {//Place the correct value in
+a[index]:</font></i>
+<br><i><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+index_of_next_smallest =</font></i>
+<br><i><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+index_of_smallest(a, index, number_used);</font></i>
+<br><i><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+swap_values(a[index], a[index_of_next_smallest]);</font></i>
+<br><i><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //a[0] &lt;=
+a[1] &lt;=...&lt;= a[index] are the smallest of the original array</font></i>
+<br><i><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //elements.
+The rest of the elements are in the remaining positions.</font></i>
+<br><i><font color="#990000">&nbsp;&nbsp; }</font></i>
+<br><i><font color="#990000">}</font></i>
+<p><i><font color="#000000">int main( )</font></i>
+<br><i><font color="#000000">{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; int i;</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; int a[10] = {9, 8, 7, 6,
+5, 1, 2, 3, 0, 4};</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Unsorted
+integers:\n";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for (i = 0; i &lt; 10; i++)</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; a[i] &lt;&lt; " ";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; endl;</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; sort(a, 10);</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "In sorted
+order the integers are:\n";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; for (i = 0; i &lt; 10;
+i++)</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; a[i] &lt;&lt; " ";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; endl;</font></i>
+<p><i><font color="#000000">&nbsp;&nbsp;&nbsp; double b[5] = {5.5, 4.4,
+1.1, 3.3, 2.2};</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Unsorted
+doubles:\n";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; for (i = 0; i &lt; 5; i++)</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; b[i] &lt;&lt; " ";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; endl;</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; sort(b, 5);</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "In sorted
+order the doubles are:\n";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; for (i = 0; i &lt; 5; i++)</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; b[i] &lt;&lt; " ";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; endl;</font></i>
+<p><i><font color="#000000">&nbsp;&nbsp;&nbsp; char c[7] = {'G', 'E', 'N',
+'E', 'R', 'I', 'C'};</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Unsorted
+characters:\n";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; for (i = 0; i &lt; 7; i++)</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; c[i] &lt;&lt; " ";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; endl;</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; sort(c, 7);</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "In sorted
+order the characters are:\n";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; for (i = 0; i &lt; 7; i++)</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; c[i] &lt;&lt; " ";</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp; cout &lt;&lt; endl;</font></i>
+<p><i><font color="#000000">&nbsp;&nbsp;&nbsp; return 0;</font></i>
+<br><i><font color="#000000">}</font></i>
+<p><a NAME="ex14.1"></a><b><font color="#00CC00"><font size=+1>Exercise
+14.1</font></font></b>
+<br><font color="#000000">In the previous lab, we used recursion in binary
+search.&nbsp; In order to carry out a binary search, the set must be sorted.&nbsp;
+Use the <a href="GenericSort.txt">above program</a> and&nbsp; the program
+given below (click <a href="RecursiveBinarySearch.txt">here</a> for the
+complete list) to write a new program that conducts a binary search in:</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1)
+a set of values of type int,</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2)
+a set of values of type float,</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3)
+a set of values of type double, and</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4)
+a set of values of type char.</font>
+<p><font color="#000000">Assume that the array may have up to 10 values.</font>
+<p><font color="#000000">Although, we have only listed four different cases,
+if the program is written using templates, it can be used for any variable
+type.</font>
+<p><font color="#009900">// Recursive program for binary search.</font>
+<br><font color="#009900">#include &lt;iostream></font>
+<br><font color="#009900">using namespace std;</font>
+<p><font color="#009900">const int ARRAY_SIZE = 10;</font>
+<p><font color="#009900">void search(const int a[], int first, int last,
+int key, bool&amp; found, int&amp; location);</font>
+<br><font color="#009900">int main( )</font>
+<br><font color="#009900">{</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; int a[ARRAY_SIZE];</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; const int final_index = ARRAY_SIZE
+- 1;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; int i;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; for (i = 0; i &lt; 10; i++)</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a[i] = 2*i;</font>
+<p><font color="#009900">&nbsp;&nbsp;&nbsp; int key, location;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; bool found;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter number
+to be located: ";</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; cin >> key;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; search(a, 0, final_index,
+key, found, location);</font>
+<p><font color="#009900">&nbsp;&nbsp;&nbsp; if (found)</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout
+&lt;&lt; key &lt;&lt; " is in index location "</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; location &lt;&lt; endl;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; else</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout
+&lt;&lt; key &lt;&lt; " is not in the array." &lt;&lt; endl;</font>
+<p><font color="#009900">&nbsp;&nbsp;&nbsp; return 0;</font>
+<br><font color="#009900">}</font>
+<p><font color="#009900">void search(const int a[], int first, int last,
+int key, bool&amp; found, int&amp; location)</font>
+<br><font color="#009900">{</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; int mid;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; if (first > last)</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; found
+= false;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; }</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; else</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mid
+= (first + last)/2;</font>
+<p><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(key == a[mid])</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+found = true;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+location = mid;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else
+if (key &lt; a[mid])</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+search(a, first, mid - 1, key, found, location);</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else
+if (key > a[mid])</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+search(a, mid + 1, last, key, found, location);</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp; }</font>
+<br><font color="#009900">}</font>
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 16 - 1 </title>
+<script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+</script>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 16-1 -
+Introduction to Inheritance</font></font></b>
+<br><a href="pre_lab.html"><img SRC="lfarrow.jpg" BORDER=0 height=35 width=36></a><a href="act2.html"><img SRC="rtarrow.jpg" BORDER=0 height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>Object oriented programming provides for a new dimension of abstraction
+known as <b>inheritance</b>.&nbsp; This means that a very general form
+of a class can be defined and compiled.&nbsp; Later, more specialized versions
+of that class may be defined and can inherit all the properties of the
+previous class.&nbsp; Inheritance is the process by which a new class -
+<b>derived
+class </b>- is created from another class, called the <b>base class</b>.&nbsp;
+A derived class automatically has all the member variables and functions
+that the base class has, and can have additional member functions and/or
+additional member variables.&nbsp; Sometimes, a derived class is referred
+to as the <b>child</b> of a <b>parent </b>class.
+<p>A derived class is defined like any other class but has a colon " :
+", the reserved word <i>public</i>, and the name of the base class in the
+first line of the class definition:
+<p><i>class HourlyEmployee </i>: <i>public Employee</i>
+<br><i>{</i>
+<p>Now the derived class, <i>HourlyEmployee</i> has all the functions and
+variables of class <i>Employee</i> and can add additional member variables
+and member functions.
+<p>Here is an example from the text book in which a derived class is being
+used.
+<p>//This is the HEADER FILE hourlyemployee.h.
+<br>//This is the INTERFACE for the class HourlyEmployee.
+<br>#ifndef HOURLYEMPLOYEE_H
+<br>#define HOURLYEMPLOYEE_H
+<p>#include &lt;string>
+<br>#include "employee.h"
+<p>using namespace std;
+<p>namespace savitchemployees
+<br>{
+<p><b>&nbsp;&nbsp;&nbsp; class HourlyEmployee <font color="#CC0000">:</font>
+public Employee</b>
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp; public:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HourlyEmployee();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HourlyEmployee(string new_name,
+string new_ssn, double new_wage_rate, double new_hours);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void set_rate(double new_wage_rate);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double get_rate();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void set_hours(double hours_worked);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double get_hours();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void give_raise(double amount);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void print_check();
+<br>&nbsp;&nbsp;&nbsp; private:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double wage_rate;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double hours;
+<br>&nbsp;&nbsp;&nbsp; };
+<p>}//savitchemployees
+<p>#endif //HOURLYMPLOYEE_H
+<p>As you can see the derived <i>HourlyEmployee </i>class, in addition
+to all member functions and variable members that it inherits from the
+<i>Employee
+</i>class, it has several additional member functions and variable
+members defined in its body.
+<p>Here is another derived class:
+<p>//This is the HEADER FILE salariedemployee.h.
+<br>//This is the INTERFACE for the class SalariedEmployee.
+<br>#ifndef SALARIEDEMPLOYEE_H
+<br>#define SALARIEDMPLOYEE_H
+<p>#include &lt;string>
+<br>#include "employee.h"
+<p>using namespace std;
+<p>namespace savitchemployees
+<br>{
+<p>&nbsp;&nbsp;&nbsp; <b>class SalariedEmployee <font color="#CC0000">:
+</font>public
+Employee</b>
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp; public:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SalariedEmployee();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SalariedEmployee (string
+new_name, string new_ssn, double new_weekly_salary);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double get_salary();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void change_salary(double
+new_salary);
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void
+print_check();</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void give_raise(double amount);
+<br>&nbsp;&nbsp;&nbsp; private:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double salary;&nbsp;&nbsp;
+//weekly
+<br>&nbsp;&nbsp;&nbsp; };
+<p>}//savitchemployees
+<p>#endif //SALARIEDEMPLOYEE_H
+<p>In this example, the derived class is <i>SalariedEmployee</i> and again
+has additional member functions and variable members to the ones that are
+already inherited from&nbsp; the <i>Employee </i>class.
+<p>It is possible to take a member function from the parent's class and
+redefine it in the body of the child class.&nbsp; This is called <b><font color="#3333FF">redefining</font></b>
+the inherited member function.&nbsp; For example, the <i><font color="#3333FF">print_check</font></i>
+function is redefined in the <i>HourlyEmployee</i> class.&nbsp;&nbsp; To
+redefine a function, simply list it in the class definition and give it
+a new definition, just as you do with any other function.
+<p>Here is the class <i>Employee </i>that is considered as the parent for
+the above two classes.
+<p>//This is the HEADER FILE employee.h.
+<br>//This is the INTERFACE for the class Employee.
+<br>//This is primarily intended to be used as a base class to derive
+<br>//classes for different kinds of employees.
+<br>#ifndef EMPLOYEE_H
+<br>#define EMPLOYEE_H
+<p>#include &lt;string>
+<br>using namespace std;
+<p>namespace savitchemployees
+<br>{
+<p>&nbsp;&nbsp;&nbsp; class Employee
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp; public:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee(string new_name,
+string new_ssn);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; string get_name();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; string get_ssn();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void change_name(string
+new_name);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void change_ssn(string new_ssn);
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void
+print_check();</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void
+give_raise(double amount);</font>
+<br>&nbsp;&nbsp;&nbsp; protected:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; string name;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; string ssn;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double net_pay;
+<br>&nbsp;&nbsp;&nbsp; };
+<p>}//savitchemployees
+<p>#endif //EMPLOYEE_H
+<p>The definition for Employee class is:
+<p>//******************************************************
+<br>//This is the IMPLEMENTATION FILE: employee.cpp
+<br>//This is the IMPLEMENTATION for the class Employee.
+<br>//The interface for the class Employee is in the header file employee.h.
+<br>#include &lt;iostream>
+<br>#include &lt;string>
+<br>#include &lt;cstdlib>
+<br>#include "employee.h"
+<br>using namespace std;
+<p>namespace savitchemployees
+<br>{
+<p>&nbsp;&nbsp;&nbsp; Employee::Employee() // default is to fetch data
+from keyboard
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter employee
+name, followed by return.:\n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; getline(cin, name);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout&nbsp; &lt;&lt; endl
+&lt;&lt; "Enter employee social security number,"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; " followed by return.:\n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; getline(cin, ssn);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin.ignore(10000, '\n');
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp; Employee::Employee(string new_name, string new_number)
+:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name(new_name), ssn(new_number)
+//initializer list
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //deliberately empty
+<br>&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp; string Employee::get_name()
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;
+<br>&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp; string Employee::get_ssn()
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ssn;
+<br>&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp; void Employee::change_name(string new_name)
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name = new_name;
+<br>&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp; void Employee::change_ssn (string new_ssn)
+<br>&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ssn = new_ssn;
+<br>&nbsp;&nbsp;&nbsp; }
+<p><font color="#3333FF">&nbsp;&nbsp;&nbsp; void Employee::print_check()</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout&nbsp;
+&lt;&lt; "\nERROR: print_check FUNCTION CALLED FOR AN \n"</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; "UNDIFFERENTIATED EMPLOYEE. Aborting the program.\n"</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; "Check with the author of the program about this bug.\n";</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit(1);</font>
+<br><font color="#3333FF">&nbsp;&nbsp;&nbsp; }</font>
+<p>&nbsp;&nbsp;&nbsp; <font color="#990000">void Employee::give_raise(double
+amount)</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp; {</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout
+&lt;&lt; "\nERROR: give_raise FUNCTION CALLED FOR AN \n"</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; "UNDIFFERENTIATED EMPLOYEE. Aborting the program.\n"</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;&lt; "Check with the author of the program about this bug.\n";</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit(1);</font>
+<br><font color="#990000">&nbsp;&nbsp;&nbsp; }</font>
+<p>}//savitchemployees
+<br>// ********************************************************
+<p><b><font color="#000099">Constructors in Derived Classes</font></b>
+<br><font color="#000000">A constructor in a base class<u> is NOT</u> inherited
+in the derived class, but you can invoke a constructor of the base class
+within the definition of a derived class constructor, and that is all you
+need or normally want.&nbsp;&nbsp;&nbsp; A constructor for a derived class
+uses a constructor from the base class in a special way.&nbsp; <u>A constructor
+for the base class initializes all the data inherited from the base class</u>.&nbsp;
+There is a special syntax for defining base class constructors.</font>
+<p><i><font color="#000000">HourlyEmployee::</font><font color="#009900">HourlyEmployee(string
+new_name,&nbsp;&nbsp; string new_number, double new_wage_rate, double new_hours)</font><b><font color="#CC0000">:</font></b><font color="#000099">Employee(new_name,
+new_number), wage_rate(new_wage_rate), hours(new_hours)</font></i>
+<p><font color="#000000">The part:</font>
+<br><i><font color="#009900">HourlyEmployee(string new_name,&nbsp;&nbsp;
+string new_number, double new_wage_rate, double new_hours)</font></i>
+<p><font color="#000000">is an invocation of the two argument constructor
+for the base class <i>Employee</i>.&nbsp; We have used :: before it as
+we did when we defined all member functions.&nbsp; Everything&nbsp;&nbsp;
+after </font><i><b><font color="#CC0000">:</font></b><font color="#000000">
+, i.e.;</font></i>
+<p><i><font color="#000099">Employee(new_name, new_number), wage_rate(new_wage_rate),
+hours(new_hours)</font></i>
+<p><font color="#000000">is the initialization section of the constructor
+definition for the constructor <i>HourlyEmployee::HourlyEmployee</i>.</font>
+<p><font color="#000000">Here is another example:</font>
+<br><i><font color="#000000">HourlyEmployee::HourlyEmployee( ) : Employee(
+), wage_rate(0), hours(0)</font></i>
+<br><i><font color="#000000">{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// deliberately left empty</font></i>
+<br><i><font color="#000000">}</font></i>
+<p><font color="#000000">In this constructor definition the default (zero
+argument) version of the base class constructor is called to initialize
+the inherited member variables.</font>
+<p><a NAME="ex16.1"></a><b><font color="#00CC00"><font size=+1>Exercise
+16.1</font></font></b>
+<br><font color="#000000">Use the above three header files and the following
+two implementation programs, <i><a href="hourlyemployee.txt">hourlyemployee.cpp</a></i>,
+and <i><a href="salariedemployee.txt">salariedemployee.cpp.</a></i>&nbsp;
+Redefine the function </font><font color="#990000">give_raise </font><font color="#000000">in
+both <i>HourlyEmployee </i>and <i>SalariedEmployee</i> such that:</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; 1) Hourly_bases employees
+receive 10% raise on their hourly rate (wage_rate)</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; 2) Salaried employees receive
+6% raise of their salary</font>
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

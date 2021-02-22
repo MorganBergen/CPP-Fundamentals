@@ -1,0 +1,139 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 10 - 4 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 10-4 -
+Two Dimensional Arrays</font></font></b>
+<br><a href="act3.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="post_lab.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>Two dimensional arrays are defined in a similar way as the 1-D arrays.&nbsp;
+Imagine a container with two columns of partitions that one can use to
+store pills.&nbsp; My grandmother used to have one of those.&nbsp; She
+had to take two pills a day.&nbsp; So, we would load the container for
+her every Sunday night and she was good to go for the rest of the week.&nbsp;
+She only had to know where the pills for each day were and which one of
+the pills was a day pill and which one was night pill. We would tell her
+that the left ones were day pills and the right ones were night pills.&nbsp;
+The container had 7 rows for 7 days of the week and two columns one for
+the day and the other for the night. If we would view the container as
+a 2-D array, we would define it as:&nbsp; <font color="#006600">pill container[7][2]</font>.
+<p>Here we use two brackets; one to define the number of rows, and the
+other to define the number of columns.&nbsp; Similarly, a 2-D array of
+integers with 3 rows and 4 columns would be defined as:&nbsp; <font color="#006600">int
+x[3][4];</font>
+<p>Now, let me ask you a question.&nbsp; Suppose my grandmother would use
+the container with 7 rows and 2 columns to keep her pills. Assume that
+the bottom row is used for Sunday, i.e. row 0.&nbsp; Can you tell me, in
+terms of rows and columns, where she could get the pill for Tuesday night?
+<br>Row: ______&nbsp;&nbsp; Column:______&nbsp; OR in an array form:&nbsp;&nbsp;
+container[___][___]?
+<p>Now let's write a program that uses a 2-D arrays.
+<p>//P10_3.cpp - This program will ask a runner for her/his fastest 5 times
+for 6
+<br>// different distances and will display them using a 2-D array.
+<p>#include&lt;iostream>
+<br>using namespace std;
+<p>int find_distance(int j);&nbsp;&nbsp; //a function that returns a distance
+based on the choice j
+<p>int main( )
+<br>{
+<br>&nbsp;&nbsp; int i =0;
+<br>&nbsp;&nbsp; int distance[6];
+<br>&nbsp;&nbsp; double data[6][5];&nbsp; //This array will keep 30 values
+in 6 rows and 5 columns
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// 6 events and 5 times for each one of the events
+<p>&nbsp;&nbsp; for(int j = 0; j &lt; 6; j++)
+<br>&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; distance[j] = find_distance(j);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "\nEnter 5 of your
+best running times for \n " &lt;&lt;&nbsp; distance[j] &lt;&lt; " m \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(i = 0;&nbsp; i &lt; 5; i++)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter
+a time \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> data[j][i];
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp; }
+<p>&nbsp;&nbsp; cout &lt;&lt; "Here is your best 5 times: ";
+<br>&nbsp;&nbsp; for(j = 0;&nbsp; j &lt; 6; j++)
+<br>&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "\nDistance
+: " &lt;&lt; distance[j] &lt;&lt; " m \n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(i = 0; i &lt;
+5; i++)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;
+data[j][i] &lt;&lt; "\t";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; endl;
+<br>&nbsp;&nbsp; }
+<p>&nbsp;&nbsp; return 0;
+<br>}
+<p>int find_distance(int j)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (j)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+case 0: // 100 meter
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return 100;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+break;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+case 1: // 150 meter
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return 150;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+break;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+case 2: // 200 meter
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return 200;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+break;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+case 3: // 400 meter
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return 400;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+break;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+case 4: // 500 meter
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return 800;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+break;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+default: // 1600 meter
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return 1600;
+<br>&nbsp;&nbsp;&nbsp; }
+<br>}
+<p>In the above program, we can access the 3rd time of the 4th event (400
+m) in:
+<p>data[3][2];&nbsp; // note that the 3rd time is stored in column with
+index 2
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// and the 4th event is stored in row with index 3
+<p>The 4th event was 400 meter.
+<p>To access the 5 times for 150 m event, we can use:
+<p>data[1][0], data[1][1], data[1][2], data[1][3], data[1][4]
+<p>Or use a <i>for</i> loop to access them:
+<p>for(i = 0; i &lt; 5; i++)
+<br>&nbsp;&nbsp;&nbsp; data[1][i];
+<p><b><font color="#00CC00"><font size=+1>Exercise 10.4</font></font></b>
+<br>Modify the above program such that it finds the best, the worst, and
+the average time for each of the six events. The program should display,
+for each event, all five times, the worst, the best, and the average.
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

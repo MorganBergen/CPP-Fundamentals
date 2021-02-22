@@ -1,0 +1,147 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 7 - 1 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 7-1 - Using
+Boolean Expressions</font></font></b>
+<br><a href="pre_lab.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act2.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>The order in which the statements in a program are performed is called
+<b>flow
+of control</b>.&nbsp; In the previous labs, you saw programs in which <i>if,
+if...else, while, </i>and<i> do ... while </i>statements were used.&nbsp;
+These statements were used to specify flow of control in your programs.&nbsp;
+The concept behind all these methods is the same, your program comes to
+a statement that is either <b>true</b> or <b>false</b>.&nbsp; Such a statement
+is called a <b>Boolean expression</b>.&nbsp; The program then will perform
+a different task depending on the statement being true or false.&nbsp;
+For example: Suppose somewhere in your program you have:
+<p><i>if( <b><font color="#3333FF">x &lt; 10 &amp;&amp; y > 12</font></b>).</i>
+<p>In this statement, the Boolean expression is <b><i><font color="#3333FF">x
+&lt; 10 &amp;&amp; y > 12</font></i></b><font color="#000000">.&nbsp; This
+expression is true or false.&nbsp; Of course, there are several possibilities
+here:</font>
+<p><font color="#000000">&nbsp;&nbsp;&nbsp; Possibility 1: x >= 10 and
+y &lt;= 12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+the expression will be: </font><b><font color="#3333FF">false</font></b>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; Possibility 2: x >= 10 and
+y > 12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+the expression will be: </font><b><font color="#3333FF">false</font></b>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; Possibility 3: x &lt; 10 and
+y &lt;= 12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+the expression will be: </font><b><font color="#3333FF">false</font></b>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; Possibility 4: x &lt; 10 and
+y > 12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+the expression will be: </font><b><font color="#3333FF">true</font></b>
+<p><font color="#000000">So your program will go one way when the expression
+evaluates to false and another way when the expression evaluates to true.&nbsp;
+So its flow is controlled by this Boolean expression.&nbsp; Note that the
+expression inside (&nbsp; ) in the <i>if statement </i>can be very simple
+or very complicated.&nbsp; But, in either case that statement will evaluate
+to true or false, regardless of its complexity.&nbsp; When an expression
+is complex, your compiler uses the <b>precedence rules</b> to decide the
+order in which each different part of the expression should be executed.&nbsp;
+In the following expression, for example, the order of execution is decided
+by these rules:</font>
+<p><i><font color="#000000">if ( (x + 2) > 3 || (x + 1) &lt; -3 )</font></i>
+<p><font color="#000000">will be executed in this order:</font>
+<p><i><font color="#000000">if (&nbsp; </font><b><font color="#009900">(</font></b><font color="#000000">(x
++ 2) > 3</font><b><font color="#009900">) </font></b><font color="#000000">||
+</font><font color="#CC0000">(</font><font color="#000000">(x
++ 1) &lt; -3</font><font color="#CC0000">)&nbsp;</font><font color="#000000">
+)</font></i>
+<p><font color="#000000">The rules are listed in Display 7.2 of the textbook.&nbsp;
+Here, first the expression </font><i><b><font color="#009900">(</font></b><font color="#000000">(x
++ 2) > 3</font><b><font color="#009900">) </font></b></i><font color="#000000">will
+be evaluated and then the expression </font><i><font color="#CC0000">(</font><font color="#000000">(x
++ 1) &lt; -3</font><font color="#CC0000">)</font></i><font color="#000000">.&nbsp;
+Because there is an OR, "| |", between the two expressions, if the first
+one evaluates to true, the second one never gets evaluated.&nbsp; This
+is because, in an OR expression, once either one of the two expressions
+is true, the entire expression evaluates to true.</font>
+<p><a NAME="ex71"></a><b><font color="#00CC00"><font size=+1>Exercise 7.1</font></font></b>
+<br><font color="#000000">Following is a list of some Boolean expressions.&nbsp;
+Carefully go through each one of them and determine whether they evaluate
+to true or false.</font>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b>Expression</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b>Answer</b>
+<br>&nbsp;&nbsp;&nbsp; A:&nbsp; ( (count == 0) &amp;&amp; (limit &lt; 20))
+<br>&nbsp;&nbsp;&nbsp; B:&nbsp; ( count == 0 &amp;&amp; limit &lt; 20 )
+<br>&nbsp;&nbsp;&nbsp; C:&nbsp; ( (limit > 12) || (count &lt; 5) )
+<br>&nbsp;&nbsp;&nbsp; D:&nbsp; ( !(count == 5) )
+<br>&nbsp;&nbsp;&nbsp; E:&nbsp; ( (count == 1) &amp;&amp; (x &lt; y) )
+<br>&nbsp;&nbsp;&nbsp; F:&nbsp; ( (count &lt; 10) || (x &lt; y) )
+<br>&nbsp;&nbsp;&nbsp; G:&nbsp; ( !( ((count &lt; 10) || (x &lt; y)) &amp;&amp;
+(count >= 0)) )
+<br>&nbsp;&nbsp;&nbsp; H:&nbsp; ( ((limit/count) > 7) || (limit &lt; 20)
+)
+<br>&nbsp;&nbsp;&nbsp; I:&nbsp;&nbsp; ( (limit &lt; 20) || ((limit/count)
+> 7) )
+<br>&nbsp;&nbsp;&nbsp; J:&nbsp;&nbsp; ( ((limit/count) > 7) &amp;&amp;
+(limit &lt; 0) )
+<br>&nbsp;&nbsp;&nbsp; K: ( (limit &lt; 0) &amp;&amp; (( limit/count) >
+7) )
+<br>&nbsp;&nbsp;&nbsp; L: ( (5 &amp;&amp; 7) + (!6) )
+<p>Now, create a file ex71.cpp and cut and paste the following program
+in it.&nbsp; Compile and run the program and see how well your answers
+to the above expressions match the program's output.
+<p>// <font color="#CC0000">ex71.cpp</font> - This program illustrates
+the Boolean expressions and the
+<br>// order of precedence
+<br>#include&lt;iostream>
+<br><i>using namespace std;</i><i></i>
+<p>int main()
+<br>{
+<p>&nbsp;&nbsp;&nbsp; int count = 0, limit = 10;
+<br>&nbsp;&nbsp;&nbsp; int x,y;
+<p>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "a&nbsp; " &lt;&lt; ( (count == 0)
+&amp;&amp; (limit &lt; 20)) &lt;&lt; "\n";
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "b&nbsp; " &lt;&lt; ( count == 0 &amp;&amp;
+limit &lt; 20 ) &lt;&lt; "\n";
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "c&nbsp; " &lt;&lt; ( (limit > 12)
+|| (count &lt; 5) ) &lt;&lt; "\n";
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "d&nbsp; " &lt;&lt; ( !(count == 5)
+) &lt;&lt; "\n";
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "e&nbsp; " &lt;&lt; ( (count == 1)
+&amp;&amp; (x &lt; y) ) &lt;&lt; "\n";
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "f&nbsp; " &lt;&lt; ( (count &lt;
+10) || (x &lt; y) ) &lt;&lt; "\n";
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "g&nbsp; " &lt;&lt; ( !( ((count &lt;
+10) || (x &lt; y)) &amp;&amp; (count >= 0)) ) &lt;&lt; "\n";
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "h&nbsp; " &lt;&lt; ( ((limit/count)
+> 7) || (limit &lt; 20) ) &lt;&lt; "\n";
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "i&nbsp; " &lt;&lt; ( (limit &lt;
+20) || ((limit/count) > 7) ) &lt;&lt; "\n";
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "j&nbsp; " &lt;&lt; ( ((limit/count)
+> 7) &amp;&amp; (limit &lt; 0) ) &lt;&lt; "\n";
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "k&nbsp; " &lt;&lt; ( (limit &lt;
+0) &amp;&amp; (( limit/count) > 7) ) &lt;&lt; "\n";
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "l&nbsp; " &lt;&lt; ( (5 &amp;&amp;
+7) + (!6) ) &lt;&lt; "\n";
+<p>&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>Note that some of the statements may cause run-time errors.&nbsp; Find
+those statements and explain why the errors have happened. To make the
+program go to the next statement, simply comment (//) the line that causes
+the run-time error. Recompile and run the program again until all lines
+that cause a run-time error are commented.
+<p>What is the difference between h and i?
+<br>&nbsp;
+<br>&nbsp;
+<p>Would it make any difference if in "j" we switch the first and the second
+statements, i.e., we use:
+<br>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "j&nbsp; " &lt;&lt; ( (limit &lt;
+0) &amp;&amp; ((limit/count) > 7)&nbsp; ) &lt;&lt; "\n";
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

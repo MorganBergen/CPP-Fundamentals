@@ -1,0 +1,329 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 10 - 2 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 10-2 -
+Arrays in Functions</font></font></b>
+<br><a href="act1.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act3.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>You can use both the array index variables and the entire array itself
+as arguments to functions.&nbsp; The following is perfectly valid:
+<p><i>double x[7] = {0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5};</i>
+<br><i>double y[7];</i>
+<br><i>int i;</i>
+<p><i>for (i = 0; i&lt;7; ++i)</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; y[i] = sin(x[i]);</i>
+<p>Here we send the value of x[i] (as one single value) to the sine function.&nbsp;
+The function's parameter, in this case, is a call-by-value parameter.&nbsp;
+When you deal with a single variable from the array, every thing is been
+seen as a single variable.&nbsp; Thus, if one wants to update a value for
+the 5th element of an array in a different function, he/she has to use
+the call_by_reference.&nbsp; Here is an example:
+<p>// P10_2.cpp - An array element as an argument to a function
+<br>#include &lt;iostream>
+<br>using namespace std;
+<p>void get_grade(int<font color="#CC0000">&amp;</font> <font color="#009900">grade</font>);
+<br>// Obtains a grade from the user and stores it in parameter, grade.
+<p>int main(void)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int grades[5];
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int i;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter 5 grades
+\n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i = 0; i&lt;5; ++i)&nbsp;
+// read, store values one-by-one
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+get_grade(<font color="#009900">grades[i]</font>);
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i = 0; i&lt;5; ++i)
+// Displays the array
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "grade[" &lt;&lt; i &lt;&lt; "] = " &lt;&lt;&nbsp; <font color="#009900">grades[i]
+</font><font color="#000000">&lt;&lt;
+endl;</font>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>void get_grade(int<font color="#CC0000">&amp;</font> <font color="#009900">grade</font>)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Input a grade
+between 0 and 100: ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> grade;
+<br>}
+<p>Here, we update the elements of array grade, one-by_one. Thus, we have
+used a call-by-reference mechanism to update the values.&nbsp; Note that
+there is a major difference between the <font color="#009900">grade </font><font color="#000000">in
+the function call and the one in the function definition.&nbsp; In the
+statement:</font>
+<br>&nbsp;get_grade(<font color="#009900">grades[i]</font>);
+<p><font color="#009900">grades </font>is the arrays <font color="#009900">grades[]</font>
+and we are referring to its <font color="#009900">ith</font> element, while
+in statement:
+<br>void get_grade(int<font color="#CC0000">&amp;</font> <font color="#009900">grade</font>)
+<p><font color="#009900">grade </font>is a single integer.
+<p>We could use the entire array as an argument too. Here is the modified
+version of the above program.
+<p>// P10_2a.cpp - The entire array as an argument to a function
+<br>#include &lt;iostream>
+<br>using namespace std;
+<p>void get_grade(int <font color="#009900">grade[]</font>);
+<p>int main(void)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int grades[5];
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int i;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter 5 grades
+\n";
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; get_grade(<font color="#009900">grades</font>);
+// can read, modify all elements
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i = 0; i&lt;5; ++i)
+// Displays the array
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "grade[" &lt;&lt; i &lt;&lt; "] = " &lt;&lt;&nbsp; <font color="#009900">grades[i]
+</font><font color="#000000">&lt;&lt;
+endl;</font>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>void get_grade(int <font color="#009900">grade[]</font>)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i&lt;5;
+++i)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; "Input a grade between 0 and 100: ";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cin >> grade;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>}
+<p>Note that we no longer need to pass the array as call-by-reference,
+no need for <font color="#CC0000">&amp;</font>, because once you call the
+function as:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; get_grade(<font color="#009900">grades</font>);
+// can read, modify all elements
+<p>You have passed the address of the first element of the array, i.e.,
+the address of <font color="#009900">grade[0]</font>,&nbsp; to the function
+get_grade.&nbsp; The declaration of the array in the get_grade definition
+is:
+<p>void get_grade(int <font color="#009900">grade[]</font>)
+<p>which means, an array of some size that starts from the address that
+was passed to it from the function call, i.e. an array of some consecutive
+addresses starting from the address of <font color="#009900">grad [0].&nbsp;</font><font color="#000000">
+Thus, if in function get_grade you use an array of 5 elements, the memory
+address of that array will be the same as the array grades that was defined
+in the main.</font>
+<p><b><font color="#000099"><font size=+1>Using const with an Array Parameter</font></font></b>
+<br><font color="#000000">If you place the reserved word </font><font color="#009900">const</font><font color="#000000">
+in front of an array parameter, the function cannot change the value of
+any of the elements of the array. An attempt to do so, will result in a
+syntax error.&nbsp; This is a good idea if you are writing a function that
+will be used by other programmers and you want to make it clear to them
+that your function will not make any changes to the array that is passed
+to it. On the other hand, sometimes we want to make chnages in the array.&nbsp;
+For example, in the above program if we had used:</font>
+<br>void get_grade(const int <font color="#009900">grade[]</font>)
+<p><font color="#000000">Then, we would be unable to update the elements
+of the array.</font>
+<p><b><font color="#000099"><font size=+1>Partially Filled Arrays</font></font></b>
+<br><font color="#000000">Sometimes we don't know in advance how many values
+we will store in an array. In such a case, we declare the array to be of
+a size large enough for storing the maximum number of values we may have.
+Then, as we fill the array, we count the number of elements that get filled
+and use that count as the used size of the array.&nbsp; Soon you will see
+an example of a partially filled array. First, let's describe a program
+that requires using this example.</font>
+<p><font color="#000000">Suppose we want to write a program to add very
+large integers. Our C++ compiler's integer data type is stored in 4 bytes.
+This means that the largest integer we</font>
+<br><font color="#000000">can store in an integer variable is approximately
+2 billion. If we need larger integers, we will have to develop a new way
+of storing them.&nbsp; One way to store a large integer is to store the
+digits of the integer in a character array. Let's say that we will never
+need integers with more than 20 digits. Then we can declare a character
+array of size 20 and be sure that any of our large integers will fit into
+it. As we fill the array with digit characters, we will count the digits
+so that we know how many elements are currently filled. Here is the example:</font>
+<p><font color="#000000">// P10_2b.cpp - An example for partially filled
+arrays</font>
+<br><font color="#000000">// Saving very large integers as array of characters</font>
+<p><font color="#000000">#include &lt;iostream></font>
+<br><font color="#000000">#include &lt;ctype></font>
+<br><font color="#000000">using namespace std;</font>
+<p><font color="#000000">const int MAXSIZE = 20;</font>
+<p><font color="#000000">int main(void)</font>
+<br><font color="#000000">{</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char
+digit_array[MAXSIZE], digit;</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+size, i;</font>
+<p><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size
+= 0;</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout
+&lt;&lt; "Enter an integer with no more than 20 digits: ";</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do
+{</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cin.get(digit);</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (isdigit(digit))</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+digit_array[size] = digit;</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+++size;</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+while (size &lt; 20 &amp;&amp; isdigit(digit));</font>
+<p><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout
+&lt;&lt; "The integer you entered is: ";</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for
+(i = 0; i&lt;size; ++i)</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; digit_array[i];</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout
+&lt;&lt; endl;</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+0;</font>
+<br><font color="#000000">}</font>
+<p><b><font color="#000099"><font size=+1>Partially Filled Arrays as Function
+Argument</font></font></b>
+<br><font color="#000000">Sometimes you have a partially filled array and
+you want to pass that to a function as an argument.&nbsp; In such a case,
+it is best to pass the used size of the array as an argument as well.&nbsp;
+For example, in the above program suppose we want to use a function that
+does the reading and another one that does the writing.&nbsp; So we will
+have the read_array and write_array functions with two arguments.&nbsp;
+Here is the modified version of the program.</font>
+<p><font color="#000000">// P10_2c.cpp - An example for partially filled
+arrays</font>
+<br><font color="#000000">// Saving very large integers as array of characters</font>
+<br><font color="#000000">#include &lt;iostream></font>
+<br><font color="#000000">#include &lt;ctype></font>
+<br><font color="#000000">using namespace std;</font>
+<p><font color="#000000">const int MAXSIZE = 20;</font>
+<br><font color="#009900">void read_array(char d_array[], int&amp; size);
+// array will be modified</font>
+<br><font color="#000099">void write_array(</font><font color="#CC0000">const
+</font><font color="#000099">char
+d_array[], int size); // array will </font><font color="#CC0000">not
+</font><font color="#000099">be
+modified</font>
+<p><font color="#000000">int main(void)</font>
+<br><font color="#000000">{</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char
+digit_array[MAXSIZE];</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+size, i;</font>
+<p><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size
+= 0;</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout
+&lt;&lt; "Enter an integer with no more than 20 digits: ";</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#009900">read_array(digit_array,
+size);</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#000099">write_array(digit_array,
+size);</font>
+<p><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+0;</font>
+<br><font color="#000000">}</font>
+<p><font color="#009900">void read_array(char d_array[], int&amp; size)</font>
+<br><font color="#009900">{</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char digit;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do {</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cin.get(digit);</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (isdigit(digit))</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+d_array[size] = digit;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+++size;</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</font>
+<br><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+while (size &lt; 20 &amp;&amp; isdigit(digit));</font>
+<br><font color="#009900">}</font>
+<p><font color="#000099">void write_array(const char d_array[], int size)</font>
+<br><font color="#000099">{</font>
+<br><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout
+&lt;&lt; "The integers you entered are: ";</font>
+<br><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for
+(int i = 0; i&lt;size; ++i)</font>
+<br><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout &lt;&lt; d_array[i];</font>
+<br><font color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout
+&lt;&lt; endl;</font>
+<br><font color="#000099">}</font>
+<p><a NAME="ex10.2"></a><b><font color="#00CC00"><font size=+1>Exercise
+10.2</font></font></b>
+<br><font color="#000000">Write a program that asks users to input up to
+20 integers, and then finds the maximum, minimum, average, and median of
+the numbers that were entered.</font>
+<p><font color="#000000">Median is the number that appears in the middle
+of the sorted list of numbers.&nbsp; If the array has an odd number of
+elements, median is a single number in the middle of the list (array).&nbsp;
+If the array has an even number of elements, then median is the average
+of the two numbers in the middle.</font>
+<p><font color="#000000">Example:</font>
+<br><font color="#000000">Odd number of elements:&nbsp;&nbsp; 1 4 6 3 8,
+first sort the numbers: 1 3 4 6 8, then find the median, i.e, 4.</font>
+<br><font color="#000000">Even number of elements:&nbsp;&nbsp; 1 4 8 3,
+first sort the numbers:&nbsp; 1 3 4 8, then find the median as the average
+of 3 and 4, i.e., 3.5</font>
+<p>To find the smallest element in an array, you only need to find the
+index of the smallest number.&nbsp; You can use the following function
+to do this.&nbsp; This function is also used in the <i>sort_array </i>function.
+<p><i><font color="#000000">int index_of_smallest(const int a[], int start_index,
+int user_size)</font></i>
+<br><i><font color="#000000">{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int min = a[start_index],
+index_of_min = start_index;</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; for(int i = start_index+1;
+i &lt; used_size; i++)</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if(a[i] &lt; min )</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+min = a[i];</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+index_of_min = i;</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return index_of_min;</font></i>
+<br><i><font color="#000000">}</font></i>
+<p><font color="#000000">To sort an array that has <i>used_size </i>elements,
+use the following function:</font>
+<p><i><font color="#000000">void sort_array(int a[], int used_size)</font></i>
+<br><i><font color="#000000">{</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int index_of_next_smallest;</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int temp;</font></i>
+<p><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(int i =
+0; i &lt; used_size-1; i++)</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+index_of_next_smallest = index_of_smallest(a, index, used_size);</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// swap two elements</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+temp = a[i];</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a[i] = a[index_of_next_smallest];</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a[index_of_next_smallest] = a[i];</font></i>
+<br><i><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font></i>
+<br><i><font color="#000000">}</font></i>
+<p>Note that you can write three more functions; 1) one similar to the
+one that finds the index of smallest number for finding the index of the
+largest number, 2) one that computes the average and returns it to the
+main, 3) and the last one that takes the sorted array and will return the
+median.
+<br>&nbsp;
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 15 - 1 </title>
+<script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+</script>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 15-1 -
+Introduction to pointers and linked lists</font></font></b>
+<br><a href="pre_lab.html"><img SRC="lfarrow.jpg" BORDER=0 height=35 width=36></a><a href="act2.html"><img SRC="rtarrow.jpg" BORDER=0 height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>In Chapter 12 you learned about pointers.&nbsp; We will use pointers
+to define <i>linked lists</i>.&nbsp; A <b>linked list</b> is a list constructed
+using pointers.&nbsp; A linked list is a list of nodes in which each node
+has a member variable that is a pointer that points to the next node in
+the list.&nbsp; It is not fixed in size and can grow and shrink while the
+program is running.&nbsp; In real life, useful dynamic variables are seldom
+of a simple type such as <i>int </i>or <i>double</i>.&nbsp; They normally
+are of more complex types such as <i>struct </i>or <i>class</i>.&nbsp;
+A structure may have several members. An example of a struct definition
+that could be used to build a linked list is shown below.
+<p><i>struct ListNode</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; string item;</i>
+<br><i>&nbsp;&nbsp;&nbsp; int count;</i>
+<br><i>&nbsp;&nbsp;&nbsp; ListNode *link;</i>
+<br><i>};</i>
+<p><i>typedef ListNode* ListNodePtr;</i>
+<p>Now if we use this to create a pointer variable <i>head </i>as:
+<br><i>ListNodePtr&nbsp; head;</i>
+<p>Then we have something that looks like this:
+<center><img SRC="struct1.jpg" height=198 width=413>
+<p>Figure (1) - The <i>head </i>pointer pointing to the empty <b>head </b>node</center>
+
+<p>The above struct can be used to create items that are known as <b>nodes</b>.&nbsp;
+In the above diagram, we have drawn one node, the three-partition box on
+the right.&nbsp; We may have many of these nodes connected with arrows
+that represent pointers.&nbsp; In the above diagram, the box <i>head</i>
+is not a node.&nbsp; It is a pointer variable that points to a node.&nbsp;
+We have something that looks like the following diagram.&nbsp; The first
+node in a linked list is called the <b>head </b>and that is the reason
+we also call the pointer that points to it <i>head</i>.
+<center>
+<p><img SRC="struct2.jpg" height=643 width=798>
+<br>Figure (2) - Assigning node data</center>
+
+<p>In this diagram, on the left and the right side you will see a list
+with three nodes.&nbsp; Let's look at the one on the left first.&nbsp;
+As you can see <i>head </i>points to the node with item = "rolls" and count
+= 10.&nbsp; This node with item = "jam" and count = 3 and that node, in
+turn, points to the node with item = "tea" and count = 2.&nbsp; Because
+the bottom node does not point to anything, we say that points to <b>Null</b>.&nbsp;
+Null is a special constant value that is used to give a value to a pointer
+variable that would not otherwise have a value.&nbsp; We will explain how
+this list was created very soon.&nbsp; Before we get that far, let's talk
+about a few other things.&nbsp; Let's first learn how to update one of
+the nodes.&nbsp; As you may have noticed, on the right-hand-side of the
+above diagram you have modified the first node of the diagram on the left-hand-side.&nbsp;
+To make this modification you can use one of the following two methods:
+<p>Method 1:
+<br><i>(*head).item = "bagels";</i>
+<br><i>(*head).count = 12;</i>
+<p>The parentheses are <font color="#CC0000">NOT</font> optional.
+<p>Method 2:
+<br>head-> item = "bagels";
+<br>head-> count = 12;
+<p>Thus, if you have the list in place, you know how to modify its nodes.
+<p>The next question perhaps would be "How was this linked list created?"
+<p>In order to create a linked list, you need to go through a few steps.&nbsp;
+In the process of building a linked list, we use a process referred to
+as
+<i>insert </i>to add new nodes.&nbsp; In the above program segment,
+we have
+<p><i>ListNodePtr&nbsp; head;</i>
+<p>Which is a pointer, but does not point to anything yet.&nbsp; So the
+first thing we want to do is to make <i>head </i>points to a node, but
+we need to create a node to which it will point.&nbsp; The following command
+will create a new node:
+<p><i>head = new Node;</i>
+<p>Now we have something that looks like the list shown on Figure (1).&nbsp;
+This is referred to as an <b>empty list</b>.&nbsp; We can put something
+in the empty node using:
+<br><i>head -> item = "Tea";</i>
+<br><i>head -> count = 2;</i>
+<br><i>head -> link = NULL;</i>
+<center>
+<p><img SRC="struct4.jpg" height=197 width=395>
+<br>Figure (3) - The head node with data</center>
+
+<p><b><font color="#000099">Inserting a Node at the Head of a List</font></b>
+<br>Now we have a list with one node.&nbsp; To insert more nodes, we will
+go through the following process:
+<br>&nbsp;&nbsp;&nbsp; 1) Declare a pointer variable <i>tmp_ptr</i>, Create
+a Node pointed to by <i>temp_prt:</i>
+<center><i>tmp_ptr = new Node;</i></center>
+
+<p><i>&nbsp;&nbsp;&nbsp; </i>2) Place the data in this new node:
+<center>temp_ptr -> item = "jam";
+<br>temp_ptr -> count = 3;</center>
+
+<p>&nbsp;&nbsp;&nbsp; 3) Make the link member of this new node point to
+the head node of the original linked list:
+<center>temp_ptr -> link = head;</center>
+
+<p>&nbsp;&nbsp;&nbsp; 4) Make the pointer variable named head point to
+the new node
+<center>head = temp_ptr;</center>
+
+<p>Now we have the list similar to the one shown on Figure (4).
+<center>
+<p><img SRC="struct5.jpg" height=358 width=377>
+<br>Figure (4) - Inserting a node at the top</center>
+As you have noticed, we have inserted a new node at the top of the list.&nbsp;
+This is the second node of the three shown in Figure (2). Similarly, we
+can insert the third node.&nbsp; I will leave that for you to do as practice.
+<p>In order to make an insertion, we usually use a function called <i>insert
+</i>to
+do this for us.&nbsp; Here is a C++ program which creates the linked list.
+<p><i>void head_insert(NodePtr<b>&amp;</b> head, string an_item, int a_count)</i>
+<p>Here is a C++ program that&nbsp; creates the linked list on Figure (2).
+<p><i>// P15_1.cpp - Program to demonstrate the function head_insert.</i>
+<br><i>#include &lt;iostream></i>
+<br><i>#include &lt;cstddef></i>
+<br><i>#include &lt;string></i>
+<br><i>using namespace std;</i>
+<p><i>struct Node</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; string item;</i>
+<br><i>&nbsp;&nbsp;&nbsp; int count;</i>
+<br><i>&nbsp;&nbsp;&nbsp; Node *link;</i>
+<br><i>};</i>
+<p><i>typedef Node* NodePtr;</i>
+<p><i>void head_insert(NodePtr&amp; head, string an_item, int a_number);</i>
+<br><i>void show_list(NodePtr&amp; head);</i>
+<p><i>int main()</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; NodePtr head = NULL;</i>
+<br><i>&nbsp;&nbsp;&nbsp; head_insert(head, "Tea", 2);</i>
+<br><i>&nbsp;&nbsp;&nbsp; head_insert(head, "Jam", 3);</i>
+<br><i>&nbsp;&nbsp;&nbsp; head_insert(head, "Rolls", 10);</i>
+<p><i>&nbsp;&nbsp;&nbsp; show_list(head);</i>
+<p><i>&nbsp;&nbsp;&nbsp; return 0;</i>
+<br><i>}</i>
+<p><i>void head_insert(NodePtr&amp; head, string an_item, int a_number)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; NodePtr temp_ptr;</i>
+<br><i>&nbsp;&nbsp;&nbsp; temp_ptr = new Node;</i>
+<p><i>&nbsp;&nbsp;&nbsp; temp_ptr-> item = an_item;</i>
+<br><i>&nbsp;&nbsp;&nbsp; temp_ptr-> count = a_number;</i>
+<p><i>&nbsp;&nbsp;&nbsp; temp_ptr->link = head;</i>
+<br><i>&nbsp;&nbsp;&nbsp; head = temp_ptr;</i>
+<br><i>}</i>
+<p><i>void show_list(NodePtr&amp; head)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; NodePtr here = head;</i>
+<p><i>&nbsp;&nbsp;&nbsp; while (here != NULL)</i>
+<br><i>&nbsp;&nbsp;&nbsp; {</i>
+<br><i>&nbsp; cout &lt;&lt; here-> item &lt;&lt; "\t";</i>
+<br><i>&nbsp; cout &lt;&lt; here-> count &lt;&lt; endl;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; here = here->link;</i>
+<br><i>&nbsp;&nbsp;&nbsp; }</i>
+<br><i>}</i>
+<p><a NAME="ex15.1"></a><b><font color="#00CC00"><font size=+1>Exercise
+15.1</font></font></b>
+<br>In the above program make the necessary changes so that a new struct,
+<i>date,
+</i>is
+defined for the expiration date of the product.&nbsp; Thus, an expiration
+date, <i>day, month, </i>and<i> year,</i> will be associated with each
+node.&nbsp; Use the following expiration dates for each item:
+<p>Rolls&nbsp;&nbsp;&nbsp; 08/10/2003
+<br>Jam&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 09/12/2003
+<br>Tea&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 01/01/2010
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 2</title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 4-2 - Functions
+that "Return" More than One Value</font></font></b>
+<br><b><font color="#000099"><font size=+3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(Call-by-reference)</font></font></b>
+<br><a href="act1.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="act3.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<center><i>"A function cannot return more than one value using the return
+statement, but can use the call-by-reference to update many values"</i></center>
+
+<p>In Lab3, we saw several examples of functions that returned one value.&nbsp;
+Sometimes we may want to return more than one value from a function.&nbsp;
+The return statement can be used to return one value only.&nbsp;&nbsp;
+Instead, we will use the <b>call-by-reference</b> mechanism to update the
+arguments that are passed to a function.&nbsp; Following is an example
+in which we have used this method to return a value to the main without
+using the return statement.&nbsp; A call-by-reference parameter is marked
+by an <b>&amp;</b> so that the compiler will distinguish it from other
+parameters.&nbsp; To visualize this better think about the program that
+you wrote to solve a quadratic equation. Suppose, you wanted to call a
+function that would ask users to input the coefficients, <b>a, b, </b>and
+<b>c</b>.&nbsp;
+You could have called a function as:
+<p>get_a_b_c(a,b,c);
+<p>Now, the declaration of this function will look like this:
+<p>void get_a_b_c(float<b>&amp;</b> a, float<b>&amp;</b> b, float<b>&amp;</b>
+c);
+<p>Let's look at a program and see how this works.&nbsp; In the following
+example, the <font color="#3333FF">get_input</font> function obtains two
+values from the user, then returns (brings) them to the main function.
+In a sense, <font color="#3333FF">get_input</font> "returns" two values.&nbsp;
+This cannot be done with the return statement because the return statement
+returns exactly one value. If a function must produce more than one output
+value, then we must use call-by-reference parameters (one for each output
+value.)
+<p>Simple Example (please pay attention to the font color):
+<p>// P52.cpp This function illustrates how a function can return two values
+<br>#include&lt;iostream>
+<br>using namespace std;
+<p>// This is the declaration for the function that reads the values for
+i and j
+<br>void <font color="#3333FF">get_input</font>(<font color="#CC0000">int&amp;
+i</font>, <font color="#009900">int&amp; j</font>);
+<p>// This is the declaration for the function that adds 10 to i and 20
+to j
+<br>void process(<font color="#CC0000">int&amp; i</font>, <font color="#009900">int
+j</font>);
+<p>int main()
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp; int <font color="#CC0000">i</font><font color="#000000">,
+</font><font color="#009900">j</font>;
+<p>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333FF">get_input</font>(<font color="#CC0000">i
+</font>,
+<font color="#009900">j</font>);
+<p>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "I am about to call function
+process, <font color="#000000">i </font>= " &lt;&lt; <font color="#CC0000">i</font>
+&lt;&lt; " j = " &lt;&lt; <font color="#009900">j </font>&lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp;&nbsp; process(i,j);
+<p>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "I just came back from function
+Process, i = " &lt;&lt;<font color="#CC0000"> i </font>&lt;&lt; " j = "
+&lt;&lt;<font color="#009900"> j</font> &lt;&lt; endl;
+<p>&nbsp;&nbsp;&nbsp; return 0;
+<br>}
+<p>void get_input(<font color="#CC0000">int&amp; i</font>,<font color="#3333FF">
+int&amp; j</font>)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Please enter two
+values for i and j separated by a single space, then press &lt;Enter>:";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> <font color="#CC0000">i
+</font>>>
+<font color="#009900">j</font><font color="#000000">;</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;&nbsp;&nbsp; // a void
+function, returns nothing
+<br>}
+<p>void process(<font color="#CC0000">int&amp; i</font>, <font color="#009900">int
+j</font>)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#CC0000"> i = i +10;</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">j = j +20;</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Inside function Process
+\n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "I added 10 to i, and 20 to
+j, i = " &lt;&lt;<font color="#CC0000"> i </font>&lt;&lt; " and j = " &lt;&lt;
+<font color="#009900">j
+</font>&lt;&lt;
+"\n";
+<br>}
+<p><a NAME="ex42"></a><font color="#00CC00"><font size=+1>Exercise 4.2</font></font>
+<br>Cut and paste this program into a program called ex42.cpp, compile
+then run it.&nbsp; Which one of the values, <font color="#CC0000">i </font>or<font color="#009900">
+j</font>, got updated upon return from the function process?
+<br>What would you do to get both values updated upon your return to the
+main? make the necessary changes and run the program to make sure it works
+correctly.
+<p>Using &amp; we access the address of a variable,&nbsp; thus, when we
+make a change in the value in a function, the change will be seen in the
+calling function as well, i.e., the
+<br>value gets updated.
+<p>It is worth noting that one may think that the use of &amp; in all function
+calls sounds like a good idea.&nbsp; The argument one may make is that
+"it is safe to use it all the time, so when the value needs to get updated,
+it is already there."&nbsp; However, passing a variable using call-by-reference
+may result in unwanted and undesirable changes in the value, which may
+cause the program to produce incorrect results.&nbsp; As a rule, you need
+to keep all parameters as call-by-value and only change those to call-by-reference
+that you need to get updated.
+<p><a NAME="ex43"></a><font color="#00CC00"><font size=+1>Exercise 4.3</font></font>
+<br>In order to swap the value of two variables, one can use the following
+procedure:
+<p>temp = variable1;
+<br>variable1 = variable2;
+<br>variable2 = temp;
+<p>Write a C++ program that asks the user to input two integer values,
+then calls a void function <i>swap</i> to swap the values for the first
+and second variable.&nbsp; Please display the two variables before you
+call swap and after you call that function.
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

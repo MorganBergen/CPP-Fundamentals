@@ -1,0 +1,348 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 12 - 1 </title>
+<script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+</script>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 12-1 -
+Introduction to pointers</font></font></b>
+<br><a href="pre_lab.html"><img SRC="lfarrow.jpg" BORDER=0 height=35 width=36></a><a href="act2.html"><img SRC="rtarrow.jpg" BORDER=0 height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>Every byte in the computers memory has an address. Addresses are numbers
+just as they are for our homes on a street. When a program is loaded into
+the memory, depending on its size, it occupies a certain range of these
+addresses. Suppose the following variables are declared in our program.&nbsp;
+Each one of them take up some space in the memory as described in the table:
+<br>&nbsp;
+<table BORDER WIDTH="18%" >
+<tr>
+<td HEIGHT="60"><b>Memory Addresses</b></td>
+
+<td HEIGHT="60"><b>Variables&nbsp; (type &amp; name)</b></td>
+</tr>
+
+<tr>
+<td>123000</td>
+
+<td ROWSPAN="2">int num</td>
+</tr>
+
+<tr>
+<td>123001</td>
+</tr>
+
+<tr>
+<td>123002</td>
+
+<td>char c</td>
+</tr>
+
+<tr>
+<td>123003</td>
+
+<td ROWSPAN="2">int count</td>
+</tr>
+
+<tr>
+<td>123004</td>
+</tr>
+
+<tr>
+<td>123005</td>
+
+<td ROWSPAN="4">float salary&nbsp;</td>
+</tr>
+
+<tr>
+<td>123006</td>
+</tr>
+
+<tr>
+<td>123007</td>
+</tr>
+
+<tr>
+<td>123008</td>
+</tr>
+
+<tr>
+<td>123009</td>
+
+<td>&nbsp;</td>
+</tr>
+</table>
+
+<p>The address of the first variable, integer variable num, is 123000.
+Note that two bytes are allocated to store num, but as we mentioned in
+Chapter (1), the top location is what we refer to as the address of num.&nbsp;
+The address of the second variable, character variable c, is 123002.&nbsp;
+Similarly, we can determine the addresses of other variables.&nbsp; In
+C++, you can find the address of a variable by using the "<i>address of"</i>
+operator,
+<b>&amp;</b>. Consider the following program segment:
+<p>int num ;
+<br>....
+<br>....
+<br>cout &lt;&lt; <font color="#FF0000">&amp;num</font>;
+<p>The above cout statement prints out 123000, i.e. the address of the
+variable num. Note that the address of a variable is NOT the same as its
+content. Consider the following statements in a C++ program:
+<p><font color="#009900">Declaration:</font>
+<br>int&nbsp;&nbsp;&nbsp;&nbsp; num;
+<br>char&nbsp; c;
+<br>int&nbsp;&nbsp;&nbsp;&nbsp; count;
+<br>float&nbsp; salary;
+<p><font color="#009900">Assignment:</font>
+<br>num&nbsp;&nbsp; =&nbsp; 7777;
+<br>c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&nbsp; 'z';
+<br>count =&nbsp; 999;
+<br>salary = 6920.77;
+<p>By assigning a value to a variable, we change the content in the memory
+location that is assigned to the variable.&nbsp; The following table shows
+how the assignments are made.
+<br>&nbsp;
+<table BORDER WIDTH="23%" >
+<tr>
+<td WIDTH="33%"><b>Memory Address</b></td>
+
+<td WIDTH="40%"><b>Contents of Memory</b></td>
+
+<td WIDTH="27%"><b>Variable Name&nbsp;</b></td>
+</tr>
+
+<tr>
+<td WIDTH="33%">123000</td>
+
+<td ROWSPAN="2">7777</td>
+
+<td ROWSPAN="2">num</td>
+</tr>
+
+<tr>
+<td WIDTH="33%">123001</td>
+</tr>
+
+<tr>
+<td WIDTH="33%">123002</td>
+
+<td WIDTH="40%">z</td>
+
+<td WIDTH="27%">c</td>
+</tr>
+
+<tr>
+<td WIDTH="33%">123003</td>
+
+<td ROWSPAN="2">999</td>
+
+<td ROWSPAN="2">count</td>
+</tr>
+
+<tr>
+<td WIDTH="33%">123004</td>
+</tr>
+
+<tr>
+<td WIDTH="33%">123005</td>
+
+<td ROWSPAN="4">6920.77</td>
+
+<td ROWSPAN="4">salary</td>
+</tr>
+
+<tr>
+<td WIDTH="33%">123006</td>
+</tr>
+
+<tr>
+<td WIDTH="33%">123007</td>
+</tr>
+
+<tr>
+<td WIDTH="33%">123008</td>
+</tr>
+</table>
+
+<p>We've seen variable types that store characters, integers and floating
+point numbers. In a very similar fashion, addresses can be are stored.
+A variable that stores an address value is called a <i>pointer variable</i>,
+or simply a <i>pointer</i>.
+<p>Let's take a look at an example.
+<p>//P12_1.cpp. This program defines pointer variables
+<br>#include&lt;iostream>
+<br>using namespace std;
+<p>int main ()
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;
+num;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char&nbsp; c;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;
+count;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float&nbsp; salary;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Declaring bunch of pointers
+that point to nothing (point to null)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">*numptr</font>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// declare a pointer variable to an integer
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char&nbsp;&nbsp; <font color="#CC0000">*cptr</font>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// declare a pointer variable to a character
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">*countptr</font>;&nbsp;&nbsp;&nbsp;
+// declare a pointer variable to an integer
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float&nbsp;&nbsp; <font color="#CC0000">*salaryptr</font>;&nbsp;
+// declare a pointer variable to a float
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Making them point somewhere
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">numptr</font>
+= &amp;num;&nbsp; //numptr is pointing to num
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">cptr</font>
+= &amp;c;&nbsp; //cptr is pointing to c
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">countptr</font>
+= &amp;count;&nbsp; //countptr is pointing to count
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">salaryptr</font>
+= &amp;salary;&nbsp; //salaryptr is pointing to salary
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Assign values to the locations
+where the pointers point
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">*numptr</font>
+= 2;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">*cptr</font>
+= 'A';
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">*countptr</font>
+= 100;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">*salaryptr</font>
+= 3200;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display the contents of
+those memory locations
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; num &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; c &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; count &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; salary &lt;&lt;
+endl;
+<p>&nbsp;&nbsp; return 0;
+<br>}
+<p>This program defines 4 pointer variables. The asterisk (*) before the
+variable name implies <b><i>pointer to. </i></b>The * is called the <i>dereferencing
+operator. </i>Thus,
+<br>int *numptr;
+<br>defines the variable numptr as a pointer variable to an integer value,
+i.e. numptr can hold addresses of integer variables.&nbsp; Note that the
+above pointers are not pointing at anything when they are declared.
+<p>&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#FF0000">*numptr;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// declare a pointer variable to an integer
+<br>&nbsp;&nbsp; char&nbsp;&nbsp;<font color="#FF0000"> *cptr;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// declare a pointer variable to a character
+<br>&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FF0000">
+*countptr;</font>&nbsp;&nbsp;&nbsp; // declare a pointer variable to an
+integer
+<br>&nbsp;&nbsp; float&nbsp;&nbsp; <font color="#FF0000">*salaryptr; </font><font color="#000000">//
+</font>declare<font color="#000000">
+a pointer variable to a float</font>
+<p>It is said that they are pointing to <i>null</i>.&nbsp; We have only
+defined pointers that can point to variables of different types, but they
+don't point to anything yet.&nbsp; In order to make use of them, they have
+to point to something of their types.
+<p>That what we did in the following 4 lines:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">numptr</font>
+= &amp;num;&nbsp; //numptr is pointing to num
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">cptr</font>
+= &amp;c;&nbsp; //cptr is pointing to c
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">countptr</font>
+= &amp;count;&nbsp; //countptr is pointing to count
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">salaryptr</font>
+= &amp;salary;&nbsp; //salaryptr is pointing to salary
+<p>These pointers are pointing to some memory locations, we can used these
+pointers to assign values to those locations:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">*numptr</font>
+= 2;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">*cptr</font>
+= 'A';
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">*countptr</font>
+= 100;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#CC0000">*salaryptr</font>
+= 3200;
+<p>At last, we displayed the contents of those locations:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; num &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; c &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; count &lt;&lt; endl;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; salary &lt;&lt;
+endl;
+<p>As you may have noticed, we did not directly assign anything to <i>num,
+c, count, and salary</i>.&nbsp; Instead, we used the pointers to assign
+values to where those pointers were pointing.
+<p>Note that
+<p>int *numptr; and
+<br>int* numptr;
+<p>are equivalent. It is the same to the compiler whether you define it
+one way or the other. However, you must be careful when you make multiple
+definitions in one line.
+<p>int* ptr1, ptr2;
+<p>defines ptr1 as a pointer variable that can hold addresses of integer
+variables, but ptr2 is simply an integer and NOT a pointer variable. i.e.
+<p>int* ptr1, ptr2; and
+<br>int *ptr1, *ptr2;
+<p>are NOT equivalent. The first statement defines ptr1 as a pointer variable
+but ptr2 as an integer variable, while the second statement defines both
+ptr1 and ptr2 as pointer variables to integers. Thus, if you define more
+than one pointer variable of the same type on one line, you need only insert
+the type pointed to once, but you need to place the * before EACH variable
+name.
+<p>A pointer can be used to refer to a variable. Your program can manipulate
+variables even if the variables have no identifiers to name them. These
+nameless variables are referred to by pointers. Let's look at P12_1a.cpp
+to see how this is done.
+<p>//P12_1a.cpp . This program illustrates dynamic variables
+<br>#include &lt;iostream>
+<br>using namespace std;
+<p>int main ()
+<br>{
+<br>&nbsp;&nbsp; int *p1;
+<p>&nbsp;&nbsp; p1 = <font color="#FF0000">new int;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Variables created using the new operator are called dynamic variables
+<p>&nbsp;&nbsp; cout &lt;&lt; "Enter an integer \n";
+<br>&nbsp;&nbsp; cin >> *p1;
+<br>&nbsp;&nbsp; *p1 = *p1 + 7;
+<br>&nbsp;&nbsp; cout &lt;&lt; &lt;&lt; "Your input + 7 = " &lt;&lt; *p1
+&lt;&lt; endl;
+<p>&nbsp;&nbsp; <font color="#FF0000">delete p1;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Delete the dynamic variable p1 and return the memory occupied by p1
+to the freestore to be reused.
+<p>&nbsp;&nbsp; return 0;
+<br>}
+<p>The new operator produces a new nameless variable and returns a pointer
+that points to this new variable. This type of variable is called a <i>dynamic
+variable</i>. Dynamic variables are stored in a special area of memory
+called the <i>freestore</i> or the <i>heap. </i>Any new dynamic variable
+created by a program consumes some of the memory in the freestore. If your
+program creates too many dynamic variables, it will consume all of the
+memory in the freestore. If this happens, any additional calls to the new
+will fail.
+<p>If your program no longer needs a dynamic variable, the memory used
+by that dynamic variable can be returned to the freestore to be reused
+to create other dynamic variables. The <i>delete</i> operator eliminates
+a dynamic variable and returns the memory that the dynamic variable occupied
+to the freestore, so the memory can be reused.
+<p><a NAME="ex12.1"></a><b><font color="#00CC00"><font size=+1>Exercise
+12.1</font></font></b>
+<p>Define a class <i>Area</i> that has two private variable members; <i>units</i>
+of type string and <i>area_value</i> of type float. Modify the P12_1a.cpp
+program to create a dynamic variable of type <i>Area</i>.
+<br>&nbsp;&nbsp;&nbsp; 1) Input from the keyboard the <i>area_value</i>
+and its units. Compute one-half and one-quarter of the area and display
+the results
+<br>&nbsp;&nbsp;&nbsp; 2) Destroy the dynamic variable at the end
+<p>Call your new program ex12_1.cpp.
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

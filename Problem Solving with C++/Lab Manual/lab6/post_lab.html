@@ -1,0 +1,42 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Post-lab</title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Post-Lab - Lab (6) - A Rational
+Number Class</font></font></b>
+<br><a href="act3.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="index.html"><img SRC="uparrow.jpg" height=35 width=37></a>
+<br>
+<hr WIDTH="100%">
+<br>Write a C++ program that conducts the rational number operations.&nbsp;
+Your program will use a rational number class to perform the <i>addition,
+subtraction, multiplication, and division </i>operations<i> </i>on two
+fractions.&nbsp; You are required to write this class as part of this assignment.&nbsp;
+For now, assume that the user will enter the numerator and the denominator
+of the first fraction, followed by those for the second fraction.
+<p>You need to use constructors for:
+<br>&nbsp;&nbsp;&nbsp; 1) correctly initializing variable members, and
+<br>&nbsp;&nbsp;&nbsp; 2) creating objects with given initial values.&nbsp;
+Note that a fraction may have both a numerator and a denominator, for example:
+(8/3), or may simply be a number, for example: 6, in which case you will
+actually use (6/1) to represent it.&nbsp; Thus, the constructors with two
+and one arguments should be included in the class definition.
+<p>Your class will have a function for each one of the four operations.&nbsp;
+For example: Suppose we have defined objects a and b as two fractions,
+then to compute a + b, we will use:
+<p>a.add(b);
+<p>When you conduct an operation, you do not have to simplify the result,
+i.e., 4/5 * 5/10 = 20/50.
+<p>Here are some of the rules you may need:
+<br>a/b + c/d = (a*d + b*c) / (b*d)
+<br>a/b - c/d = (a*d - b*c) / (b*d)
+<br>(a/b) * (c/d) = (a*c) / (b*d)
+<br>(a/b) / (c/d) = (a*d) * (c*b)
+<p><i>A more complicated version of this program is listed at the end of
+Chapter (6) - Problem 9.</i>
+</body>
+</html>

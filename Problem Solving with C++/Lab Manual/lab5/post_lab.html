@@ -1,0 +1,94 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Post_lab </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Post-lab - Lab (5)</font></font></b>
+<br><a href="act4.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="index.html"><img SRC="uparrow.jpg" height=35 width=37></a>
+<br>
+<hr WIDTH="100%">
+<br>The purpose of this assignment is to create a program that works like
+a simple html file converter.&nbsp; Your program will read a text file
+and will produce a html file that can be viewed using a web browser, like
+Netscape or Internet Explorer.
+<p>Write a C++ code that converts an input file, <i>myfile</i>, into a
+simple Hyper Text Markup Language (HTML) file, <i>myfile.html</i>. In order
+to do this, you will read the input file, <i>myfile</i>, from the beginning
+to the end and will create the output file, <i>myfile.html,</i> by following
+the instructions given below.
+<p>1) Every time you run your code, the first thing your program will do
+is to write the following 5 lines at the beginning of the output file before
+you start reading the input file.&nbsp; This is a very minimum header for
+your html file.&nbsp; You will use a function called <i>write_header </i>to
+do this part of the program.
+<p>&lt;Html>
+<br>&lt;Title>
+<br>This is my C++ html converter
+<br>&lt;/Title>
+<br>&lt;Body>
+<p>2) From this point on, you will read the contents of the input file,
+<i>myfile</i>,
+and will copy it to the output file, <i>myfile.html. 
+</i>However, as the
+input file is read, you will write a "&lt;br>" (without the ") into the
+output file each time a newline is reached.&nbsp; The &lt;br> in html means
+the same thing as the "\n" in C++.&nbsp; Continue reading and copying the
+rest of the file.&nbsp; Repeat this as needed until you are done reading
+the entire file.
+<p>For example, suppose your input file has the following two lines:
+<br>Line 1 on the input file: I have a black cat.
+<br>Line 2 on the input file: I have a white dog.
+<p>As you have noticed, at the end of the first line there is an invisible
+"\n". So, once you reached that, your program will write &lt;br> into the
+output file. Thus, these two lines in the output file will look like this:
+<p>I have a black cat. &lt;br>
+<br>I have a white dog.&nbsp; &lt;br>
+<p>3) After reading the input file and copying its entire contents into
+the output file, you will write the following two lines at the end of the
+output file. You will use a function called <i>write_footer</i> to write
+these lines.
+<p>&lt;/Body>
+<br>&lt;/Html>
+<p>The output that you will generate after you run the program will be
+an html file.&nbsp; If you have done everything correctly, you can open
+it using a web browser like Netscape or Internet Explorer.
+<p>A sample input file:
+<p>Hi my name is David.
+<br>I wrote this program that uses the file I/O to create html files from
+text files.
+<p>Sample output:
+<br>&lt;Html>
+<br>&lt;Title>
+<br>This is my C++ html converter, YourName.
+<br>&lt;/Title>
+<br>&lt;Body>
+<p>Hi my name is David. &lt;br>
+<br>I wrote this program that uses the file I/O to create html files from
+text files.&nbsp; &lt;br>
+<p>&lt;/Body>
+<br>&lt;/Html>
+<p>Your program should include the following functions:
+<br><b>void instructions( )</b>
+<br>//Displays instructions on how to run the program and what the input
+is.
+<p><b>void get_test_files(ifstream&amp; in_s, ofstream&amp; out_s)</b>
+<br>// This function asks users to enter the input and output file names
+from the keayboard.&nbsp; It will attempt to connect to the files and once
+successfully connected, it returns the input and output streams to the
+main.&nbsp; If it fails to connect to the input or output file, it will
+terminate the program.
+<p><b>void write_header(ofstream&amp; out_s)</b>
+<br>// This function will write the 5 lines of header into the output file.
+<p><b>void write_footer(ofstream&amp; out_s)</b>
+<br>// This function will write the last 2 lines, the footer of the html
+file.
+<p><b>void copy_text(ifstream&amp; in_s, ofstream&amp; out_s)</b>
+<br>// This file copies the entire contents of the input file, <i>myfile</i>,
+into the output file, <i>myfile.html</i>, line-by- line, by considering
+the given instruction for the newline.
+</body>
+</html>

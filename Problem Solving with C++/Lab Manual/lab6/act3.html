@@ -1,0 +1,124 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Rahman Tashakkori">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Activity 6 - 3 </title>
+</head>
+<body background="graphpaper.gif">
+<b><font color="#000099"><font size=+3>Activity 6-3 - Classes
+- A New Type Definition</font></font></b>
+<br><b><font color="#000099"><font size=+3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Constructors for Initialization</font></font></b>
+<br><b><font color="#000099"><font size=+3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+A Class Inside Another Class</font></font></b>
+<br><a href="act2.html"><img SRC="lfarrow.jpg" height=35 width=36></a><a href="post_lab.html"><img SRC="rtarrow.jpg" height=35 width=35></a>
+<br>
+<hr WIDTH="100%">
+<br>You often need to initialize some or all of the variable members of
+an object.&nbsp; For example, in Exercise 6.3, you need to initialize the
+<i>monthly_payment</i>
+member of the third object to 0 right at the beginning.&nbsp; This is because
+you want to use that function to keep the sum and the sum must be 0 at
+the beginning.&nbsp; C++ includes special provisions for such initialization.&nbsp;
+There is a special kind of member function called a
+<b>constructor</b>
+that is automatically called when an object of the class is declared.&nbsp;
+This function will initialize the values of member variables and can do
+any other initialization that may be needed.
+<p>Here are two things you need to remember when you work with constructors:
+<p>&nbsp;&nbsp;&nbsp; 1) A constructor MUST have the same name as the class.&nbsp;
+The constructor for class <i>Loan</i> is called <i>Loan</i>.
+<br>&nbsp;&nbsp;&nbsp; 2) A constructor does not have a type, thus it CANNOT
+return a value.
+<p>In the <i>Loan</i> class, the <i>set </i>function can be replaced with
+the constructor as its job is to initialize the variable members of the
+class.
+<p>Here is the P62a.cpp program with constructors.
+<p>// <b><font color="#CC0000">P63.cpp </font></b>- This program is a driver
+written to demonstrate how the constructor function works.
+<br>#include&lt;iostream>
+<p><i>class Loan&nbsp; // Loan is called <b>structure tag</b></i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; public:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Loan( );</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Loan(int ID, float
+amount, float rate, int term);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void set( );</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float payment(
+);</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void display( );</i>
+<br><i>&nbsp;&nbsp; private:</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ID;&nbsp; // assume an
+unique integer between 1111-9999</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float amount; // $ amount of
+the loan</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float rate; // annual interest rate</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int term;&nbsp; // number of months,
+length of the loan</i>
+<br><i>&nbsp;};</i>
+<p><i>int main( )</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp; Loan loan1(1234, 2300, 5.5, 48);&nbsp; // initialize
+to values given</i>
+<br><i>&nbsp;&nbsp;&nbsp; Loan loan2;&nbsp; // use the default values</i>
+<br><i>&nbsp;&nbsp;&nbsp; Loan loan3;</i>
+<br><i>&nbsp;&nbsp;&nbsp; Loan loan4 = loan1;</i>
+<p><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Display loan1 \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; loan1.display();</i>
+<p><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Display loan2 \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; loan2.display();</i>
+<p><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Display loan4 \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; loan4.display();</i>
+<p><i>&nbsp;&nbsp;&nbsp; loan3.set( ); // set the values</i>
+<br><i>&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Display loan3 \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp; loan3.display();</i>
+<p><i>&nbsp;&nbsp;&nbsp; return 0;</i>
+<br><i>}</i>
+<p><i>Loan::Loan( )</i>
+<br><i>{</i>
+<br><i>// Body intentionally kept empty so the default values are used.</i>
+<br><i>// If you wish to set the default value of the members to specific</i>
+<br><i>// values, here is the place to do it.</i>
+<br><i>// For example, to make the default value of amount = 0</i>
+<br><i>// you will use amount = 0;</i>
+<p><i>// <font color="#CC0000">You could actually copy the body of set
+function here too</font></i>
+<br><i>}</i>
+<p><i>Loan::Loan(int I, float am, float rt, int trm)</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ID = I;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amount = am;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rate = rt;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; term = trm;</i>
+<br><i>}</i>
+<p><i>void Loan::set( )</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Initialize the loan1 object</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the ID of this
+loan \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> ID;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the amount of
+this loan \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> amount;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the annual interest
+rate of this loan (in %) \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> rate;</i>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter the term (number
+of months, length of the loan) \n";</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> term;</i>
+<br><i>}</i>
+<p><i>void Loan::display()</i>
+<br><i>{</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; ID &lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; amount &lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; rate &lt;&lt; endl;</i>
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; term &lt;&lt; endl;</i>
+<br><i>}</i>
+<p><a NAME="ex64"></a><b><font color="#00CC00"><font size=+1>Exercise 6.4</font></font></b>
+<br>Modify the above program or the ex63.cpp program to include constructors
+that help perform the same computation as requested in Exercise 6.3. Call
+your new program ex64.cpp.
+</body>
+</html>
